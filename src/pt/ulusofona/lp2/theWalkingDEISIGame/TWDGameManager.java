@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TWDGameManager {
+    //.
+    static int x, y, equipaInicial;
+    ArrayList<Humano> humanos = new ArrayList<>();
+    ArrayList<Zombie> zombies = new ArrayList<>();
+    ArrayList<Equipamento> equipamentos = new ArrayList<>();
 
     public boolean startGame(File ficheiroInicial) {
         String nomeFicheiro = "jogo.txt";
@@ -15,13 +20,53 @@ public class TWDGameManager {
 
             while (leitorFicheiro.hasNextLine()) {
 
-                String linha = leitorFicheiro.nextLine();
+                //Primeira Linha
+                String coordenadaLinha = leitorFicheiro.nextLine();
+                String partesCoordenadas[] = coordenadaLinha.split(" ");
+                x = Integer.parseInt(partesCoordenadas[0]);
+                y = Integer.parseInt(partesCoordenadas[1]);
 
-                String parts[] = linha.split(":");
-                // converter para os tipos esperados
-                int part1 = Integer.parseInt(parts[0]);
-                String part2 = parts[1];
-                // ...
+                //Segunda Linha
+                String equipaLinha = leitorFicheiro.nextLine();
+                equipaInicial = Integer.parseInt(equipaLinha);
+
+                //Terceira Linha
+                String numCriaturasLinha = leitorFicheiro.nextLine();
+                int numLinhasC = Integer.parseInt(numCriaturasLinha);
+
+                //Número de linhas dependendo da Terceira Linha
+                for (int i = 0; i <= numLinhasC; i++) {
+                    String criaturasLinha = leitorFicheiro.nextLine();
+                    String partesCriaturas[] = coordenadaLinha.split(":");
+                    int id = Integer.parseInt(partesCriaturas[0]);
+                    int equipa = Integer.parseInt(partesCriaturas[1]);
+                    String nome = partesCriaturas[2];
+                    int criaturaCoordenadaX = Integer.parseInt(partesCriaturas[3]);
+                    int criaturaCoordenadaY = Integer.parseInt(partesCriaturas[4]);
+                    if (equipa == 0) {
+                        //Add Zombie
+                    }
+                    if (equipa == 1) {
+                        //Add Humano
+                    }
+                }
+
+                //Quinta Linha
+                String numEquipamentosLinha = leitorFicheiro.nextLine();
+                int numLinhasE = Integer.parseInt(numCriaturasLinha);
+
+                //Número de linhas dependendo da Quinta Linha
+                for (int i = 0; i <= numLinhasE; i++) {
+                    String equipamentosLinha = leitorFicheiro.nextLine();
+                    String partesEquipamentos[] = coordenadaLinha.split(":");
+                    int id = Integer.parseInt(partesEquipamentos[0]);
+                    int tipo = Integer.parseInt(partesEquipamentos[1]);
+                    int equipamentoCoordenadaX = Integer.parseInt(partesEquipamentos[2]);
+                    int equipamentoCoordenadaY = Integer.parseInt(partesEquipamentos[3]);
+                    //add Equipamento
+                }
+
+
             }
             leitorFicheiro.close();
             return true;
@@ -32,21 +77,19 @@ public class TWDGameManager {
     }
 
     public int[] getWorldSize() {
-        int[] coordendas = {1,1};
+        int[] coordendas = {x,y};
         return coordendas;
     }
 
     public int getInitialTeam() {
-        return 0;
+        return equipaInicial;
     }
 
     public List<Humano> getHumans() {
-        ArrayList<Humano> humanos = new ArrayList<>();
         return humanos;
     }
 
     public List<Zombie> getZombies() {
-        ArrayList<Zombie> zombies = new ArrayList<>();
         return zombies;
     }
 
