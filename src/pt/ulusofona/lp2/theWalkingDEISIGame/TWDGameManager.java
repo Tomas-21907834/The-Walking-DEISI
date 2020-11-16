@@ -1,13 +1,34 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TWDGameManager {
-    
+
     public boolean startGame(File ficheiroInicial) {
-        return false;
+        String nomeFicheiro = "jogo.txt";
+        try {
+            File ficheiro = new File(nomeFicheiro);
+            Scanner leitorFicheiro = new Scanner(ficheiro);
+
+            while (leitorFicheiro.hasNextLine()) {
+
+                String linha = leitorFicheiro.nextLine();
+
+                String parts[] = linha.split(":");
+                // converter para os tipos esperados
+                int part1 = Integer.parseInt(parts[0]);
+                String part2 = parts[1];
+                // ...
+            }
+            leitorFicheiro.close();
+            return true;
+        } catch (FileNotFoundException exception) {
+            System.out.println("Erro: " + nomeFicheiro + " não foi encontrado.");
+            return false;
+        }
     }
 
     public int[] getWorldSize() {
