@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TWDGameManager {
-
+    //.
     static int x, y, equipaInicial;
     ArrayList<Humano> humanos = new ArrayList<>();
     ArrayList<Zombie> zombies = new ArrayList<>();
