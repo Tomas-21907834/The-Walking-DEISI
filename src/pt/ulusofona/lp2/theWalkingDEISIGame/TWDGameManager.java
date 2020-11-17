@@ -12,6 +12,12 @@ public class TWDGameManager {
     ArrayList<Zombie> zombies = new ArrayList<>();
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
 
+
+    public TWDGameManager() {
+    }
+
+
+
     public boolean startGame(File ficheiroInicial) {
         String nomeFicheiro = "jogo.txt";
         try {
@@ -78,6 +84,7 @@ public class TWDGameManager {
 
     public int[] getWorldSize() {
         int[] coordendas = {x,y};
+
         return coordendas;
     }
 
@@ -103,6 +110,10 @@ public class TWDGameManager {
 
     public List<String> getAuthors() {
         ArrayList<String> authors = new ArrayList<>();
+
+        authors.add("Tomás Martins");
+        authors.add("Manuel Sousa");
+
         return authors;
     }
 

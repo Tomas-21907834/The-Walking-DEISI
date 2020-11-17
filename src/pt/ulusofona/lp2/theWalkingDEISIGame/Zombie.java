@@ -1,21 +1,25 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Zombie {
     int id;
     String nome;
     int tipoCriatura;
-    Equipamento equipamento;
+    List<Equipamento> equipamentos = new ArrayList<>();
     int equipa;
     MapaBairro coordenadas;
+    String imagePNG;
 
 
-    public Zombie(int id, String nome, int tipoCriatura, Equipamento equipamento, MapaBairro coordenadas) {
+    public Zombie(int id, String nome, int tipoCriatura, MapaBairro coordenadas, String imagePNG) {
         this.id=id;
         this.nome=nome;
         this.tipoCriatura=tipoCriatura;
-        this.equipamento=equipamento;
         this.equipa=1;
         this.coordenadas=coordenadas;
+        this.imagePNG=imagePNG;
     }
 
 
@@ -25,7 +29,7 @@ public class Zombie {
 
 
     public String getImagePNG(){
-        return null;
+        return imagePNG;
     }
 
     public int nomeEquipa(){
@@ -38,18 +42,13 @@ public class Zombie {
     }
 
 
-    public int equipamentos(){
-        int quantidade = equipamento.idTipo;
-        if (tipoCriatura == 1){
-           if (quantidade < 0){
-               return -1;
-           }
-            quantidade -=equipamento.idTipo;
-        }
-        return quantidade;
+    public boolean addEquipamentos(Equipamento equipamento){
+
+        return true;
+
     }
 
     public String toString(){
-        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + equipamentos() + " @ (" + coordenadas.x + " , " + coordenadas.y + ")";
+        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + e + " @ (" + coordenadas.x + " , " + coordenadas.y + ")";
     }
 }

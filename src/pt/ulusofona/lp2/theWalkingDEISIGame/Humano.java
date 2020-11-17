@@ -1,50 +1,53 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Humano {
 
     int id;
     String nome;
     int tipoCriatura;
-    Equipamento equipamento;
+    List<Equipamento> equipamentos = new ArrayList<>();
     int equipa;
     MapaBairro coordenadas;
+    String imagePNG;
 
 
-    public Humano(int id, String nome, int tipoCriatura, Equipamento equipamento) {
+    public Humano(int id, String nome, int tipoCriatura, MapaBairro coordenadas, String imagePNG) {
         this.id=id;
         this.nome=nome;
         this.tipoCriatura=tipoCriatura;
-        this.equipamento=equipamento;
         this.equipa=0;
+        this.coordenadas=coordenadas;
+        this.imagePNG=imagePNG;
     }
 
-    // id do humano
+
     public int getId(){
         return id;
     }
 
 
     public String getImagePNG(){
-        return null;
+        return imagePNG;
+    }
+
+    public int nomeEquipa(){
+        return equipa;
     }
 
     public String TipoCriatura() {
        return "Humano";
     }
 
-    public int equipamentos(){
-        int quantidade = equipamento.idTipo;
-        if (tipoCriatura == 0){
-            if (quantidade > 0){
-                quantidade -=equipamento.idTipo;
-            }
+    public boolean addEquipamentos(Equipamento equipamento){
 
-        }
-        return quantidade;
+        return true;
 
     }
 
     public String toString(){
-        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + equipamentos() + " @ (" + coordenadas.x + " , " + coordenadas.y + ")";
+        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + e + " @ (" + coordenadas.x + " , " + coordenadas.y + ")";
     }
 }
