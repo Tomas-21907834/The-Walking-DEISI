@@ -5,21 +5,24 @@ import java.util.List;
 
 public class Humano {
 
+    static int totalEquipamentoApanhado = 0;
     int id;
     String nome;
     int tipoCriatura;
     List<Equipamento> equipamentos = new ArrayList<>();
     int equipa;
-    MapaBairro coordenadas;
+    int coordenadaX;
+    int coordenadaY;
     String imagePNG;
 
 
-    public Humano(int id, String nome, MapaBairro coordenadas, String imagePNG) {
+    public Humano(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY, String imagePNG) {
         this.id=id;
         this.nome=nome;
-        this.tipoCriatura=1;
-        this.equipa=0;
-        this.coordenadas=coordenadas;
+        this.tipoCriatura = tipoCriatura;
+        this.equipa = 0;
+        this.coordenadaX = coordenadaX;
+        this.coordenadaY = coordenadaY;
         this.imagePNG=imagePNG;
     }
 
@@ -33,21 +36,39 @@ public class Humano {
         return imagePNG;
     }
 
-    public int nomeEquipa(){
+    public int getCoordenadaX() {
+        return coordenadaX;
+    }
+
+    public int getCoordenadaY() {
+        return coordenadaY;
+    }
+
+    public int getTipoCriatura() {
+        return tipoCriatura;
+    }
+
+    public int getEquipa() {
         return equipa;
+    }
+
+    public void setCoordenadaX(int coordenadaX) {
+        this.coordenadaX = coordenadaX;
+    }
+
+    public void setCoordenadaY(int coordenadaY) {
+        this.coordenadaY = coordenadaY;
     }
 
     public String TipoCriatura() {
        return "Humano";
     }
 
-    public boolean addEquipamentos(Equipamento equipamento){
-
-        return true;
-
+    public int equipamentoApanhados(){
+        return totalEquipamentoApanhado++;
     }
 
     public String toString(){
-        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + e + " @ (" + coordenadas.x + " , " + coordenadas.y + ")";
+        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + " @ (" + coordenadaX + " , " + coordenadaY + ")";
     }
 }

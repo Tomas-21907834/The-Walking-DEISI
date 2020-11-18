@@ -2,6 +2,7 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +12,6 @@ public class TWDGameManager {
     ArrayList<Humano> humanos = new ArrayList<>();
     ArrayList<Zombie> zombies = new ArrayList<>();
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
-
 
     public TWDGameManager() {
     }
@@ -45,17 +45,17 @@ public class TWDGameManager {
                     String criaturasLinha = leitorFicheiro.nextLine();
                     String[] partesCriaturas = coordenadaLinha.split(" : ");
                     int id = Integer.parseInt(partesCriaturas[0]);
-                    int equipa = Integer.parseInt(partesCriaturas[1]);
+                    int tipo = Integer.parseInt(partesCriaturas[1]);
                     String nome = partesCriaturas[2];
                     int criaturaCoordenadaX = Integer.parseInt(partesCriaturas[3]);
                     int criaturaCoordenadaY = Integer.parseInt(partesCriaturas[4]);
 
-                    if (equipa == 0) {
-                        Zombie zombie = new Zombie(0,"Brand", new MapaBairro(2,1),null);
+                    if (tipo == 0) {
+                        Zombie zombie = new Zombie(id,nome,tipo,criaturaCoordenadaX,criaturaCoordenadaY,null);
                         zombies.add(zombie);
                     }
-                    if (equipa == 1) {
-                        Humano humano = new Humano(0,"Rambo", new MapaBairro(1,2),null);
+                    if (tipo == 1) {
+                        Humano humano = new Humano(id,nome,tipo,criaturaCoordenadaX, criaturaCoordenadaY, null);
                         humanos.add(humano);
                     }
                 }
@@ -89,20 +89,7 @@ public class TWDGameManager {
     }
 
     public int[] getWorldSize() {
-        int[] coordendas = {x,y};
-
-        for (int i = 0; i < x ; i++){
-            for (int  j =0; j <y ; j++){
-                MapaBairro mapa = new MapaBairro(5,5);
-
-                if (i == 0){
-                    mapa.
-                }
-
-
-
-            }
-        }
+        int[] coordendas = {y,x};
 
         return coordendas;
     }
@@ -120,10 +107,20 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
+        if (xO < 0 || xO > x-1 || yO < 0 || yO > y-1 || xD < 0 || xD > x-1 || yD < 0 || yD > y-1) {
+            return false;
+        }
 
-
-
-
+        if (xD-1 == xO && yD == yO || xD+1 == xO && yD == yO || yD-1 == yO && xD == xO || yD+1 == yO && xD == xO) {
+            for (int i = 0; i < humanos.size(); i++) {
+                if (humanos.get(i).getCoordenadaX() == xO && humanos.get(i).getCoordenadaY() == yO) {
+                    humanos.get(i).setCoordenadaX(xD);
+                    humanos.get(i).setCoordenadaY(yD);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean gameIsOver() {

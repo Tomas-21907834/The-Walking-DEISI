@@ -4,22 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Zombie {
+    static int totalEquipamentoDestruido = 0;
     int id;
     String nome;
     int tipoCriatura;
     List<Equipamento> equipamentos = new ArrayList<>();
     int equipa;
-    MapaBairro coordenadas;
+    int coordenadaX;
+    int coordenadaY;
     String imagePNG;
 
 
-    public Zombie(int id, String nome, MapaBairro coordenadas, String imagePNG) {
-        this.id=id;
-        this.nome=nome;
-        this.tipoCriatura=0;
-        this.equipa=1;
-        this.coordenadas=coordenadas;
-        this.imagePNG=imagePNG;
+    public Zombie(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY, String imagePNG) {
+        this.id = id;
+        this.nome = nome;
+        this.tipoCriatura= tipoCriatura;
+        this.equipa = 1;
+        this.coordenadaX = coordenadaX;
+        this.coordenadaY = coordenadaY;
+        this.imagePNG = imagePNG;
     }
 
     public int getId() {
@@ -41,18 +44,13 @@ public class Zombie {
     }
 
 
-    public int addEquipamentos(Equipamento equipamento){
-
-      if (equipamento.idTipo == 0 || equipamento.idTipo == 1){
-          equipamentos.add(equipamento);
-          return equipamentos.size();
-      }
-         return 0;
+    public int addEquipamentos(){
+        return totalEquipamentoDestruido++;
 
 
     }
 
     public String toString(){
-        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + addEquipamentos() + " @ (" + coordenadas.x + " , " + coordenadas.y + ")";
+        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + addEquipamentos() + " @ (" + coordenadaX + " , " + coordenadaY + ")";
     }
 }
