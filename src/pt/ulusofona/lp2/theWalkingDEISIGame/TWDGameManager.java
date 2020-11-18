@@ -110,7 +110,7 @@ public class TWDGameManager {
         if (xO < 0 || xO > x-1 || yO < 0 || yO > y-1 || xD < 0 || xD > x-1 || yD < 0 || yD > y-1) {
             return false;
         }
-//
+
         if (xD-1 == xO && yD == yO || xD+1 == xO && yD == yO || yD-1 == yO && xD == xO || yD+1 == yO && xD == xO) {
             for (int i = 0; i < humanos.size(); i++) {
                 if (humanos.get(i).getCoordenadaX() == xO && humanos.get(i).getCoordenadaY() == yO) {
