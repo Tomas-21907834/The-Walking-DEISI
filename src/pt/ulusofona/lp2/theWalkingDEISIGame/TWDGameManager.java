@@ -41,9 +41,9 @@ public class TWDGameManager {
                 int numLinhasC = Integer.parseInt(numCriaturasLinha);
 
                 //Número de linhas dependendo da Terceira Linha
-                for (int i = 0; i <= numLinhasC; i++) {
+                for (int i = 0; i < numLinhasC; i++) {
                     String criaturasLinha = leitorFicheiro.nextLine();
-                    String[] partesCriaturas = coordenadaLinha.split(" : ");
+                    String[] partesCriaturas = criaturasLinha.split(" : ");
                     int id = Integer.parseInt(partesCriaturas[0]);
                     int tipo = Integer.parseInt(partesCriaturas[1]);
                     String nome = partesCriaturas[2];
@@ -62,19 +62,18 @@ public class TWDGameManager {
 
                 //Quinta Linha
                 String numEquipamentosLinha = leitorFicheiro.nextLine();
-                int numLinhasE = Integer.parseInt(numCriaturasLinha);
+                int numLinhasE = Integer.parseInt(numEquipamentosLinha);
 
                 //Número de linhas dependendo da Quinta Linha
-                for (int i = 0; i <= numLinhasE; i++) {
+                for (int i = 0; i < numLinhasE; i++) {
                     String equipamentosLinha = leitorFicheiro.nextLine();
-                    String[] partesEquipamentos = coordenadaLinha.split(" : ");
+                    String[] partesEquipamentos = equipamentosLinha.split(" : ");
                     int id = Integer.parseInt(partesEquipamentos[0]);
                     int tipo = Integer.parseInt(partesEquipamentos[1]);
                     int equipamentoCoordenadaX = Integer.parseInt(partesEquipamentos[2]);
                     int equipamentoCoordenadaY = Integer.parseInt(partesEquipamentos[3]);
 
-                                                                 //espada fortissima
-                    Equipamento equipamento = new Equipamento(0,1);
+                    Equipamento equipamento = new Equipamento(id,tipo, equipamentoCoordenadaX, equipamentoCoordenadaY);
                     equipamentos.add(equipamento);
                 }
 
