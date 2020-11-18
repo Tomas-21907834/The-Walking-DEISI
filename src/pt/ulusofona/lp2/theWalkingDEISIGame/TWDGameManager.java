@@ -14,6 +14,7 @@ public class TWDGameManager {
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
 
     public TWDGameManager() {
+
     }
 
 

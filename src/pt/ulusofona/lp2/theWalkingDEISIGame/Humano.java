@@ -31,7 +31,7 @@ public class Humano {
 
 
     public String getImagePNG(){
-        return "human.png";
+        return "rick.png";
     }
 
     public int getCoordenadaX() {
@@ -40,6 +40,14 @@ public class Humano {
 
     public int getCoordenadaY() {
         return coordenadaY;
+    }
+
+    public int getTipoCriatura() {
+        return tipoCriatura;
+    }
+
+    public int getEquipa() {
+        return equipa;
     }
 
     public void setCoordenadaX(int coordenadaX) {

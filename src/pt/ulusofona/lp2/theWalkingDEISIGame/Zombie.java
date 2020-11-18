@@ -12,7 +12,6 @@ public class Zombie {
     int equipa;
     int coordenadaX;
     int coordenadaY;
-    String imagePNG;
 
 
     public Zombie(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
@@ -28,6 +27,13 @@ public class Zombie {
         return id;
     }
 
+    public int getCoordenadaX() {
+        return coordenadaX;
+    }
+
+    public int getCoordenadaY() {
+        return coordenadaY;
+    }
 
     public String getImagePNG(){
         return "zombie.png";
@@ -37,13 +43,6 @@ public class Zombie {
         return equipa;
     }
 
-    public int getCoordenadaX() {
-        return coordenadaX;
-    }
-
-    public int getCoordenadaY() {
-        return coordenadaY;
-    }
 
     public String TipoCriatura() {
         return "Zombie";
