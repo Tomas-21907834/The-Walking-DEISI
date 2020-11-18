@@ -15,14 +15,13 @@ public class Zombie {
     String imagePNG;
 
 
-    public Zombie(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY, String imagePNG) {
+    public Zombie(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
         this.id = id;
         this.nome = nome;
         this.tipoCriatura= tipoCriatura;
         this.equipa = 1;
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
-        this.imagePNG = imagePNG;
     }
 
     public int getId() {
@@ -31,13 +30,20 @@ public class Zombie {
 
 
     public String getImagePNG(){
-        return imagePNG;
+        return "zombie.png";
     }
 
     public int nomeEquipa(){
         return equipa;
     }
 
+    public int getCoordenadaX() {
+        return coordenadaX;
+    }
+
+    public int getCoordenadaY() {
+        return coordenadaY;
+    }
 
     public String TipoCriatura() {
         return "Zombie";

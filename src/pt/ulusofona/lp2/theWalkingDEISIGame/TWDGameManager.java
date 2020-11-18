@@ -51,11 +51,11 @@ public class TWDGameManager {
                     int criaturaCoordenadaY = Integer.parseInt(partesCriaturas[4]);
 
                     if (tipo == 0) {
-                        Zombie zombie = new Zombie(id,nome,tipo,criaturaCoordenadaX,criaturaCoordenadaY,null);
+                        Zombie zombie = new Zombie(id,nome,tipo,criaturaCoordenadaX,criaturaCoordenadaY);
                         zombies.add(zombie);
                     }
                     if (tipo == 1) {
-                        Humano humano = new Humano(id,nome,tipo,criaturaCoordenadaX, criaturaCoordenadaY, null);
+                        Humano humano = new Humano(id,nome,tipo,criaturaCoordenadaX, criaturaCoordenadaY);
                         humanos.add(humano);
                     }
                 }
@@ -140,6 +140,19 @@ public class TWDGameManager {
     }
 
     public int getElementId(int x, int y) {
+        for (int i = 0; i < humanos.size(); i++) {
+            if (humanos.get(i).getCoordenadaX() == x && humanos.get(i).getCoordenadaY() == y) {
+                return humanos.get(i).getId();
+            }
+        }
+
+        for (int i = 0; i < zombies.size(); i++) {
+            if (zombies.get(i).getCoordenadaX() == x && zombies.get(i).getCoordenadaY() == y) {
+                return zombies.get(i).getId();
+            }
+        }
+
+
         return 0;
     }
 

@@ -13,17 +13,15 @@ public class Humano {
     int equipa;
     int coordenadaX;
     int coordenadaY;
-    String imagePNG;
 
 
-    public Humano(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY, String imagePNG) {
+    public Humano(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
         this.id=id;
         this.nome=nome;
         this.tipoCriatura = tipoCriatura;
         this.equipa = 0;
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
-        this.imagePNG=imagePNG;
     }
 
 
@@ -33,7 +31,7 @@ public class Humano {
 
 
     public String getImagePNG(){
-        return imagePNG;
+        return "human.png";
     }
 
     public int getCoordenadaX() {
@@ -42,14 +40,6 @@ public class Humano {
 
     public int getCoordenadaY() {
         return coordenadaY;
-    }
-
-    public int getTipoCriatura() {
-        return tipoCriatura;
-    }
-
-    public int getEquipa() {
-        return equipa;
     }
 
     public void setCoordenadaX(int coordenadaX) {
