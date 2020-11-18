@@ -14,10 +14,10 @@ public class Humano {
     String imagePNG;
 
 
-    public Humano(int id, String nome, int tipoCriatura, MapaBairro coordenadas, String imagePNG) {
+    public Humano(int id, String nome, MapaBairro coordenadas, String imagePNG) {
         this.id=id;
         this.nome=nome;
-        this.tipoCriatura=tipoCriatura;
+        this.tipoCriatura=1;
         this.equipa=0;
         this.coordenadas=coordenadas;
         this.imagePNG=imagePNG;

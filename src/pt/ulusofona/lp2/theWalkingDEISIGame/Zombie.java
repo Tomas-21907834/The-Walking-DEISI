@@ -13,15 +13,14 @@ public class Zombie {
     String imagePNG;
 
 
-    public Zombie(int id, String nome, int tipoCriatura, MapaBairro coordenadas, String imagePNG) {
+    public Zombie(int id, String nome, MapaBairro coordenadas, String imagePNG) {
         this.id=id;
         this.nome=nome;
-        this.tipoCriatura=tipoCriatura;
+        this.tipoCriatura=0;
         this.equipa=1;
         this.coordenadas=coordenadas;
         this.imagePNG=imagePNG;
     }
-
 
     public int getId() {
         return id;
@@ -42,13 +41,18 @@ public class Zombie {
     }
 
 
-    public boolean addEquipamentos(Equipamento equipamento){
+    public int addEquipamentos(Equipamento equipamento){
 
-        return true;
+      if (equipamento.idTipo == 0 || equipamento.idTipo == 1){
+          equipamentos.add(equipamento);
+          return equipamentos.size();
+      }
+         return 0;
+
 
     }
 
     public String toString(){
-        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + e + " @ (" + coordenadas.x + " , " + coordenadas.y + ")";
+        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + addEquipamentos() + " @ (" + coordenadas.x + " , " + coordenadas.y + ")";
     }
 }

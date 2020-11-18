@@ -28,7 +28,7 @@ public class TWDGameManager {
 
                 //Primeira Linha
                 String coordenadaLinha = leitorFicheiro.nextLine();
-                String partesCoordenadas[] = coordenadaLinha.split(" ");
+                String[] partesCoordenadas = coordenadaLinha.split(" ");
                 x = Integer.parseInt(partesCoordenadas[0]);
                 y = Integer.parseInt(partesCoordenadas[1]);
 
@@ -43,17 +43,20 @@ public class TWDGameManager {
                 //Número de linhas dependendo da Terceira Linha
                 for (int i = 0; i <= numLinhasC; i++) {
                     String criaturasLinha = leitorFicheiro.nextLine();
-                    String partesCriaturas[] = coordenadaLinha.split(":");
+                    String[] partesCriaturas = coordenadaLinha.split(" : ");
                     int id = Integer.parseInt(partesCriaturas[0]);
                     int equipa = Integer.parseInt(partesCriaturas[1]);
                     String nome = partesCriaturas[2];
                     int criaturaCoordenadaX = Integer.parseInt(partesCriaturas[3]);
                     int criaturaCoordenadaY = Integer.parseInt(partesCriaturas[4]);
+
                     if (equipa == 0) {
-                        //Add Zombie
+                        Zombie zombie = new Zombie(0,"Brand", new MapaBairro(2,1),null);
+                        zombies.add(zombie);
                     }
                     if (equipa == 1) {
-                        //Add Humano
+                        Humano humano = new Humano(0,"Rambo", new MapaBairro(1,2),null);
+                        humanos.add(humano);
                     }
                 }
 
@@ -64,12 +67,15 @@ public class TWDGameManager {
                 //Número de linhas dependendo da Quinta Linha
                 for (int i = 0; i <= numLinhasE; i++) {
                     String equipamentosLinha = leitorFicheiro.nextLine();
-                    String partesEquipamentos[] = coordenadaLinha.split(":");
+                    String[] partesEquipamentos = coordenadaLinha.split(" : ");
                     int id = Integer.parseInt(partesEquipamentos[0]);
                     int tipo = Integer.parseInt(partesEquipamentos[1]);
                     int equipamentoCoordenadaX = Integer.parseInt(partesEquipamentos[2]);
                     int equipamentoCoordenadaY = Integer.parseInt(partesEquipamentos[3]);
-                    //add Equipamento
+
+                                                                 //espada fortissima
+                    Equipamento equipamento = new Equipamento(0,1);
+                    equipamentos.add(equipamento);
                 }
 
 
@@ -84,6 +90,19 @@ public class TWDGameManager {
 
     public int[] getWorldSize() {
         int[] coordendas = {x,y};
+
+        for (int i = 0; i < x ; i++){
+            for (int  j =0; j <y ; j++){
+                MapaBairro mapa = new MapaBairro(5,5);
+
+                if (i == 0){
+                    mapa.
+                }
+
+
+
+            }
+        }
 
         return coordendas;
     }
@@ -101,7 +120,10 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
-        return false;
+
+
+
+
     }
 
     public boolean gameIsOver() {
