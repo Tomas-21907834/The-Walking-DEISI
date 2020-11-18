@@ -58,7 +58,7 @@ public class Humano {
         this.coordenadaY = coordenadaY;
     }
 
-    public String TipoCriatura() {
+    public String tipoCriatura() {
        return "Humano";
     }
 
@@ -67,6 +67,6 @@ public class Humano {
     }
 
     public String toString(){
-        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + " @ (" + coordenadaX + " , " + coordenadaY + ")";
+        return id + " | " + tipoCriatura() + " | "  + equipa + " | " + nome + " " + " @ (" + coordenadaX + " , " + coordenadaY + ")";
     }
 }

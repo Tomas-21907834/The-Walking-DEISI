@@ -44,7 +44,7 @@ public class Zombie {
     }
 
 
-    public String TipoCriatura() {
+    public String tipoCriatura() {
         return "Zombie";
     }
 
@@ -56,6 +56,6 @@ public class Zombie {
     }
 
     public String toString(){
-        return id + " | " + TipoCriatura() + " | "  + equipa + " | " + nome + " " + addEquipamentos() + " @ (" + coordenadaX + " , " + coordenadaY + ")";
+        return id + " | " + tipoCriatura() + " | "  + equipa + " | " + nome + " " + addEquipamentos() + " @ (" + coordenadaX + " , " + coordenadaY + ")";
     }
 }
