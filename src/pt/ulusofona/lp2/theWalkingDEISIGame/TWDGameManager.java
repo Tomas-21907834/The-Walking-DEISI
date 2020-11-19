@@ -27,6 +27,8 @@ public class TWDGameManager {
         turno = 0;
         equipamentoTemporario = null;
         equipamentoCoordenadaD = false;
+        Humano.totalEquipamentoApanhado = 0;
+        Zombie.totalEquipamentoDestruido = 0;
 
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
