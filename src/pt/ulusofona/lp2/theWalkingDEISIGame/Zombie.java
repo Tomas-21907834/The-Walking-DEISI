@@ -68,6 +68,6 @@ public class Zombie {
     }
 
     public String toString(){
-        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentosDestruidos() + " @ (" + coordenadaX + " , " + coordenadaY + ")";
+        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentosDestruidos() + " @ (" + coordenadaX + ", " + coordenadaY + ")";
     }
 }

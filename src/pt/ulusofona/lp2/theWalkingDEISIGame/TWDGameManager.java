@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TWDGameManager {
-    //.
+
     static int x, y, equipaInicial, turno = 0, equipaAtual;
     static boolean equipamentoCoordenadaD = false;
     static Equipamento equipamentoTemporario;
@@ -246,7 +246,9 @@ public class TWDGameManager {
         for (int i = 0; i < humanos.size(); i++) {
             for (int j = 0; j < equipamentos.size(); j++) {
                 if (humanos.get(i).getId() == creatureId && equipamentos.get(j).getId() == equipmentTypeId) {
-                    return true;
+                    if (humanos.get(i).getEquipamento().getId() == equipmentTypeId ) {
+                        return true;
+                    }
                 }
             }
         }

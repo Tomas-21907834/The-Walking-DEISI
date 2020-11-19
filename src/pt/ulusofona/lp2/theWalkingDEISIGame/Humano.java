@@ -82,6 +82,6 @@ public class Humano {
     }
 
     public String toString(){
-        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ (" + coordenadaX + " , " + coordenadaY + ")";
+        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ (" + coordenadaX + ", " + coordenadaY + ")";
     }
 }
