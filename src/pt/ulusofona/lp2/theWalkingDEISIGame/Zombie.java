@@ -43,6 +43,13 @@ public class Zombie {
         return equipa;
     }
 
+    public void setCoordenadaX(int coordenadaX) {
+        this.coordenadaX = coordenadaX;
+    }
+
+    public void setCoordenadaY(int coordenadaY) {
+        this.coordenadaY = coordenadaY;
+    }
 
     public String tipoCriatura() {
         return "Zombie";

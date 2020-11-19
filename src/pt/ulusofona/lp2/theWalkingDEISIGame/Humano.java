@@ -9,7 +9,7 @@ public class Humano {
     int id;
     String nome;
     int tipoCriatura;
-    List<Equipamento> equipamentos = new ArrayList<>();
+    Equipamento equipamento;
     int equipa;
     int coordenadaX;
     int coordenadaY;
@@ -32,6 +32,14 @@ public class Humano {
 
     public String getImagePNG(){
         return "rick.png";
+    }
+
+    public Equipamento getEquipamento() {
+        return equipamento;
+    }
+
+    public void setEquipamento(Equipamento equipamento) {
+        this.equipamento = equipamento;
     }
 
     public int getCoordenadaX() {

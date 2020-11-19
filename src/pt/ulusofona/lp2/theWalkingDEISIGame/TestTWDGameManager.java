@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TestTWDGameManager {
 
-    @Test
+    /*@Test
     public void testaMove01(){
 
         TWDGameManager teste = new TWDGameManager();

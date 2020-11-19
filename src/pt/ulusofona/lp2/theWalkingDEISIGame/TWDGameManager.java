@@ -1,14 +1,16 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class TWDGameManager {
     //.
-    static int x, y, equipaInicial;
-    static boolean isDay = false;
+    static int x, y, equipaInicial, turno = 0, equipaAtual;
+    static boolean equipamentoCoordenadaD = false;
+    static Equipamento equipamentoTemporario;
     ArrayList<Humano> humanos = new ArrayList<>();
     ArrayList<Zombie> zombies = new ArrayList<>();
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
@@ -17,13 +19,15 @@ public class TWDGameManager {
 
     }
 
-
-
     public boolean startGame(File ficheiroInicial) {
-        String nomeFicheiro = "jogo.txt";
+        //Reset all
+        humanos.clear();
+        zombies.clear();
+        equipamentos.clear();
+        turno = 0;
+
         try {
-            File ficheiro = new File(nomeFicheiro);
-            Scanner leitorFicheiro = new Scanner(ficheiro);
+            Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 
             while (leitorFicheiro.hasNextLine()) {
 
@@ -36,6 +40,7 @@ public class TWDGameManager {
                 //Segunda Linha
                 String equipaLinha = leitorFicheiro.nextLine();
                 equipaInicial = Integer.parseInt(equipaLinha);
+                equipaAtual = equipaInicial;
 
                 //Terceira Linha
                 String numCriaturasLinha = leitorFicheiro.nextLine();
@@ -52,11 +57,11 @@ public class TWDGameManager {
                     int criaturaCoordenadaY = Integer.parseInt(partesCriaturas[4]);
 
                     if (tipo == 0) {
-                        Zombie zombie = new Zombie(id,nome,tipo,criaturaCoordenadaX,criaturaCoordenadaY);
+                        Zombie zombie = new Zombie(id, nome, tipo, criaturaCoordenadaX, criaturaCoordenadaY);
                         zombies.add(zombie);
                     }
                     if (tipo == 1) {
-                        Humano humano = new Humano(id,nome,tipo,criaturaCoordenadaX, criaturaCoordenadaY);
+                        Humano humano = new Humano(id, nome, tipo, criaturaCoordenadaX, criaturaCoordenadaY);
                         humanos.add(humano);
                     }
                 }
@@ -74,7 +79,7 @@ public class TWDGameManager {
                     int equipamentoCoordenadaX = Integer.parseInt(partesEquipamentos[2]);
                     int equipamentoCoordenadaY = Integer.parseInt(partesEquipamentos[3]);
 
-                    Equipamento equipamento = new Equipamento(id,tipo, equipamentoCoordenadaX, equipamentoCoordenadaY);
+                    Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY);
                     equipamentos.add(equipamento);
                 }
 
@@ -83,14 +88,13 @@ public class TWDGameManager {
             leitorFicheiro.close();
             return true;
         } catch (FileNotFoundException exception) {
-            System.out.println("Erro: " + nomeFicheiro + " não foi encontrado.");
+            System.out.println("Erro: " + ficheiroInicial.toString() + " não foi encontrado.");
             return false;
         }
     }
 
     public int[] getWorldSize() {
-        int[] coordendas = {y,x};
-
+        int[] coordendas = {y, x};
         return coordendas;
     }
 
@@ -107,16 +111,72 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
-        if (xO < 0 || xO > x-1 || yO < 0 || yO > y-1 || xD < 0 || xD > x-1 || yD < 0 || yD > y-1) {
+        final boolean movimentoPossivel = xD - 1 == xO && yD == yO || xD + 1 == xO && yD == yO || yD - 1 == yO && xD == xO || yD + 1 == yO && xD == xO;
+
+        if (xO < 0 || xO > x - 1 || yO < 0 || yO > y - 1 || xD < 0 || xD > x - 1 || yD < 0 || yD > y - 1) {
             return false;
         }
 
-        if (xD-1 == xO && yD == yO || xD+1 == xO && yD == yO || yD-1 == yO && xD == xO || yD+1 == yO && xD == xO) {
-            for (int i = 0; i < humanos.size(); i++) {
-                if (humanos.get(i).getCoordenadaX() == xO && humanos.get(i).getCoordenadaY() == yO) {
-                    humanos.get(i).setCoordenadaX(xD);
-                    humanos.get(i).setCoordenadaY(yD);
-                    return true;
+        for (int i = 0; i < humanos.size(); i++) {
+            if (humanos.get(i).getCoordenadaX() == xD && humanos.get(i).getCoordenadaY() == yD) {
+                return false;
+            }
+        }
+
+        for (int i = 0; i < zombies.size(); i++) {
+            if (zombies.get(i).getCoordenadaX() == xD && zombies.get(i).getCoordenadaY() == yD) {
+                return false;
+            }
+        }
+
+        for (int i = 0; i < equipamentos.size(); i++) {
+            if (equipamentos.get(i).getCoordenadaX() == xD && equipamentos.get(i).getCoordenadaY() == yD) {
+                equipamentoCoordenadaD = true;
+                equipamentoTemporario = equipamentos.get(i);
+            }
+        }
+
+
+        if (equipaAtual == 0) {
+            if (movimentoPossivel) {
+                for (int i = 0; i < humanos.size(); i++) {
+                        if (humanos.get(i).getCoordenadaX() == xO && humanos.get(i).getCoordenadaY() == yO) {
+                            if (equipamentoCoordenadaD) {
+                                humanos.get(i).setEquipamento(equipamentoTemporario);
+                                Humano.totalEquipamentoApanhado++;
+                                equipamentoTemporario = null;
+                                equipamentoCoordenadaD = false;
+                            }
+                            if (humanos.get(i).getEquipamento() != null) {
+                                humanos.get(i).getEquipamento().coordenadaX = xD;
+                                humanos.get(i).getEquipamento().coordenadaY = yD;
+                            }
+                            humanos.get(i).setCoordenadaX(xD);
+                            humanos.get(i).setCoordenadaY(yD);
+                            turno++;
+                            equipaAtual = 1;
+                            return true;
+                        }
+                    }
+                }
+            }
+
+        if (equipaAtual == 1) {
+            if (movimentoPossivel) {
+                for (int i = 0; i < zombies.size(); i++) {
+                    if (zombies.get(i).getCoordenadaX() == xO && zombies.get(i).getCoordenadaY() == yO) {
+                        if (equipamentoCoordenadaD) {
+                            Zombie.totalEquipamentoDestruido++;
+                            equipamentos.remove(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+                        zombies.get(i).setCoordenadaX(xD);
+                        zombies.get(i).setCoordenadaY(yD);
+                        turno++;
+                        equipaAtual = 0;
+                        return true;
+                    }
                 }
             }
         }
@@ -124,7 +184,11 @@ public class TWDGameManager {
     }
 
     public boolean gameIsOver() {
-        return false;
+        if (turno == 12) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public List<String> getAuthors() {
@@ -137,7 +201,7 @@ public class TWDGameManager {
     }
 
     public int getCurrentTeamId() {
-        return 0;
+        return equipaAtual;
     }
 
     public int getElementId(int x, int y) {
@@ -153,10 +217,14 @@ public class TWDGameManager {
             }
         }
 
+        for (int i = 0; i < equipamentos.size(); i++) {
+            if (equipamentos.get(i).getCoordenadaX() == x && equipamentos.get(i).getCoordenadaY() == y) {
+                return equipamentos.get(i).getId();
+            }
+        }
 
         return 0;
     }
-
 
 
     public List<String> getSurvivors() {
@@ -165,10 +233,21 @@ public class TWDGameManager {
     }
 
     public boolean isDay() {
-        return isDay;
+        if (turno == 0 || turno == 1 || turno == 4 || turno == 5 || turno == 8 || turno == 9) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
+        for (int i = 0; i < humanos.size(); i++) {
+            for (int j = 0; j < equipamentos.size(); j++) {
+                if (humanos.get(i).getId() == creatureId && equipamentos.get(j).getId() == equipmentTypeId) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }
