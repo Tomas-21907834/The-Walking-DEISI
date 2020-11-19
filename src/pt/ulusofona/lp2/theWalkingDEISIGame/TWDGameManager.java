@@ -25,6 +25,8 @@ public class TWDGameManager {
         zombies.clear();
         equipamentos.clear();
         turno = 0;
+        equipamentoTemporario = null;
+        equipamentoCoordenadaD = false;
 
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
