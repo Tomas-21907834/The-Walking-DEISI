@@ -2,13 +2,13 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class TWDGameManager {
     //.
     static int x, y, equipaInicial;
+    static boolean isDay = false;
     ArrayList<Humano> humanos = new ArrayList<>();
     ArrayList<Zombie> zombies = new ArrayList<>();
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
@@ -157,13 +157,15 @@ public class TWDGameManager {
         return 0;
     }
 
+
+
     public List<String> getSurvivors() {
         ArrayList<String> survivors = new ArrayList<>();
         return survivors;
     }
 
     public boolean isDay() {
-        return false;
+        return isDay;
     }
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
