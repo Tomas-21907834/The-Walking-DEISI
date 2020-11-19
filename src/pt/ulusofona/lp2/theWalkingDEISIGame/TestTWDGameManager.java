@@ -6,21 +6,18 @@ import static org.junit.Assert.assertEquals;
 
 public class TestTWDGameManager {
 
-    /*@Test
+    @Test
     public void testaMove01(){
 
         TWDGameManager teste = new TWDGameManager();
 
-
-
         boolean resultadoEsperado = true;
 
-        boolean resultadoObtido = teste.move(0,0,0,1);
+        boolean resultadoObtido = teste.move(2,3,2,4);
 
         assertEquals(resultadoEsperado,resultadoObtido);
-
-
     }
+
     /*
     @Test
     public void testaMove02(){

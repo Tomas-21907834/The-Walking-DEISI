@@ -28,6 +28,14 @@ public class Equipamento {
         return coordenadaY;
     }
 
+    public void setCoordenadaY(int coordenadaY) {
+        this.coordenadaY = coordenadaY;
+    }
+
+    public void setCoordenadaX(int coordenadaX) {
+        this.coordenadaX = coordenadaX;
+    }
+
     public int getId() {
         return id;
     }

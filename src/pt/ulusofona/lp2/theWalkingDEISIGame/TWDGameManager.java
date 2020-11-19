@@ -152,8 +152,8 @@ public class TWDGameManager {
                                 equipamentoCoordenadaD = false;
                             }
                             if (humanos.get(i).getEquipamento() != null) {
-                                humanos.get(i).getEquipamento().coordenadaX = xD;
-                                humanos.get(i).getEquipamento().coordenadaY = yD;
+                                humanos.get(i).getEquipamento().setCoordenadaX(xD);
+                                humanos.get(i).getEquipamento().setCoordenadaY(yD);
                             }
                             humanos.get(i).setCoordenadaX(xD);
                             humanos.get(i).setCoordenadaY(yD);
