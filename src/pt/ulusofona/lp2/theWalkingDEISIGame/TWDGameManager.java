@@ -20,7 +20,7 @@ public class TWDGameManager {
     }
 
     public boolean startGame(File ficheiroInicial) {
-        //Reset all
+        //Reset all.
         humanos.clear();
         zombies.clear();
         equipamentos.clear();
