@@ -56,13 +56,18 @@ public class Zombie {
     }
 
 
-    public int addEquipamentos(){
+    public int equipamentosDestruidos(){
         return totalEquipamentoDestruido++;
+    }
 
-
+    public String equipaString() {
+        if (equipa == 1) {
+            return "Os Outros";
+        }
+        return "Os Vivos";
     }
 
     public String toString(){
-        return id + " | " + tipoCriatura() + " | "  + equipa + " | " + nome + " " + addEquipamentos() + " @ (" + coordenadaX + " , " + coordenadaY + ")";
+        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentosDestruidos() + " @ (" + coordenadaX + " , " + coordenadaY + ")";
     }
 }

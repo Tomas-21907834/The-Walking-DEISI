@@ -74,7 +74,14 @@ public class Humano {
         return totalEquipamentoApanhado++;
     }
 
+    public String equipaString() {
+        if (equipa == 1) {
+            return "Os Outros";
+        }
+        return "Os Vivos";
+    }
+
     public String toString(){
-        return id + " | " + tipoCriatura() + " | "  + equipa + " | " + nome + " " + " @ (" + coordenadaX + " , " + coordenadaY + ")";
+        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ (" + coordenadaX + " , " + coordenadaY + ")";
     }
 }
