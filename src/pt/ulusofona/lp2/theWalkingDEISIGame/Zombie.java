@@ -60,6 +60,10 @@ public class Zombie {
         this.totalEquipamentoDestruido = totalEquipamentoDestruido;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     public int equipamentosDestruidos(){
         return totalEquipamentoDestruido;
     }

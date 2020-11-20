@@ -15,6 +15,7 @@ public class TWDGameManager {
     ArrayList<Zombie> zombies = new ArrayList<>();
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
 
+
     public TWDGameManager() {
 
     }
@@ -116,10 +117,6 @@ public class TWDGameManager {
     public boolean move(int xO, int yO, int xD, int yD) {
         final boolean movimentoPossivel = xD - 1 == xO && yD == yO || xD + 1 == xO && yD == yO || yD - 1 == yO && xD == xO || yD + 1 == yO && xD == xO;
 
-        if (xO < 0 || xO > x - 1 || yO < 0 || yO > y - 1 || xD < 0 || xD > x - 1 || yD < 0 || yD > y - 1) {
-            return false;
-        }
-
         for (int i = 0; i < humanos.size(); i++) {
             if (humanos.get(i).getCoordenadaX() == xD && humanos.get(i).getCoordenadaY() == yD) {
                 return false;
@@ -205,7 +202,7 @@ public class TWDGameManager {
     }
 
     public boolean gameIsOver() {
-        if (turno == 12) {
+        if (turno >= 12) {
             return true;
         } else {
             return false;
@@ -249,8 +246,16 @@ public class TWDGameManager {
 
 
     public List<String> getSurvivors() {
-        ArrayList<String> survivors = new ArrayList<>();
-        return survivors;
+        ArrayList<String> sobreviventes = new ArrayList<>();
+
+        for (Humano humano : humanos) {
+            sobreviventes.add(humano.getId() +" "+ humano.getNome());
+        }
+
+        for (Zombie zombie : zombies) {
+            sobreviventes.add(zombie.getId() +" "+ zombie.getNome());
+        }
+        return sobreviventes;
     }
 
     public boolean isDay() {

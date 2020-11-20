@@ -34,6 +34,10 @@ public class Humano {
         return "rick.png";
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     public Equipamento getEquipamento() {
         return equipamento;
     }
