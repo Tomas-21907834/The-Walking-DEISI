@@ -262,7 +262,7 @@ public class TWDGameManager {
         for (int i = 0; i < humanos.size(); i++) {
             for (int j = 0; j < equipamentos.size(); j++) {
                 if (humanos.get(i).getId() == creatureId && equipamentos.get(j).getId() == equipmentTypeId) {
-                    if (humanos.get(i).getEquipamento().getId() == equipmentTypeId) {
+                    if (humanos.get(i).getEquipamento().getIdTipo() == equipmentTypeId) {
                         return true;
                     }
                 }

@@ -32,6 +32,10 @@ public class Equipamento {
         this.coordenadaY = coordenadaY;
     }
 
+    public int getIdTipo() {
+        return idTipo;
+    }
+
     public void setCoordenadaX(int coordenadaX) {
         this.coordenadaX = coordenadaX;
     }
