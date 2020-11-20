@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class TWDGameManager {
 
-    static int x, y, equipaInicial, turno = 0, equipaAtual;
-    static boolean equipamentoCoordenadaD = false;
-    static Equipamento equipamentoTemporario;
+    int x, y, equipaInicial, turno = 0, equipaAtual;
+    boolean equipamentoCoordenadaD = false;
+    Equipamento equipamentoTemporario;
     ArrayList<Humano> humanos = new ArrayList<>();
     ArrayList<Zombie> zombies = new ArrayList<>();
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
@@ -27,8 +27,6 @@ public class TWDGameManager {
         turno = 0;
         equipamentoTemporario = null;
         equipamentoCoordenadaD = false;
-        Humano.totalEquipamentoApanhado = 0;
-        Zombie.totalEquipamentoDestruido = 0;
 
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
@@ -133,12 +131,26 @@ public class TWDGameManager {
             }
         }
 
-        if (equipaAtual == 0) {
-            for (int i = 0; i < equipamentos.size(); i++) {
-                if (equipamentos.get(i).getCoordenadaX() == xD && equipamentos.get(i).getCoordenadaY() == yD) {
-                    equipamentoCoordenadaD = true;
-                    equipamentoTemporario = equipamentos.get(i);
+
+        for (int i = 0; i < equipamentos.size(); i++) {
+            if (equipamentos.get(i).getCoordenadaX() == xD && equipamentos.get(i).getCoordenadaY() == yD) {
+                equipamentoCoordenadaD = true;
+                equipamentoTemporario = equipamentos.get(i);
+
+                for (int j = 0; j < humanos.size(); j++) {
+                    if (equipaAtual == 1 && humanos.get(j).getCoordenadaX() == xO && humanos.get(j).getCoordenadaY() == yO && movimentoPossivel) {
+                        equipamentoCoordenadaD = false;
+                        equipamentoTemporario = null;
+                    }
                 }
+
+                for (int j = 0; j < zombies.size(); j++) {
+                    if (equipaAtual == 0 && zombies.get(j).getCoordenadaX() == xO && zombies.get(j).getCoordenadaY() == yO && movimentoPossivel) {
+                        equipamentoCoordenadaD = false;
+                        equipamentoTemporario = null;
+                    }
+                }
+
             }
         }
 
@@ -148,8 +160,8 @@ public class TWDGameManager {
                 for (int i = 0; i < humanos.size(); i++) {
                         if (humanos.get(i).getCoordenadaX() == xO && humanos.get(i).getCoordenadaY() == yO) {
                             if (equipamentoCoordenadaD) {
+                                humanos.get(i).setTotalEquipamentoApanhado(+1);
                                 humanos.get(i).setEquipamento(equipamentoTemporario);
-                                Humano.totalEquipamentoApanhado++;
                                 equipamentoTemporario = null;
                                 equipamentoCoordenadaD = false;
                             }
@@ -172,7 +184,7 @@ public class TWDGameManager {
                 for (int i = 0; i < zombies.size(); i++) {
                     if (zombies.get(i).getCoordenadaX() == xO && zombies.get(i).getCoordenadaY() == yO) {
                         if (equipamentoCoordenadaD) {
-                            Zombie.totalEquipamentoDestruido++;
+                            zombies.get(i).setTotalEquipamentoDestruido(+1);
                             equipamentos.remove(equipamentoTemporario);
                             equipamentoTemporario = null;
                             equipamentoCoordenadaD = false;

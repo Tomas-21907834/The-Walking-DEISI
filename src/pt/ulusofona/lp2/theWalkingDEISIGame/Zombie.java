@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Zombie {
-    static int totalEquipamentoDestruido = 0;
+
     int id;
     String nome;
     int tipoCriatura;
@@ -12,7 +12,7 @@ public class Zombie {
     int equipa;
     int coordenadaX;
     int coordenadaY;
-
+    int totalEquipamentoDestruido = 0;
 
     public Zombie(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
         this.id = id;
@@ -56,8 +56,12 @@ public class Zombie {
     }
 
 
+    public void setTotalEquipamentoDestruido(int totalEquipamentoDestruido) {
+        this.totalEquipamentoDestruido = totalEquipamentoDestruido;
+    }
+
     public int equipamentosDestruidos(){
-        return totalEquipamentoDestruido++;
+        return totalEquipamentoDestruido;
     }
 
     public String equipaString() {

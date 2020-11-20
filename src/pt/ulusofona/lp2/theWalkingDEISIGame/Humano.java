@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Humano {
 
-    static int totalEquipamentoApanhado = 0;
+
     int id;
     String nome;
     int tipoCriatura;
@@ -13,7 +13,7 @@ public class Humano {
     int equipa;
     int coordenadaX;
     int coordenadaY;
-
+    int totalEquipamentoApanhado = 0;
 
     public Humano(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
         this.id=id;
@@ -70,8 +70,12 @@ public class Humano {
        return "Humano";
     }
 
+    public void setTotalEquipamentoApanhado(int totalEquipamentoApanhado) {
+        this.totalEquipamentoApanhado = totalEquipamentoApanhado;
+    }
+
     public int equipamentoApanhados(){
-        return totalEquipamentoApanhado++;
+        return totalEquipamentoApanhado;
     }
 
     public String equipaString() {
