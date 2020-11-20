@@ -133,10 +133,12 @@ public class TWDGameManager {
             }
         }
 
-        for (int i = 0; i < equipamentos.size(); i++) {
-            if (equipamentos.get(i).getCoordenadaX() == xD && equipamentos.get(i).getCoordenadaY() == yD) {
-                equipamentoCoordenadaD = true;
-                equipamentoTemporario = equipamentos.get(i);
+        if (equipaAtual == 0) {
+            for (int i = 0; i < equipamentos.size(); i++) {
+                if (equipamentos.get(i).getCoordenadaX() == xD && equipamentos.get(i).getCoordenadaY() == yD) {
+                    equipamentoCoordenadaD = true;
+                    equipamentoTemporario = equipamentos.get(i);
+                }
             }
         }
 
@@ -248,7 +250,9 @@ public class TWDGameManager {
         for (int i = 0; i < humanos.size(); i++) {
             for (int j = 0; j < equipamentos.size(); j++) {
                 if (humanos.get(i).getId() == creatureId && equipamentos.get(j).getId() == equipmentTypeId) {
+                    if (humanos.get(i).getEquipamento().getId() == equipmentTypeId) {
                         return true;
+                    }
                 }
             }
         }
