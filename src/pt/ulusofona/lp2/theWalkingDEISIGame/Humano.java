@@ -50,14 +50,6 @@ public class Humano {
         return coordenadaY;
     }
 
-    public int getTipoCriatura() {
-        return tipoCriatura;
-    }
-
-    public int getEquipa() {
-        return equipa;
-    }
-
     public void setCoordenadaX(int coordenadaX) {
         this.coordenadaX = coordenadaX;
     }

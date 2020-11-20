@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class TWDGameManager {
 
-    int x, y, equipaInicial, turno = 0, equipaAtual;
+    int x, y, equipaInicial, turno = 0, equipaAtual, equipamentoApanhadoCont = 0, equipamentoDestruidoCont = 0;
     boolean equipamentoCoordenadaD = false;
     Equipamento equipamentoTemporario;
     ArrayList<Humano> humanos = new ArrayList<>();
@@ -27,7 +27,8 @@ public class TWDGameManager {
         turno = 0;
         equipamentoTemporario = null;
         equipamentoCoordenadaD = false;
-
+        equipamentoApanhadoCont = 0;
+        equipamentoDestruidoCont = 0;
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 
@@ -160,7 +161,8 @@ public class TWDGameManager {
                 for (int i = 0; i < humanos.size(); i++) {
                         if (humanos.get(i).getCoordenadaX() == xO && humanos.get(i).getCoordenadaY() == yO) {
                             if (equipamentoCoordenadaD) {
-                                humanos.get(i).setTotalEquipamentoApanhado(+1);
+                                equipamentoApanhadoCont++;
+                                humanos.get(i).setTotalEquipamentoApanhado(equipamentoApanhadoCont);
                                 humanos.get(i).setEquipamento(equipamentoTemporario);
                                 equipamentoTemporario = null;
                                 equipamentoCoordenadaD = false;
@@ -184,7 +186,8 @@ public class TWDGameManager {
                 for (int i = 0; i < zombies.size(); i++) {
                     if (zombies.get(i).getCoordenadaX() == xO && zombies.get(i).getCoordenadaY() == yO) {
                         if (equipamentoCoordenadaD) {
-                            zombies.get(i).setTotalEquipamentoDestruido(+1);
+                            equipamentoDestruidoCont++;
+                            zombies.get(i).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
                             equipamentos.remove(equipamentoTemporario);
                             equipamentoTemporario = null;
                             equipamentoCoordenadaD = false;
@@ -251,7 +254,7 @@ public class TWDGameManager {
     }
 
     public boolean isDay() {
-        if (turno == 0 || turno == 1 || turno == 4 || turno == 5 || turno == 8 || turno == 9) {
+        if (turno == 0 || turno == 1 || turno == 4 || turno == 5 || turno == 8 || turno == 9 || turno == 12) {
             return true;
         } else {
             return false;
@@ -260,13 +263,13 @@ public class TWDGameManager {
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
         for (int i = 0; i < humanos.size(); i++) {
-            for (int j = 0; j < equipamentos.size(); j++) {
-                if (humanos.get(i).getId() == creatureId && equipamentos.get(j).getId() == equipmentTypeId) {
-                    if (humanos.get(i).getEquipamento().getIdTipo() == equipmentTypeId) {
-                        return true;
+                if (humanos.get(i).getId() == creatureId) {
+                    if (humanos.get(i).getEquipamento() != null) {
+                        if (humanos.get(i).getEquipamento().getIdTipo() == equipmentTypeId) {
+                            return true;
+                        }
                     }
                 }
-            }
         }
         return false;
     }
