@@ -3,27 +3,19 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Humano {
+public class Humano extends Creature{
 
 
-    int id;
-    String nome;
-    int tipoCriatura;
-    Equipamento equipamento;
-    int equipa;
-    int coordenadaX;
-    int coordenadaY;
+
     int totalEquipamentoApanhado = 0;
+    boolean isSafeHeaven = true;
+    int equipa;
+
 
     public Humano(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
-        this.id=id;
-        this.nome=nome;
-        this.tipoCriatura = tipoCriatura;
-        this.equipa = 0;
-        this.coordenadaX = coordenadaX;
-        this.coordenadaY = coordenadaY;
+        super(id, nome, tipoCriatura, coordenadaX, coordenadaY);
+        this.equipa=10;
     }
-
 
     public int getId(){
         return id;
@@ -81,7 +73,14 @@ public class Humano {
         return "Os Vivos";
     }
 
+    public String safeHeaven(){ // ??
+        if (isSafeHeaven) {
+            return "A salvo";
+        }
+        return "RIP";
+    }
+
     public String toString(){
-        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ (" + coordenadaX + ", " + coordenadaY + ")";
+        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ (" + safeHeaven() + ")";
     }
 }

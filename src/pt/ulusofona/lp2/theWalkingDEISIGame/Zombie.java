@@ -1,26 +1,14 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class Zombie {
+public class Zombie extends Creature{
 
-    int id;
-    String nome;
-    int tipoCriatura;
-    List<Equipamento> equipamentos = new ArrayList<>();
-    int equipa;
-    int coordenadaX;
-    int coordenadaY;
     int totalEquipamentoDestruido = 0;
+    int equipa;
 
     public Zombie(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
-        this.id = id;
-        this.nome = nome;
-        this.tipoCriatura= tipoCriatura;
-        this.equipa = 1;
-        this.coordenadaX = coordenadaX;
-        this.coordenadaY = coordenadaY;
+        super(id, nome, tipoCriatura, coordenadaX, coordenadaY);
+        this.equipa=20;
     }
 
     public int getId() {

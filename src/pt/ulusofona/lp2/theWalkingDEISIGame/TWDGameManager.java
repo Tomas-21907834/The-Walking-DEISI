@@ -14,6 +14,9 @@ public class TWDGameManager {
     ArrayList<Humano> humanos = new ArrayList<>();
     ArrayList<Zombie> zombies = new ArrayList<>();
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
+    ArrayList<Creature> creatures = new ArrayList<>();
+
+
 
 
     public TWDGameManager() {
@@ -87,6 +90,22 @@ public class TWDGameManager {
                     equipamentos.add(equipamento);
                 }
 
+                String numPortasLinha = leitorFicheiro.nextLine();
+                int numPortasP = Integer.parseInt(numPortasLinha);
+
+                for (int i = 0 ; i<numPortasP;i++) {
+                    String portasLinha = leitorFicheiro.nextLine();
+                    String[] partesPortas = portasLinha.split(" : ");
+                    x = Integer.parseInt(partesPortas[0]);
+                    y = Integer.parseInt(partesPortas[1]);
+
+                    // criar classe Porta?
+
+
+                }
+
+
+
 
             }
             leitorFicheiro.close();
@@ -105,6 +124,11 @@ public class TWDGameManager {
     public int getInitialTeam() {
         return equipaInicial;
     }
+
+    public List<Creature> getCreatures() {
+        return creatures;
+    }
+
 
     public List<Humano> getHumans() {
         return humanos;
@@ -242,6 +266,11 @@ public class TWDGameManager {
         }
 
         return 0;
+    }
+
+
+    public List<String> getGameResults() {
+        return null;
     }
 
 
