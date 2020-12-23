@@ -1,10 +1,9 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-public class Creature {
+abstract public class Creature {
      int id;
      String nome;
     int tipoCriatura;
-    Equipamento equipamento;
     int equipa;
     int coordenadaX;
     int coordenadaY;
@@ -22,17 +21,15 @@ public class Creature {
         return id;
     }
 
-    public Creature(String nome) {
-        this.nome=nome;
+    public String getNome() {
+        return nome;
     }
 
     public String getImagePNG() {
         return null;
     }
 
-    public Equipamento getEquipamento() {
-        return equipamento;
-    }
+
 
     public int getCoordenadaX() {
         return coordenadaX;
@@ -40,6 +37,14 @@ public class Creature {
 
     public int getCoordenadaY() {
         return coordenadaY;
+    }
+
+    public void setCoordenadaX(int coordenadaX) {
+        this.coordenadaX = coordenadaX;
+    }
+
+    public void setCoordenadaY(int coordenadaY) {
+        this.coordenadaY = coordenadaY;
     }
 
     public String tipoCriatura() {
@@ -81,9 +86,9 @@ public class Creature {
     }
 
 
-    public String toString() {
+        abstract public String toString();
 
-        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentoApanhados() +  " @ (" + coordenadaX + ", " + coordenadaY + ")";
-    }
+
+
 
 }

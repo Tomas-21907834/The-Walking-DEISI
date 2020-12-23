@@ -11,10 +11,9 @@ public class TWDGameManager {
     int x, y, equipaInicial, turno = 0, equipaAtual, equipamentoApanhadoCont = 0, equipamentoDestruidoCont = 0;
     boolean equipamentoCoordenadaD = false;
     Equipamento equipamentoTemporario;
-    ArrayList<Humano> humanos = new ArrayList<>();
-    ArrayList<Zombie> zombies = new ArrayList<>();
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
     ArrayList<Creature> creatures = new ArrayList<>();
+
 
 
 
@@ -270,7 +269,10 @@ public class TWDGameManager {
 
 
     public List<String> getGameResults() {
-        return null;
+        ArrayList<String> resultados = new ArrayList<>();
+        return resultados;
+
+
     }
 
 
@@ -293,6 +295,52 @@ public class TWDGameManager {
         } else {
             return false;
         }
+    }
+
+    public int getEquipmentId(int creatureId){
+
+        return 0;
+    }
+
+
+    public List<Integer> getIdsInSafeHaven() {
+        return null;
+    }
+
+
+    public boolean isDoorToSafeHaven(int x, int y) {
+        return true;
+    }
+
+    public int getEquipmentTypeId(int equipmentId) {
+        return 0;
+    }
+
+    public String getEquipmentInfo(int equipmentId) {
+        return "";
+    }
+
+
+    public boolean saveGame(File fich) {
+
+       try{
+           fich =  new File("jogo.txt");
+       } catch (Exception e) {
+           System.out.println("");
+       }
+
+        return true;
+    }
+
+
+
+    public boolean loadGame(File fich) {
+        return true;
+    }
+
+
+    public String[] popCultureExtravaganza() {
+        return null;
     }
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
