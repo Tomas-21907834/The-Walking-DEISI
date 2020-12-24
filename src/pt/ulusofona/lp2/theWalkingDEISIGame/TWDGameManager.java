@@ -83,8 +83,21 @@ public class TWDGameManager {
                     int equipamentoCoordenadaX = Integer.parseInt(partesEquipamentos[2]);
                     int equipamentoCoordenadaY = Integer.parseInt(partesEquipamentos[3]);
 
-                    Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY);
-                    equipamentos.add(equipamento);
+                    switch (tipo) {
+                        case 0, 8, 9 -> {
+                            Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 1);
+                            equipamentos.add(equipamento);
+                        }
+                        case 2, 7 -> {
+                            Equipamento equipamento1 = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 3);
+                            equipamentos.add(equipamento1);
+                        }
+                        default -> {
+                            Equipamento equipamento2 = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY);
+                            equipamentos.add(equipamento2);
+                        }
+                    }
+
                 }
 
                 //Número de safeHavens
@@ -293,14 +306,66 @@ public class TWDGameManager {
     public int getEquipmentTypeId(int equipmentId) {
 
         for (Equipamento equipamento : equipamentos) {
-            if (equipamento.getIdTipo() == equipmentId) {
-                return equipmentId;
+            if (equipamento.getId() == equipmentId) {
+                return equipamento.getIdTipo();
             }
         }
         return -1;
     }
 
+    //Completo
     public String getEquipmentInfo(int equipmentId) {
+        String info = "";
+        for (Equipamento equipamento : equipamentos) {
+            if (equipamento.getId() == equipmentId) {
+                switch (equipamento.getIdTipo()) {
+                    case 0 -> {
+                        info += "Escudo de Madeira | " + equipamento.getMunicao();
+                        return info;
+                    }
+                    case 1 -> {
+                        info += "Espada Hattori Hanzo";
+                        return info;
+                    }
+                    case 2 -> {
+                        info += "Pistola Walther PPK | " + equipamento.getMunicao();
+                        return info;
+                    }
+                    case 3 -> {
+                        info += "Escudo Táctico";
+                        return info;
+                    }
+                    case 4 -> {
+                        info += "Revista Maria";
+                        return info;
+                    }
+                    case 5 -> {
+                        info += "Cabeça de Alho";
+                        return info;
+                    }
+                    case 6 -> {
+                        info += "Estaca de Madeira";
+                        return info;
+                    }
+                    case 7 -> {
+                        info += "Garrafa de Lixívia (1 litro) | " + equipamento.getMunicao();
+                        return info;
+                    }
+                    case 8 -> {
+                        info += "Veneno | " + equipamento.getMunicao();
+                        return info;
+                    }
+                    case 9 -> {
+                        info += "Antídoto | " + equipamento.getMunicao();
+                        return info;
+                    }
+                    case 10 -> {
+                        info += "Beskar Helmet";
+                        return info;
+                    }
+                }
+            }
+        }
         return "";
     }
 

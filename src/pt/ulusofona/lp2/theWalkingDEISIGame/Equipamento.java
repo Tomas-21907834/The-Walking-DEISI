@@ -5,6 +5,7 @@ public class Equipamento {
     int idTipo;
     int coordenadaX;
     int coordenadaY;
+    int municao;
 
 
     public Equipamento(int id, int idTipo, int coordenadaX, int coordenadaY) {
@@ -14,6 +15,13 @@ public class Equipamento {
         this.coordenadaY = coordenadaY;
     }
 
+    public Equipamento(int id, int idTipo, int coordenadaX, int coordenadaY, int municao) {
+        this.id = id;
+        this.idTipo = idTipo;
+        this.coordenadaX = coordenadaX;
+        this.coordenadaY = coordenadaY;
+        this.municao = municao;
+    }
 
     public String getImagePNG(){
         return "equipament.png";
@@ -23,7 +31,6 @@ public class Equipamento {
         return coordenadaX;
     }
 
-
     public int getCoordenadaY() {
         return coordenadaY;
     }
@@ -32,16 +39,20 @@ public class Equipamento {
         this.coordenadaY = coordenadaY;
     }
 
-    public int getIdTipo() {
-        return idTipo;
-    }
-
     public void setCoordenadaX(int coordenadaX) {
         this.coordenadaX = coordenadaX;
     }
 
+    public int getIdTipo() {
+        return idTipo;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public int getMunicao() {
+        return municao;
     }
 }
 
