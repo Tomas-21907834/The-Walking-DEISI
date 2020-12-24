@@ -1,13 +1,12 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 abstract public class Creature {
-     int id;
-     String nome;
+    int id;
+    String nome;
     int tipoCriatura;
     int equipa;
     int coordenadaX;
     int coordenadaY;
-    int totalEquipamentoApanhado = 0;
 
     public Creature(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
         this.id=id;
@@ -29,7 +28,9 @@ abstract public class Creature {
         return null;
     }
 
-
+    public int getEquipa() {
+        return equipa;
+    }
 
     public int getCoordenadaX() {
         return coordenadaX;
@@ -81,9 +82,6 @@ abstract public class Creature {
         return "Os Vivos";
     }
 
-    public int equipamentoApanhados(){
-        return totalEquipamentoApanhado;
-    }
 
 
         abstract public String toString();
