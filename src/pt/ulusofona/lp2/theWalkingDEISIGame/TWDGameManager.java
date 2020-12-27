@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -8,13 +9,13 @@ import java.util.Scanner;
 
 public class TWDGameManager {
 
-    int x, y, equipaInicial, turno = 0, equipaAtual, equipamentoApanhadoCont = 0, equipamentoDestruidoCont = 0;
+    int x, y, equipaInicial, turno=0, equipaAtual, equipamentoApanhadoCont=0, equipamentoDestruidoCont=0;
     int xH, yH;
-    boolean equipamentoCoordenadaD = false;
+    boolean equipamentoCoordenadaD=false;
     Equipamento equipamentoTemporario;
-    ArrayList<Equipamento> equipamentos = new ArrayList<>();
-    List<Creature> creatures = new ArrayList<>();
-    List<SafeHaven> safeHavens = new ArrayList<>();
+    ArrayList<Equipamento> equipamentos=new ArrayList<>();
+    List<Creature> creatures=new ArrayList<>();
+    List<SafeHaven> safeHavens=new ArrayList<>();
 
 
     public TWDGameManager() {
@@ -25,75 +26,75 @@ public class TWDGameManager {
         //Reset all.
         creatures.clear();
         equipamentos.clear();
-        turno = 0;
-        equipamentoTemporario = null;
-        equipamentoCoordenadaD = false;
-        equipamentoApanhadoCont = 0;
-        equipamentoDestruidoCont = 0;
+        turno=0;
+        equipamentoTemporario=null;
+        equipamentoCoordenadaD=false;
+        equipamentoApanhadoCont=0;
+        equipamentoDestruidoCont=0;
         try {
-            Scanner leitorFicheiro = new Scanner(ficheiroInicial);
+            Scanner leitorFicheiro=new Scanner(ficheiroInicial);
 
             while (leitorFicheiro.hasNextLine()) {
 
                 //Primeira Linha
-                String coordenadaLinha = leitorFicheiro.nextLine();
-                String[] partesCoordenadas = coordenadaLinha.split(" ");
-                x = Integer.parseInt(partesCoordenadas[0]);
-                y = Integer.parseInt(partesCoordenadas[1]);
+                String coordenadaLinha=leitorFicheiro.nextLine();
+                String[] partesCoordenadas=coordenadaLinha.split(" ");
+                x=Integer.parseInt(partesCoordenadas[0]);
+                y=Integer.parseInt(partesCoordenadas[1]);
 
                 //Segunda Linha
-                String equipaLinha = leitorFicheiro.nextLine();
-                equipaInicial = Integer.parseInt(equipaLinha);
-                equipaAtual = equipaInicial;
+                String equipaLinha=leitorFicheiro.nextLine();
+                equipaInicial=Integer.parseInt(equipaLinha);
+                equipaAtual=equipaInicial;
 
                 //Terceira Linha
-                String numCriaturasLinha = leitorFicheiro.nextLine();
-                int numLinhasC = Integer.parseInt(numCriaturasLinha);
+                String numCriaturasLinha=leitorFicheiro.nextLine();
+                int numLinhasC=Integer.parseInt(numCriaturasLinha);
 
                 //Número de linhas dependendo da Terceira Linha
-                for (int i = 0; i < numLinhasC; i++) {
-                    String criaturasLinha = leitorFicheiro.nextLine();
-                    String[] partesCriaturas = criaturasLinha.split(" : ");
-                    int id = Integer.parseInt(partesCriaturas[0]);
-                    int tipo = Integer.parseInt(partesCriaturas[1]);
-                    String nome = partesCriaturas[2];
-                    int criaturaCoordenadaX = Integer.parseInt(partesCriaturas[3]);
-                    int criaturaCoordenadaY = Integer.parseInt(partesCriaturas[4]);
+                for (int i=0; i < numLinhasC; i++) {
+                    String criaturasLinha=leitorFicheiro.nextLine();
+                    String[] partesCriaturas=criaturasLinha.split(" : ");
+                    int id=Integer.parseInt(partesCriaturas[0]);
+                    int tipo=Integer.parseInt(partesCriaturas[1]);
+                    String nome=partesCriaturas[2];
+                    int criaturaCoordenadaX=Integer.parseInt(partesCriaturas[3]);
+                    int criaturaCoordenadaY=Integer.parseInt(partesCriaturas[4]);
 
                     if (tipo == 20) {
-                        Creature zombie = new Outros(id, nome, tipo, criaturaCoordenadaX, criaturaCoordenadaY);
+                        Creature zombie=new Outros(id, nome, tipo, criaturaCoordenadaX, criaturaCoordenadaY);
                         creatures.add(zombie);
                     }
                     if (tipo == 10) {
-                        Creature humano = new Vivos(id, nome, tipo, criaturaCoordenadaX, criaturaCoordenadaY);
+                        Creature humano=new Vivos(id, nome, tipo, criaturaCoordenadaX, criaturaCoordenadaY);
                         creatures.add(humano);
                     }
                 }
 
                 //Quinta Linha
-                String numEquipamentosLinha = leitorFicheiro.nextLine();
-                int numLinhasE = Integer.parseInt(numEquipamentosLinha);
+                String numEquipamentosLinha=leitorFicheiro.nextLine();
+                int numLinhasE=Integer.parseInt(numEquipamentosLinha);
 
                 //Número de linhas dependendo da Quinta Linha
-                for (int i = 0; i < numLinhasE; i++) {
-                    String equipamentosLinha = leitorFicheiro.nextLine();
-                    String[] partesEquipamentos = equipamentosLinha.split(" : ");
-                    int id = Integer.parseInt(partesEquipamentos[0]);
-                    int tipo = Integer.parseInt(partesEquipamentos[1]);
-                    int equipamentoCoordenadaX = Integer.parseInt(partesEquipamentos[2]);
-                    int equipamentoCoordenadaY = Integer.parseInt(partesEquipamentos[3]);
+                for (int i=0; i < numLinhasE; i++) {
+                    String equipamentosLinha=leitorFicheiro.nextLine();
+                    String[] partesEquipamentos=equipamentosLinha.split(" : ");
+                    int id=Integer.parseInt(partesEquipamentos[0]);
+                    int tipo=Integer.parseInt(partesEquipamentos[1]);
+                    int equipamentoCoordenadaX=Integer.parseInt(partesEquipamentos[2]);
+                    int equipamentoCoordenadaY=Integer.parseInt(partesEquipamentos[3]);
 
                     switch (tipo) {
                         case 0, 8, 9 -> {
-                            Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 1);
+                            Equipamento equipamento=new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 1);
                             equipamentos.add(equipamento);
                         }
                         case 2, 7 -> {
-                            Equipamento equipamento1 = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 3);
+                            Equipamento equipamento1=new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 3);
                             equipamentos.add(equipamento1);
                         }
                         default -> {
-                            Equipamento equipamento2 = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY);
+                            Equipamento equipamento2=new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY);
                             equipamentos.add(equipamento2);
                         }
                     }
@@ -101,16 +102,16 @@ public class TWDGameManager {
                 }
 
                 //Número de safeHavens
-                String numPortasLinha = leitorFicheiro.nextLine();
-                int numPortasP = Integer.parseInt(numPortasLinha);
+                String numPortasLinha=leitorFicheiro.nextLine();
+                int numPortasP=Integer.parseInt(numPortasLinha);
 
                 //Coordenadas de safeHavens
-                for (int i = 0; i < numPortasP; i++) {
-                    String portasLinha = leitorFicheiro.nextLine();
-                    String[] partesPortas = portasLinha.split(" : ");
-                    xH = Integer.parseInt(partesPortas[0]);
-                    yH = Integer.parseInt(partesPortas[1]);
-                    SafeHaven safeHaven = new SafeHaven(xH,yH);
+                for (int i=0; i < numPortasP; i++) {
+                    String portasLinha=leitorFicheiro.nextLine();
+                    String[] partesPortas=portasLinha.split(" : ");
+                    xH=Integer.parseInt(partesPortas[0]);
+                    yH=Integer.parseInt(partesPortas[1]);
+                    SafeHaven safeHaven=new SafeHaven(xH, yH);
                     safeHavens.add(safeHaven);
 
                 }
@@ -140,30 +141,30 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
-        final boolean movimentoPossivel = xD - 1 == xO && yD == yO || xD + 1 == xO && yD == yO || yD - 1 == yO && xD == xO || yD + 1 == yO && xD == xO;
+        final boolean movimentoPossivel=xD - 1 == xO && yD == yO || xD + 1 == xO && yD == yO || yD - 1 == yO && xD == xO || yD + 1 == yO && xD == xO;
 
-        for (int i = 0; i < creatures.size(); i++) {
+        for (int i=0; i < creatures.size(); i++) {
             if (creatures.get(i).getCoordenadaX() == xD && creatures.get(i).getCoordenadaY() == yD) {
                 return false;
             }
         }
 
-        for (int i = 0; i < equipamentos.size(); i++) {
+        for (int i=0; i < equipamentos.size(); i++) {
             if (equipamentos.get(i).getCoordenadaX() == xD && equipamentos.get(i).getCoordenadaY() == yD) {
-                equipamentoCoordenadaD = true;
-                equipamentoTemporario = equipamentos.get(i);
+                equipamentoCoordenadaD=true;
+                equipamentoTemporario=equipamentos.get(i);
 
-                for (int j = 0; j < humanos.size(); j++) {
+                for (int j=0; j < humanos.size(); j++) {
                     if (equipaAtual == 1 && humanos.get(j).getCoordenadaX() == xO && humanos.get(j).getCoordenadaY() == yO && movimentoPossivel) {
-                        equipamentoCoordenadaD = false;
-                        equipamentoTemporario = null;
+                        equipamentoCoordenadaD=false;
+                        equipamentoTemporario=null;
                     }
                 }
 
-                for (int j = 0; j < zombies.size(); j++) {
+                for (int j=0; j < zombies.size(); j++) {
                     if (equipaAtual == 0 && zombies.get(j).getCoordenadaX() == xO && zombies.get(j).getCoordenadaY() == yO && movimentoPossivel) {
-                        equipamentoCoordenadaD = false;
-                        equipamentoTemporario = null;
+                        equipamentoCoordenadaD=false;
+                        equipamentoTemporario=null;
                     }
                 }
 
@@ -173,14 +174,14 @@ public class TWDGameManager {
 
         if (equipaAtual == 0) {
             if (movimentoPossivel) {
-                for (int i = 0; i < humanos.size(); i++) {
+                for (int i=0; i < humanos.size(); i++) {
                     if (humanos.get(i).getCoordenadaX() == xO && humanos.get(i).getCoordenadaY() == yO) {
                         if (equipamentoCoordenadaD) {
                             equipamentoApanhadoCont++;
                             humanos.get(i).setTotalEquipamentoApanhado(equipamentoApanhadoCont);
                             humanos.get(i).setEquipamento(equipamentoTemporario);
-                            equipamentoTemporario = null;
-                            equipamentoCoordenadaD = false;
+                            equipamentoTemporario=null;
+                            equipamentoCoordenadaD=false;
                         }
                         if (humanos.get(i).getEquipamento() != null) {
                             humanos.get(i).getEquipamento().setCoordenadaX(xD);
@@ -189,7 +190,7 @@ public class TWDGameManager {
                         humanos.get(i).setCoordenadaX(xD);
                         humanos.get(i).setCoordenadaY(yD);
                         turno++;
-                        equipaAtual = 1;
+                        equipaAtual=1;
                         return true;
                     }
                 }
@@ -198,19 +199,19 @@ public class TWDGameManager {
 
         if (equipaAtual == 1) {
             if (movimentoPossivel) {
-                for (int i = 0; i < zombies.size(); i++) {
+                for (int i=0; i < zombies.size(); i++) {
                     if (zombies.get(i).getCoordenadaX() == xO && zombies.get(i).getCoordenadaY() == yO) {
                         if (equipamentoCoordenadaD) {
                             equipamentoDestruidoCont++;
                             zombies.get(i).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
                             equipamentos.remove(equipamentoTemporario);
-                            equipamentoTemporario = null;
-                            equipamentoCoordenadaD = false;
+                            equipamentoTemporario=null;
+                            equipamentoCoordenadaD=false;
                         }
                         zombies.get(i).setCoordenadaX(xD);
                         zombies.get(i).setCoordenadaY(yD);
                         turno++;
-                        equipaAtual = 0;
+                        equipaAtual=0;
                         return true;
                     }
                 }
@@ -219,17 +220,31 @@ public class TWDGameManager {
         return false;
     }
 
+
     public boolean gameIsOver() {
+
+        int ocorrencias=0;
+
         if (turno >= 12) {
             return true;
-        } else {
-            return false;
         }
+
+        for (Creature creature : creatures) {
+            if (creature.getEquipa() == 10) {
+                ocorrencias++;
+            }
+        }
+
+        if (ocorrencias < 1) {
+            return true;
+        }
+
+        return false;
     }
 
     //Completo
     public List<String> getAuthors() {
-        ArrayList<String> authors = new ArrayList<>();
+        ArrayList<String> authors=new ArrayList<>();
 
         authors.add("Tomás Martins");
         authors.add("Manuel Sousa");
@@ -242,7 +257,7 @@ public class TWDGameManager {
         return equipaAtual;
     }
 
-    //Completo?
+    //Completo
     public int getElementId(int x, int y) {
         for (Creature creature : creatures) {
             if (creature.getCoordenadaX() == x && creature.getCoordenadaY() == y) {
@@ -259,24 +274,61 @@ public class TWDGameManager {
         return 0;
     }
 
-
+    //Quase Completo
     public List<String> getGameResults() {
-        ArrayList<String> resultados = new ArrayList<>();
-        return resultados;
+        ArrayList<String> resultados=new ArrayList<>();
 
+        resultados.add("Nr. de turnos terminados:\n");
 
-    }
+        resultados.add(turno + "\n\n");
 
-    //getGameResults()
-    public List<String> getSurvivors() {
-        ArrayList<String> sobreviventes = new ArrayList<>();
+        resultados.add("Ainda pelo bairo:\n\n");
 
-        for (Humano humano : humanos) {
-            sobreviventes.add(humano.getId() + " " + humano.getNome());
+        resultados.add("OS VIVOS\n");
+
+        for (Creature creature : creatures) {
+            if (creature.getEquipa() == 10) {
+                resultados.add(creature.getId() + " " + creature.getNome() + "\n");
+            }
         }
 
-        return sobreviventes;
+        resultados.add("\nOS OUTROS\n");
+
+        for (Creature creature : creatures) {
+            if (creature.getEquipa() == 20) {
+                resultados.add(creature.getId() + " " + creature.getNome() + "\n");
+            }
+        }
+
+        resultados.add("\nNum safe haven:\n");
+
+        resultados.add("OS VIVOS\n");
+
+
+        for (SafeHaven safeHaven : safeHavens) {
+            resultados.add(safeHaven.vivos.getId() + " " + (safeHaven.vivos.getNome()) + "\n");
+        }
+
+        resultados.add("\nEnvenenados / Destruidos\n");
+        resultados.add("OS VIVOS\n");
+
+        for (Creature creature : creatures) {
+            resultados.add(creature.getId() + " " + creature.getNome());
+        }
+
+        resultados.add("\nOS OUTROS\n");
+
+
+        for (Creature creature : creatures) {
+            if (creature.destruido) {
+                resultados.add(creature.getId() + " " + creature.getNome() + "\n");
+            }
+        }
+
+        return resultados;
+
     }
+
 
     //Completo
     public boolean isDay() {
@@ -287,10 +339,20 @@ public class TWDGameManager {
         }
     }
 
-
+    //Completo?
     public List<Integer> getIdsInSafeHaven() {
-        return null;
+        ArrayList<Integer> safeHavenId=new ArrayList<>();
+
+
+        for (SafeHaven safeHaven : safeHavens) {
+            safeHavenId.add(safeHaven.vivos.getId());
+        }
+
+
+        return safeHavenId;
+
     }
+
 
     //Completo
     public boolean isDoorToSafeHaven(int x, int y) {
@@ -315,52 +377,52 @@ public class TWDGameManager {
 
     //Completo
     public String getEquipmentInfo(int equipmentId) {
-        String info = "";
+        String info="";
         for (Equipamento equipamento : equipamentos) {
             if (equipamento.getId() == equipmentId) {
                 switch (equipamento.getIdTipo()) {
                     case 0 -> {
-                        info += "Escudo de Madeira | " + equipamento.getMunicao();
+                        info+="Escudo de Madeira | " + equipamento.getMunicao();
                         return info;
                     }
                     case 1 -> {
-                        info += "Espada Hattori Hanzo";
+                        info+="Espada Hattori Hanzo";
                         return info;
                     }
                     case 2 -> {
-                        info += "Pistola Walther PPK | " + equipamento.getMunicao();
+                        info+="Pistola Walther PPK | " + equipamento.getMunicao();
                         return info;
                     }
                     case 3 -> {
-                        info += "Escudo Táctico";
+                        info+="Escudo Táctico";
                         return info;
                     }
                     case 4 -> {
-                        info += "Revista Maria";
+                        info+="Revista Maria";
                         return info;
                     }
                     case 5 -> {
-                        info += "Cabeça de Alho";
+                        info+="Cabeça de Alho";
                         return info;
                     }
                     case 6 -> {
-                        info += "Estaca de Madeira";
+                        info+="Estaca de Madeira";
                         return info;
                     }
                     case 7 -> {
-                        info += "Garrafa de Lixívia (1 litro) | " + equipamento.getMunicao();
+                        info+="Garrafa de Lixívia (1 litro) | " + equipamento.getMunicao();
                         return info;
                     }
                     case 8 -> {
-                        info += "Veneno | " + equipamento.getMunicao();
+                        info+="Veneno | " + equipamento.getMunicao();
                         return info;
                     }
                     case 9 -> {
-                        info += "Antídoto | " + equipamento.getMunicao();
+                        info+="Antídoto | " + equipamento.getMunicao();
                         return info;
                     }
                     case 10 -> {
-                        info += "Beskar Helmet";
+                        info+="Beskar Helmet";
                         return info;
                     }
                 }
@@ -372,19 +434,18 @@ public class TWDGameManager {
 
     public boolean saveGame(File fich) {
 
-       try{
-           fich =  new File("jogo.txt");
-       } catch (Exception e) {
-           System.out.println("");
-       }
+        try {
+            fich=new File("jogo.txt");
+        } catch (Exception e) {
+            System.out.println("");
+        }
 
         return true;
     }
 
 
-
     public boolean loadGame(File fich) {
-        return true;
+       return true;
     }
 
     //Opcional
@@ -392,7 +453,9 @@ public class TWDGameManager {
         return null;
     }
 
-    public int getEquipmentId(int creatureId){
+
+    //Completo
+    public int getEquipmentId(int creatureId) {
         for (Creature creature : creatures) {
             if (creature.getEquipa() == 10 && creature.getId() == creatureId) {
                 return ((Vivos) creature).getEquipamento().getId();

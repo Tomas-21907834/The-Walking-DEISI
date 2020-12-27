@@ -1,12 +1,11 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import java.util.ArrayList;
 
-public class SafeHaven {
+
+public class SafeHaven  {
     int x;
     int y;
-    ArrayList<Vivos> vivos = new ArrayList<>();
-
+    Creature vivos;
 
     public SafeHaven(int x, int y) {
         this.x=x;
@@ -20,4 +19,7 @@ public class SafeHaven {
     public int getY() {
         return y;
     }
+
+
+
 }

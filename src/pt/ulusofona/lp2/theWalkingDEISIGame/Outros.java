@@ -20,6 +20,6 @@ public class Outros extends Creature{
 
     @Override
     public String toString() {
-        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ ("  + ")"; // por fazer
+        return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentosDestruidos() + " @ ("  + ")"; // por fazer
     }
 }

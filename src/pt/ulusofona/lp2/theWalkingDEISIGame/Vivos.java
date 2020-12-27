@@ -6,6 +6,7 @@ public class Vivos extends Creature{
     int totalEquipamentoApanhado = 0;
     Equipamento equipamento;
 
+
     public Vivos(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
         super(id, nome, tipoCriatura, coordenadaX, coordenadaY);
     }
