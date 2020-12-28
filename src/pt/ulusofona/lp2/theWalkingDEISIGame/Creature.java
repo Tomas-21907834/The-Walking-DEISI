@@ -9,12 +9,12 @@ abstract public class Creature {
     int coordenadaY;
     boolean destruido = false;
 
-    public Creature(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
-        this.id=id;
-        this.nome=nome;
-        this.tipoCriatura=tipoCriatura;
-        this.coordenadaX=coordenadaX;
-        this.coordenadaY=coordenadaY;
+    public Creature(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY) {
+        this.id = id;
+        this.tipoCriatura = tipoCriatura;
+        this.nome = nome;
+        this.coordenadaX = coordenadaX;
+        this.coordenadaY = coordenadaY;
     }
 
     public int getId() {
@@ -31,6 +31,10 @@ abstract public class Creature {
 
     public int getEquipa() {
         return equipa;
+    }
+
+    public int getTipoCriatura() {
+        return tipoCriatura;
     }
 
     public int getCoordenadaX() {
@@ -84,10 +88,7 @@ abstract public class Creature {
     }
 
 
-
-        abstract public String toString();
-
-
+    abstract public String toString();
 
 
 }

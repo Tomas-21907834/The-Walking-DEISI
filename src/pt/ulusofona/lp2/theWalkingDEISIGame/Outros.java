@@ -5,8 +5,8 @@ public class Outros extends Creature{
 
     int totalEquipamentoDestruido = 0;
 
-    public Outros(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
-        super(id, nome, tipoCriatura, coordenadaX, coordenadaY);
+    public Outros(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY) {
+        super(id, tipoCriatura , nome, coordenadaX, coordenadaY);
     }
 
     public void setTotalEquipamentoDestruido(int totalEquipamentoDestruido) {

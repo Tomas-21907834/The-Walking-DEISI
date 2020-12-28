@@ -7,10 +7,9 @@ public class Vivos extends Creature{
     Equipamento equipamento;
 
 
-    public Vivos(int id, String nome, int tipoCriatura, int coordenadaX, int coordenadaY) {
-        super(id, nome, tipoCriatura, coordenadaX, coordenadaY);
+    public Vivos(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY) {
+        super(id, tipoCriatura, nome , coordenadaX, coordenadaY);
     }
-
 
 
     public Equipamento getEquipamento() {

@@ -55,5 +55,3 @@ public class Equipamento {
         return municao;
     }
 }
-
-
