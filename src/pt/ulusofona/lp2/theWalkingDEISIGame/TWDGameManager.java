@@ -60,12 +60,14 @@ public class TWDGameManager {
                     int criaturaCoordenadaX = Integer.parseInt(partesCriaturas[3]);
                     int criaturaCoordenadaY = Integer.parseInt(partesCriaturas[4]);
 
-                    if (tipo == 20) {
-                        Creature zombie = new Outros(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY);
+                    if (tipo == 0 || tipo == 1 || tipo == 2 || tipo == 3 || tipo == 4) {
+                        int equipa = 20;
+                        Creature zombie = new Outros(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY, equipa);
                         creatures.add(zombie);
                     }
-                    if (tipo == 10) {
-                        Creature humano = new Vivos(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY);
+                    if (tipo == 5 || tipo == 6 || tipo == 7 || tipo == 8 || tipo == 9) {
+                        int equipa = 10;
+                        Creature humano = new Vivos(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY, equipa);
                         creatures.add(humano);
                     }
                 }
@@ -85,29 +87,29 @@ public class TWDGameManager {
 
                     switch (tipo) {
 
-                        case 0 :{
+                        case 0: {
                             Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 1);
                             equipamentos.add(equipamento);
                         }
-                        case 8 : {
+                        case 8: {
                             Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 1);
                             equipamentos.add(equipamento);
                         }
 
-                        case 9 : {
+                        case 9: {
                             Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 1);
                             equipamentos.add(equipamento);
                         }
-                        case 2 : {
+                        case 2: {
                             Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 3);
                             equipamentos.add(equipamento);
                         }
 
-                        case 7 : {
+                        case 7: {
                             Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, 3);
                             equipamentos.add(equipamento);
                         }
-                        default : {
+                        default: {
                             Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY);
                             equipamentos.add(equipamento);
                         }
@@ -125,7 +127,7 @@ public class TWDGameManager {
                     String[] partesPortas = portasLinha.split(" : ");
                     xH = Integer.parseInt(partesPortas[0]);
                     yH = Integer.parseInt(partesPortas[1]);
-                    SafeHaven safeHaven = new SafeHaven(xH,yH);
+                    SafeHaven safeHaven = new SafeHaven(xH, yH);
                     safeHavens.add(safeHaven);
 
                 }
@@ -154,9 +156,80 @@ public class TWDGameManager {
         return creatures;
     }
 
-    public boolean crianca(boolean movimento1 , int xO, int yO, int xD, int yD) {
+    public boolean humanoDestino(int xD, int yD) {
+        for (Creature creature : creatures) {
+            if (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD) {
+                if (creature.getEquipa() == 10) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean zombieDestino(int xD, int yD) {
+        for (Creature creature : creatures) {
+            if (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD) {
+                if (creature.getEquipa() == 20) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean humanoIndefeso() {
+        for (Creature creature : creatures) {
+            if (((Vivos) creature).getEquipamento() == null ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean mortoPorEstaca(int xD, int yD) {
+        for (Creature creatureZombie : creatures) {
+            if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
+                creatures.remove(creatureZombie);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean mortoPorBalazio(Creature creature, int xD, int yD) {
+        for (Creature creatureZombie : creatures) {
+            if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
+                if (((Vivos) creature).getEquipamento().getMunicao() > 0) {
+                    if (!(creatureZombie.getTipoCriatura() == 4)) {
+                        creatures.remove(creatureZombie);
+                        ((Vivos) creature).getEquipamento().setMunicao(((Vivos) creature).getEquipamento().getMunicao() - 1);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean mortoACabecada(int xD, int yD) {
+        for (Creature creatureZombie : creatures) {
+            if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
+                if (creatureZombie.getTipoCriatura() != 4) {
+                    creatures.remove(creatureZombie);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean crianca(boolean mov1, int xO, int yO, int xD, int yD) {
+        boolean defendeu = false;
+        boolean matou = false;
+        //Humano
         if (equipaAtual == 0) {
-            if (movimento1) {
+            if (mov1) {
                 for (Creature creature : creatures) {
                     if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
                         if (equipamentoCoordenadaD) {
@@ -166,9 +239,181 @@ public class TWDGameManager {
                             equipamentoTemporario = null;
                             equipamentoCoordenadaD = false;
                         }
-                        if (((Vivos)creature).getEquipamento() != null) {
-                            ((Vivos)creature).getEquipamento().setCoordenadaX(xD);
-                            ((Vivos)creature).getEquipamento().setCoordenadaY(yD);
+                        if (((Vivos) creature).getEquipamento() != null) {
+                            ((Vivos) creature).getEquipamento().setCoordenadaX(xD);
+                            ((Vivos) creature).getEquipamento().setCoordenadaY(yD);
+                        }
+                        if (zombieDestino(xD, yD)) {
+                            if (((Vivos) creature).getEquipamento().ofensivo()) {
+
+                                switch (((Vivos) creature).getEquipamento().idTipo) {
+
+                                    case 1: {
+                                        for (Creature creatureZombie : creatures) {
+                                            if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
+                                                if (creatureZombie.getTipoCriatura() == 0) {
+                                                    creatures.remove(creatureZombie);
+                                                    matou = true;
+                                                }
+                                            }
+                                        }
+                                        if (!matou) {
+                                            return false;
+                                        }
+                                    }
+
+                                    case 2:  if (!(mortoPorBalazio(creature, xD, yD))) { return false; }
+
+                                    case 6: if (!mortoPorEstaca(xD, yD)) { return false; }
+
+                                    case 10: if (!(mortoACabecada(xD, yD))) { return false; }
+                                }
+                            }
+                        }
+
+                        return true;
+                    }
+                }
+            }
+        }
+
+        //Zombie
+        if (equipaAtual == 1) {
+
+            if (mov1) {
+                for (Creature creature : creatures) {
+                    if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        if (equipamentoCoordenadaD) {
+                            equipamentoDestruidoCont++;
+                            ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
+                            equipamentos.remove(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+                        if (humanoDestino(xD,yD)) {
+                            if (!(humanoIndefeso())) {
+                                for (Creature creatureHumano : creatures) {
+                                    if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        switch (((Vivos) creatureHumano).getEquipamento().getIdTipo()) {
+                                            case 0:{
+                                                equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                turno++;
+                                                equipaAtual = 0;
+                                                return true;
+                                            }
+
+                                            case 1: {
+                                                creatures.remove(creature);
+                                                turno++;
+                                                equipaAtual = 0;
+                                                return true;
+                                            }
+
+                                            case 2: {
+                                                if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
+                                                    creatures.remove(creature);
+                                                    ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao())-1);
+                                                } else {
+                                                    creatures.remove(creatureHumano);
+                                                    creature.setCoordenadaX(xD);
+                                                    creature.setCoordenadaY(yD);
+                                                }
+                                                turno++;
+                                                equipaAtual = 0;
+                                                return true;
+                                            }
+
+                                            case 3: {
+                                                turno++;
+                                                equipaAtual = 0;
+                                                return true;
+                                            }
+
+                                            case 4: {
+                                                creatures.remove(creatureHumano);
+                                                creature.setCoordenadaX(xD);
+                                                creature.setCoordenadaY(yD);
+                                                turno++;
+                                                equipaAtual = 0;
+                                                return true;
+                                            }
+
+                                            case 5: {
+                                                creatures.remove(creatureHumano);
+                                                creature.setCoordenadaX(xD);
+                                                creature.setCoordenadaY(yD);
+                                                turno++;
+                                                equipaAtual = 0;
+                                                return true;
+                                            }
+
+                                            case 6: {
+                                                creatures.remove(creature);
+                                                turno++;
+                                                equipaAtual = 0;
+                                                return true;
+                                            }
+
+                                            case 7: {
+                                                if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
+                                                    ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao())-1);
+                                                } else {
+                                                    creatures.remove(creatureHumano);
+                                                    creature.setCoordenadaX(xD);
+                                                    creature.setCoordenadaY(yD);
+                                                }
+                                                turno++;
+                                                equipaAtual = 0;
+                                                return true;
+                                            }
+
+                                            case 8: {
+                                                turno++;
+                                                equipaAtual = 0;
+                                            }
+
+                                            case 9: {
+                                                turno++;
+                                                equipaAtual = 0;
+                                            }
+
+                                            case 10: {
+                                                turno++;
+                                                equipaAtual = 0;
+                                            }
+
+                                            default: return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        creature.setCoordenadaX(xD);
+                        creature.setCoordenadaY(yD);
+                        turno++;
+                        equipaAtual = 0;
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean adulto(boolean mov1, boolean mov2, boolean movD1, boolean movD2, int xO, int yO, int xD, int yD) {
+        if (mov1 || mov2 || movD1 || movD2) {
+            for (Creature creature : creatures) {
+                    if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        if (equipamentoCoordenadaD) {
+                            equipamentoApanhadoCont++;
+                            ((Vivos) creature).setTotalEquipamentoApanhado(equipamentoApanhadoCont);
+                            ((Vivos) creature).setEquipamento(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+                        if (((Vivos) creature).getEquipamento() != null) {
+                            ((Vivos) creature).getEquipamento().setCoordenadaX(xD);
+                            ((Vivos) creature).getEquipamento().setCoordenadaY(yD);
                         }
                         creature.setCoordenadaX(xD);
                         creature.setCoordenadaY(yD);
@@ -178,16 +423,34 @@ public class TWDGameManager {
                     }
                 }
             }
-        }
         return false;
     }
 
-    public boolean adulto(boolean movimento1, boolean movimento2, boolean movimentoD1, boolean movimentoD2) {
-        return true;
-    }
-
-    public boolean militar(boolean movimento1, boolean movimento2, boolean movimento3, boolean movimentoD1, boolean movimentoD2, boolean movimentoD3) {
-        return true;
+    public boolean militar(boolean mov1, boolean mov2, boolean mov3, boolean movD1, boolean movD2, boolean movD3,
+                           int xO, int yO, int xD, int yD) {
+        if (mov1 || mov2 || mov3 || movD1 || movD2 || movD3) {
+            for (Creature creature : creatures) {
+                if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                    if (equipamentoCoordenadaD) {
+                        equipamentoApanhadoCont++;
+                        ((Vivos) creature).setTotalEquipamentoApanhado(equipamentoApanhadoCont);
+                        ((Vivos) creature).setEquipamento(equipamentoTemporario);
+                        equipamentoTemporario = null;
+                        equipamentoCoordenadaD = false;
+                    }
+                    if (((Vivos) creature).getEquipamento() != null) {
+                        ((Vivos) creature).getEquipamento().setCoordenadaX(xD);
+                        ((Vivos) creature).getEquipamento().setCoordenadaY(yD);
+                    }
+                    creature.setCoordenadaX(xD);
+                    creature.setCoordenadaY(yD);
+                    turno++;
+                    equipaAtual = 1;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean idoso(boolean movimento1) {
@@ -205,20 +468,27 @@ public class TWDGameManager {
     public boolean move(int xO, int yO, int xD, int yD) {
 
         //Vertical e Horizontal              Esquerda                       Direita                    Cima                           Baixo
-        final boolean movimentoMax1 = xD - 1 == xO && yD == yO || xD + 1 == xO && yD == yO || yD - 1 == yO && xD == xO || yD + 1 == yO && xD == xO;
-        final boolean movimentoMax2 = xD - 2 == xO && yD == yO || xD + 2 == xO && yD == yO || yD - 2 == yO && xD == xO || yD + 2 == yO && xD == xO;
-        final boolean movimentoMax3 = xD - 3 == xO && yD == yO || xD + 3 == xO && yD == yO || yD - 3 == yO && xD == xO || yD + 3 == yO && xD == xO;
+        final boolean movMax1 = xD - 1 == xO && yD == yO || xD + 1 == xO && yD == yO || yD - 1 == yO && xD == xO || yD + 1 == yO && xD == xO;
+        final boolean movMax2 = xD - 2 == xO && yD == yO || xD + 2 == xO && yD == yO || yD - 2 == yO && xD == xO || yD + 2 == yO && xD == xO;
+        final boolean movMax3 = xD - 3 == xO && yD == yO || xD + 3 == xO && yD == yO || yD - 3 == yO && xD == xO || yD + 3 == yO && xD == xO;
         //Diagonal                                  NO                              NE                        SO                        SE
-        final boolean movimentoDMax1 = xD - 1 == xO && yD - 1 == yO || xD + 1 == xO && yD - 1 == yO || yD + 1 == yO && xD - 1 == xO || yD + 1 == yO && xD + 1 == xO;
-        final boolean movimentoDMax2 = xD - 2 == xO && yD - 2 == yO || xD + 2 == xO && yD - 2 == yO || yD + 2 == yO && xD - 2 == xO || yD + 2 == yO && xD + 2 == xO;
-        final boolean movimentoDMax3 = xD - 3 == xO && yD - 3 == yO || xD + 3 == xO && yD - 3 == yO || yD + 3 == yO && xD - 3 == xO || yD + 3 == yO && xD + 3 == xO;
+        final boolean movDMax1 = xD - 1 == xO && yD - 1 == yO || xD + 1 == xO && yD - 1 == yO || yD + 1 == yO && xD - 1 == xO || yD + 1 == yO && xD + 1 == xO;
+        final boolean movDMax2 = xD - 2 == xO && yD - 2 == yO || xD + 2 == xO && yD - 2 == yO || yD + 2 == yO && xD - 2 == xO || yD + 2 == yO && xD + 2 == xO;
+        final boolean movDMax3 = xD - 3 == xO && yD - 3 == yO || xD + 3 == xO && yD - 3 == yO || yD + 3 == yO && xD - 3 == xO || yD + 3 == yO && xD + 3 == xO;
 
-        for (Creature creature : creatures) {
-            if (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD) {
+        //Humano não pode ir para cima de outro humano
+        if (equipaAtual == 0) {
+            if (humanoDestino(xD, yD)) {
                 return false;
             }
         }
 
+        //zombie não pode ir para cima de outro zombie
+        if (equipaAtual == 1) {
+            if (zombieDestino(xD, yD)) {
+                return false;
+            }
+        }
 
         for (Equipamento equipamento : equipamentos) {
             if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD) {
@@ -241,27 +511,27 @@ public class TWDGameManager {
                     switch (creature.getTipoCriatura()) {
 
                         //Criança
-                        case 5 : {
-                            crianca(movimentoMax1, xO, yO, xD,yD);
+                        case 5: {
+                            crianca(movMax1, xO, yO, xD, yD);
                         }
 
                         //Adulto
-                        case 6 : {
-                            adulto(movimentoMax1, movimentoDMax2, movimentoMax2, movimentoMax2);
+                        case 6: {
+                            adulto(movMax1, movDMax2, movMax2, movMax2, xO, yO, xD, yD);
                         }
 
                         //Militar
-                        case 7 : {
-                            militar(movimentoMax1,movimentoMax2,movimentoMax3,movimentoDMax1,movimentoDMax2,movimentoDMax3);
+                        case 7: {
+                            militar(movMax1, movMax2, movMax3, movDMax1, movDMax2, movDMax3, xO, yO, xD, yD);
                         }
 
                         //Idoso
-                        case 8 : {
+                        case 8: {
 
                         }
 
                         //Cao
-                        case 9 : {
+                        case 9: {
                         }
                     }
                 }
@@ -296,7 +566,7 @@ public class TWDGameManager {
 
     public boolean gameIsOver() {
 
-        int ocorrencias=0;
+        int ocorrencias = 0;
 
         if (turno >= 12) {
             return true;
@@ -317,7 +587,7 @@ public class TWDGameManager {
 
     //Completo
     public List<String> getAuthors() {
-        ArrayList<String> authors=new ArrayList<>();
+        ArrayList<String> authors = new ArrayList<>();
 
         authors.add("Tomás Martins");
         authors.add("Manuel Sousa");
@@ -349,7 +619,7 @@ public class TWDGameManager {
 
     //Quase Completo
     public List<String> getGameResults() {
-        ArrayList<String> resultados=new ArrayList<>();
+        ArrayList<String> resultados = new ArrayList<>();
 
         resultados.add("Nr. de turnos terminados:\n");
 
@@ -415,7 +685,7 @@ public class TWDGameManager {
 
     //Completo
     public List<Integer> getIdsInSafeHaven() {
-        ArrayList<Integer> safeHavenId=new ArrayList<>();
+        ArrayList<Integer> safeHavenId = new ArrayList<>();
 
         for (SafeHaven safeHaven : safeHavens) {
             if (safeHaven.vivos != null) {
@@ -455,47 +725,47 @@ public class TWDGameManager {
         for (Equipamento equipamento : equipamentos) {
             if (equipamento.getId() == equipmentId) {
                 switch (equipamento.getIdTipo()) {
-                    case 0 : {
+                    case 0: {
                         info += "Escudo de Madeira | " + equipamento.getMunicao();
                         return info;
                     }
-                    case 1 : {
+                    case 1: {
                         info += "Espada Hattori Hanzo";
                         return info;
                     }
-                    case 2 : {
+                    case 2: {
                         info += "Pistola Walther PPK | " + equipamento.getMunicao();
                         return info;
                     }
-                    case 3 : {
+                    case 3: {
                         info += "Escudo Táctico";
                         return info;
                     }
-                    case 4 : {
+                    case 4: {
                         info += "Revista Maria";
                         return info;
                     }
-                    case 5 : {
+                    case 5: {
                         info += "Cabeça de Alho";
                         return info;
                     }
-                    case 6 : {
+                    case 6: {
                         info += "Estaca de Madeira";
                         return info;
                     }
-                    case 7 : {
+                    case 7: {
                         info += "Garrafa de Lixívia (1 litro) | " + equipamento.getMunicao();
                         return info;
                     }
-                    case 8 : {
+                    case 8: {
                         info += "Veneno | " + equipamento.getMunicao();
                         return info;
                     }
-                    case 9 : {
+                    case 9: {
                         info += "Antídoto | " + equipamento.getMunicao();
                         return info;
                     }
-                    case 10 : {
+                    case 10: {
                         info += "Beskar Helmet";
                         return info;
                     }
@@ -506,10 +776,12 @@ public class TWDGameManager {
     }
 
     //Completo
-    public int getEquipmentId(int creatureId){
+    public int getEquipmentId(int creatureId) {
         for (Creature creature : creatures) {
             if (creature.getEquipa() == 10 && creature.getId() == creatureId) {
-                return ((Vivos) creature).getEquipamento().getId();
+                if (((Vivos) creature).getEquipamento() != null) {
+                    return ((Vivos) creature).getEquipamento().getId();
+                }
             }
         }
         return 0;
@@ -517,15 +789,14 @@ public class TWDGameManager {
 
     public boolean saveGame(File fich) {
 
-        try{
-            fich =  new File("jogo.txt");
+        try {
+            fich = new File("jogo.txt");
         } catch (Exception e) {
             System.out.println("");
         }
 
         return true;
     }
-
 
 
     public boolean loadGame(File fich) {

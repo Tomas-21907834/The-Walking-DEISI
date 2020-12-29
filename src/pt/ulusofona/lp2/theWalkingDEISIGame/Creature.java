@@ -9,13 +9,15 @@ abstract public class Creature {
     int coordenadaY;
     boolean destruido = false;
 
-    public Creature(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY) {
+    public Creature(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY, int equipa) {
         this.id = id;
         this.tipoCriatura = tipoCriatura;
         this.nome = nome;
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
+        this.equipa = equipa;
     }
+
 
     public int getId() {
         return id;

@@ -7,7 +7,6 @@ public class Equipamento {
     int coordenadaY;
     int municao;
 
-
     public Equipamento(int id, int idTipo, int coordenadaX, int coordenadaY) {
         this.id = id;
         this.idTipo = idTipo;
@@ -25,6 +24,14 @@ public class Equipamento {
 
     public String getImagePNG(){
         return "equipament.png";
+    }
+
+    public boolean ofensivo() {
+        return idTipo == 1 || idTipo == 2 || idTipo == 6 || idTipo == 10;
+    }
+
+    public void setMunicao(int municao) {
+        this.municao = municao;
     }
 
     public int getCoordenadaX() {

@@ -5,8 +5,8 @@ public class Outros extends Creature{
 
     int totalEquipamentoDestruido = 0;
 
-    public Outros(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY) {
-        super(id, tipoCriatura , nome, coordenadaX, coordenadaY);
+    public Outros(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY, int equipa) {
+        super(id, tipoCriatura , nome, coordenadaX, coordenadaY, equipa);
     }
 
     public void setTotalEquipamentoDestruido(int totalEquipamentoDestruido) {
@@ -17,6 +17,9 @@ public class Outros extends Creature{
         return totalEquipamentoDestruido;
     }
 
+    public String getImagePNG() {
+        return "zombie.png";
+    }
 
     @Override
     public String toString() {
