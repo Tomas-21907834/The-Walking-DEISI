@@ -7,7 +7,6 @@ abstract public class Creature {
     int equipa;
     int coordenadaX;
     int coordenadaY;
-    boolean destruido = false;
 
     public Creature(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY, int equipa) {
         this.id = id;
