@@ -229,8 +229,8 @@ public class TWDGameManager {
     }
 
     public void zombieDestruido(Creature creatureZombie) {
-        destruidos.add(creatureZombie);
         ((Outros) creatureZombie).setDestruido(true);
+        destruidos.add(creatureZombie);
         creatures.remove(creatureZombie);
     }
 
@@ -285,7 +285,490 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean crianca(boolean mov1, int xO, int yO, int xD, int yD) {
+    public boolean equipCam1 (Equipamento equipamento, int xD, int yD, int xO, int yO) {
+        if (xD + 2 == xO && yD == yO) {
+            if (equipamento.getCoordenadaX() == xD + 1 && equipamento.getCoordenadaY() == yD) {
+                return true;
+            }
+        }
+
+        if (xD - 2 == xO && yD == yO) {
+        if (equipamento.getCoordenadaX() == xD - 1 && equipamento.getCoordenadaY() == yD) {
+                return true;
+            }
+        }
+
+        if (yD + 2 == yO && xD == xO) {
+            if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD + 1) {
+                return true;
+            }
+        }
+
+        if (yD - 2 == yO && xD == xO) {
+            if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD - 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean creatureCam1 (Creature creature, int xD, int yD, int xO, int yO) {
+        if (xD + 2 == xO && yD == yO) {
+            if (creature.getCoordenadaX() == xD + 1 && creature.getCoordenadaY() == yD) {
+                return true;
+            }
+        }
+
+        if (xD - 2 == xO && yD == yO) {
+            if (creature.getCoordenadaX() == xD - 1 && creature.getCoordenadaY() == yD) {
+                return true;
+            }
+        }
+
+        if (yD + 2 == yO && xD == xO) {
+            if (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD + 1) {
+                return true;
+            }
+        }
+
+        if (yD - 2 == yO && xD == xO) {
+            if (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD - 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean safeHavenCam1 (SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
+        if (xD + 2 == xO && yD == yO) {
+            if (safeHaven.getX() == xD + 1 && safeHaven.getY() == yD) {
+                return true;
+            }
+        }
+
+        if (xD - 2 == xO && yD == yO) {
+            if (safeHaven.getX() == xD - 1 && safeHaven.getY() == yD) {
+                return true;
+            }
+        }
+
+        if (yD + 2 == yO && xD == xO) {
+            if (safeHaven.getX() == xD && safeHaven.getY() == yD + 1) {
+                return true;
+            }
+        }
+
+        if (yD - 2 == yO && xD == xO) {
+            if (safeHaven.getX() == xD && safeHaven.getY() == yD - 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean equipCam2 (Equipamento equipamento, int xD, int yD, int xO, int yO) {
+        if (xD + 3 == xO && yD == yO) {
+            if (equipamento.getCoordenadaX() == xD + 1 && equipamento.getCoordenadaY() == yD || (equipamento.getCoordenadaX() == xD + 2 && equipamento.getCoordenadaY() == yD)) {
+                return true;
+            }
+        }
+
+        if (xD - 3 == xO && yD == yO) {
+            if ((equipamento.getCoordenadaX() == xD - 1 && equipamento.getCoordenadaY() == yD) || (equipamento.getCoordenadaX() == xD - 2 && equipamento.getCoordenadaY() == yD)) {
+                return true;
+            }
+        }
+
+        if (yD + 3 == yO && xD == xO) {
+            if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD + 1 || (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD + 2)) {
+                return true;
+            }
+        }
+
+        if (yD - 3 == yO && xD == xO) {
+            if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD - 1 || (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD - 2)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean creatureCam2 (Creature creature, int xD, int yD, int xO, int yO) {
+        if (xD + 3 == xO && yD == yO) {
+            if (creature.getCoordenadaX() == xD + 1 && creature.getCoordenadaY() == yD || (creature.getCoordenadaX() == xD + 2 && creature.getCoordenadaY() == yD)) {
+                return true;
+            }
+        }
+
+        if (xD - 3 == xO && yD == yO) {
+            if ((creature.getCoordenadaX() == xD - 1 && creature.getCoordenadaY() == yD) || (creature.getCoordenadaX() == xD - 2 && creature.getCoordenadaY() == yD)) {
+                return true;
+            }
+        }
+
+        if (yD + 3 == yO && xD == xO) {
+            if (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD + 1 || (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD + 2)) {
+                return true;
+            }
+        }
+
+        if (yD - 3 == yO && xD == xO) {
+            if (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD - 1 || (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD - 2)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean safeHavenCam2 (SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
+        if (xD + 3 == xO && yD == yO) {
+            if (safeHaven.getX() == xD + 1 && safeHaven.getY() == yD || (safeHaven.getX() == xD + 2 && safeHaven.getY() == yD)) {
+                return true;
+            }
+        }
+
+        if (xD - 3 == xO && yD == yO) {
+            if ((safeHaven.getX() == xD - 1 && safeHaven.getY() == yD) || (safeHaven.getX() == xD - 2 && safeHaven.getY() == yD)) {
+                return true;
+            }
+        }
+
+        if (yD + 3 == yO && xD == xO) {
+            if (safeHaven.getX() == xD && safeHaven.getY() == yD + 1 || (safeHaven.getX() == xD && safeHaven.getY() == yD + 2)) {
+                return true;
+            }
+        }
+
+        if (yD - 3 == yO && xD == xO) {
+            if (safeHaven.getX() == xD && safeHaven.getY() == yD - 1 || (safeHaven.getX() == xD && safeHaven.getY() == yD - 2)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean equipCam1D (Equipamento equipamento, int xD, int yD, int xO, int yO) {
+
+        if (xD + 2 == xO && yD + 2 == yO) {
+            if (equipamento.getCoordenadaX() == xD + 1 && equipamento.getCoordenadaY() == yD + 1) {
+                return true;
+            }
+        }
+
+        if (xD - 2 == xO && yD - 2 == yO) {
+            if (equipamento.getCoordenadaX() == xD - 1 && equipamento.getCoordenadaY() == yD - 1) {
+                return true;
+            }
+        }
+
+        if (yD + 2 == yO && xD - 2 == xO) {
+            if (equipamento.getCoordenadaX() == xD - 1 && equipamento.getCoordenadaY() == yD + 1) {
+                return true;
+            }
+        }
+
+        if (yD - 2 == yO && xD + 2 == xO) {
+            if (equipamento.getCoordenadaX() == xD + 1 && equipamento.getCoordenadaY() == yD - 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean creatureCam1D (Creature creature, int xD, int yD, int xO, int yO) {
+
+        if (xD + 2 == xO && yD + 2 == yO) {
+            if (creature.getCoordenadaX() == xD + 1 && creature.getCoordenadaY() == yD + 1) {
+                return true;
+            }
+        }
+
+        if (xD - 2 == xO && yD - 2 == yO) {
+            if (creature.getCoordenadaX() == xD - 1 && creature.getCoordenadaY() == yD - 1) {
+                return true;
+            }
+        }
+
+        if (yD + 2 == yO && xD - 2 == xO) {
+            if (creature.getCoordenadaX() == xD - 1 && creature.getCoordenadaY() == yD + 1) {
+                return true;
+            }
+        }
+
+        if (yD - 2 == yO && xD + 2 == xO) {
+            if (creature.getCoordenadaX() == xD + 1 && creature.getCoordenadaY() == yD - 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean safeHavenCam1D (SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
+
+        if (xD + 2 == xO && yD + 2 == yO) {
+            if (safeHaven.getX() == xD + 1 && safeHaven.getY() == yD + 1) {
+                return true;
+            }
+        }
+
+        if (xD - 2 == xO && yD - 2 == yO) {
+            if (safeHaven.getX() == xD - 1 && safeHaven.getY() == yD - 1) {
+                return true;
+            }
+        }
+
+        if (yD + 2 == yO && xD - 2 == xO) {
+            if (safeHaven.getX() == xD - 1 && safeHaven.getY() == yD + 1) {
+                return true;
+            }
+        }
+
+        if (yD - 2 == yO && xD + 2 == xO) {
+            if (safeHaven.getX() == xD + 1 && safeHaven.getY() == yD - 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean equipCam2D (Equipamento equipamento, int xD, int yD, int xO, int yO) {
+
+        if (xD + 3 == xO && yD + 3 == yO) {
+            if (equipamento.getCoordenadaX() == xD + 1 && equipamento.getCoordenadaY() == yD + 1 || equipamento.getCoordenadaX() == xD + 2 && equipamento.getCoordenadaY() == yD + 2) {
+                return true;
+            }
+        }
+
+        if (xD - 3 == xO && yD - 3 == yO) {
+            if (equipamento.getCoordenadaX() == xD - 1 && equipamento.getCoordenadaY() == yD - 1 || equipamento.getCoordenadaX() == xD - 2 && equipamento.getCoordenadaY() == yD - 2 ) {
+                return true;
+            }
+        }
+
+        if (yD + 3 == yO && xD - 3 == xO) {
+            if (equipamento.getCoordenadaX() == xD - 1 && equipamento.getCoordenadaY() == yD + 1 || equipamento.getCoordenadaX() == xD - 2 && equipamento.getCoordenadaY() == yD + 2) {
+                return true;
+            }
+        }
+
+        if (yD - 3 == yO && xD + 3 == xO) {
+            if (equipamento.getCoordenadaX() == xD + 1 && equipamento.getCoordenadaY() == yD - 1 || equipamento.getCoordenadaX() == xD + 2 && equipamento.getCoordenadaY() == yD - 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean creatureCam2D (Creature creature, int xD, int yD, int xO, int yO) {
+
+        if (xD + 3 == xO && yD + 3 == yO) {
+            if (creature.getCoordenadaX() == xD + 1 && creature.getCoordenadaY() == yD + 1 || creature.getCoordenadaX() == xD + 2 && creature.getCoordenadaY() == yD + 2) {
+                return true;
+            }
+        }
+
+        if (xD - 3 == xO && yD - 3 == yO) {
+            if (creature.getCoordenadaX() == xD - 1 && creature.getCoordenadaY() == yD - 1 || creature.getCoordenadaX() == xD - 2 && creature.getCoordenadaY() == yD - 2 ) {
+                return true;
+            }
+        }
+
+        if (yD + 3 == yO && xD - 3 == xO) {
+            if (creature.getCoordenadaX() == xD - 1 && creature.getCoordenadaY() == yD + 1 || creature.getCoordenadaX() == xD - 2 && creature.getCoordenadaY() == yD + 2) {
+                return true;
+            }
+        }
+
+        if (yD - 3 == yO && xD + 3 == xO) {
+            if (creature.getCoordenadaX() == xD + 1 && creature.getCoordenadaY() == yD - 1 || creature.getCoordenadaX() == xD + 2 && creature.getCoordenadaY() == yD - 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean safeHavenCam2D (SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
+
+        if (xD + 3 == xO && yD + 3 == yO) {
+            if (safeHaven.getX() == xD + 1 && safeHaven.getY() == yD + 1 || safeHaven.getX() == xD + 2 && safeHaven.getY() == yD + 2) {
+                return true;
+            }
+        }
+
+        if (xD - 3 == xO && yD - 3 == yO) {
+            if (safeHaven.getX() == xD - 1 && safeHaven.getY() == yD - 1 || safeHaven.getX() == xD - 2 && safeHaven.getY() == yD - 2 ) {
+                return true;
+            }
+        }
+
+        if (yD + 3 == yO && xD - 3 == xO) {
+            if (safeHaven.getX() == xD - 1 && safeHaven.getY() == yD + 1 || safeHaven.getX() == xD - 2 && safeHaven.getY() == yD + 2) {
+                return true;
+            }
+        }
+
+        if (yD - 3 == yO && xD + 3 == xO) {
+            if (safeHaven.getX() == xD + 1 && safeHaven.getY() == yD - 1 || safeHaven.getX() == xD + 2 && safeHaven.getY() == yD - 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean algoNoCaminhoCao(boolean movD2, int xD, int yD, int xO, int yO) {
+        for (Equipamento equipamento : equipamentos) {
+            if (movD2) {
+                if (equipCam1D(equipamento, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+        }
+
+        for (Creature creatureNoCaminho : creatures) {
+            if (movD2) {
+                if (creatureCam1D(creatureNoCaminho, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+        }
+
+        for (SafeHaven safeHaven : safeHavens) {
+            if(movD2) {
+                if (safeHavenCam1D(safeHaven, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean algoNoCaminhoAdulto(boolean mov2, boolean movD2, int xD, int yD, int xO, int yO) {
+        for (Equipamento equipamento : equipamentos) {
+            if (mov2) {
+                if (equipCam1(equipamento, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if (movD2) {
+                if (equipCam1D(equipamento, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+        }
+
+        for (Creature creatureNoCaminho : creatures) {
+            if (mov2) {
+                if (creatureCam1(creatureNoCaminho, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if (movD2) {
+                if (creatureCam1D(creatureNoCaminho, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+        }
+
+        for (SafeHaven safeHaven : safeHavens) {
+            if (mov2) {
+                if (safeHavenCam1(safeHaven, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if(movD2) {
+                if (safeHavenCam1D(safeHaven, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean algoNoCaminhoMilitar(boolean mov2, boolean movD2, boolean mov3, boolean movD3, int xD, int yD, int xO, int yO) {
+        for (Equipamento equipamento : equipamentos) {
+            if (mov2) {
+                if (equipCam1(equipamento, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if (movD2) {
+                if (equipCam1D(equipamento, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if (mov3) {
+                if (equipCam2(equipamento,xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if (movD3) {
+                if (equipCam2D(equipamento,xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+        }
+
+        for (Creature creatureNoCaminho : creatures) {
+            if (mov2) {
+                if (creatureCam1(creatureNoCaminho, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if (movD2) {
+                if (creatureCam1D(creatureNoCaminho, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if (mov3) {
+                if (creatureCam2(creatureNoCaminho,xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if (movD3) {
+                if (creatureCam2D(creatureNoCaminho,xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+        }
+
+        for (SafeHaven safeHaven : safeHavens) {
+            if (mov2) {
+                if (safeHavenCam1(safeHaven, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if(movD2) {
+                if (safeHavenCam1D(safeHaven, xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if (mov3) {
+                if (safeHavenCam2(safeHaven,xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+
+            if (movD3) {
+                if (safeHavenCam2D(safeHaven,xD, yD, xO, yO)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean crianca (boolean mov1, int xO, int yO, int xD, int yD) {
         boolean matou = false;
         //Humano
         if (equipaAtual == 10) {
@@ -311,7 +794,7 @@ public class TWDGameManager {
                             if (((Vivos) creature).getEquipamento() != null) {
                                 if (((Vivos) creature).getEquipamento().ofensivo()) {
 
-                                    switch (((Vivos) creature).getEquipamento().idTipo) {
+                                    switch (((Vivos) creature).getEquipamento().getIdTipo()) {
 
                                         case 1: {
                                             for (Creature creatureZombie : creatures) {
@@ -344,6 +827,7 @@ public class TWDGameManager {
                                     }
                                 }
                             }
+                            return false;
                         }
                         creature.setCoordenadaX(xD);
                         creature.setCoordenadaY(yD);
@@ -379,6 +863,9 @@ public class TWDGameManager {
                             if (!(humanoIndefeso())) {
                                 for (Creature creatureHumano : creatures) {
                                     if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        if (creatureHumano.getTipoCriatura() == 9) {
+                                            return false;
+                                        }
                                         switch (((Vivos) creatureHumano).getEquipamento().getIdTipo()) {
                                             case 0: {
                                                 equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
@@ -410,15 +897,6 @@ public class TWDGameManager {
                                             }
 
                                             case 3: {
-                                                turno++;
-                                                equipaAtual = 10;
-                                                return true;
-                                            }
-
-                                            case 5: {
-                                                creatures.remove(creatureHumano);
-                                                creature.setCoordenadaX(xD);
-                                                creature.setCoordenadaY(yD);
                                                 turno++;
                                                 equipaAtual = 10;
                                                 return true;
@@ -465,6 +943,217 @@ public class TWDGameManager {
                             } else {
                                 for (Creature creatureHumano : creatures) {
                                     if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        if (creatureHumano.getTipoCriatura() == 9) {
+                                            return false;
+                                        }
+                                            humanoRIP(creatureHumano);
+                                            turno++;
+                                            equipaAtual = 10;
+                                            return true;
+                                    }
+                                }
+                            }
+                        }
+                        creature.setCoordenadaX(xD);
+                        creature.setCoordenadaY(yD);
+                        turno++;
+                        equipaAtual = 10;
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean adulto(boolean mov1, boolean mov2, boolean movD1, boolean movD2, int xO, int yO, int xD, int yD) {
+
+
+        boolean matou = false;
+        //Humano
+        if (equipaAtual == 10) {
+            if (mov1 || mov2 || movD1 || movD2) {
+                if (algoNoCaminhoAdulto(mov2, movD2, xD, yD, xO, yO)) {
+                    return false;
+                }
+                for (Creature creature : creatures) {
+                    if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        if (equipamentoCoordenadaD) {
+                            equipamentoApanhadoCont++;
+                            ((Vivos) creature).setTotalEquipamentoApanhado(equipamentoApanhadoCont);
+                            ((Vivos) creature).setEquipamento(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+                        if (((Vivos) creature).getEquipamento() != null) {
+                            ((Vivos) creature).getEquipamento().setCoordenadaX(xD);
+                            ((Vivos) creature).getEquipamento().setCoordenadaY(yD);
+                        }
+
+                        //SafeHaven
+                        humanoSafe(creature, xD, yD);
+
+                        if (zombieDestino(xD, yD)) {
+                            if (((Vivos) creature).getEquipamento() != null) {
+                                if (((Vivos) creature).getEquipamento().ofensivo()) {
+
+                                    switch (((Vivos) creature).getEquipamento().getIdTipo()) {
+
+                                        case 1: {
+                                            for (Creature creatureZombie : creatures) {
+                                                if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
+                                                    if (creatureZombie.getTipoCriatura() != 4) {
+                                                        zombieDestruido(creatureZombie);
+                                                        matou = true;
+                                                    }
+                                                }
+                                            }
+                                            if (!matou) {
+                                                return false;
+                                            }
+                                        }
+
+                                        case 2:
+                                            if (!(mortoPorBalazio(creature, xD, yD))) {
+                                                return false;
+                                            }
+
+                                        case 6:
+                                            if (!mortoPorEstaca(xD, yD)) {
+                                                return false;
+                                            }
+
+                                        case 10:
+                                            if (!(mortoACabecada(xD, yD))) {
+                                                return false;
+                                            }
+                                    }
+                                }
+                            }
+                            return false;
+                        }
+                        creature.setCoordenadaX(xD);
+                        creature.setCoordenadaY(yD);
+                        turno++;
+                        equipaAtual = 20;
+                        return true;
+                    }
+                }
+            }
+        }
+
+        //Zombie
+        if (equipaAtual == 20) {
+            if (mov1 || mov2 || movD1 || movD2) {
+                if (algoNoCaminhoAdulto(mov2, movD2, xD, yD, xO, yO)) {
+                    return false;
+                }
+                for (Creature creature : creatures) {
+                    if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        if (equipamentoCoordenadaD) {
+                            equipamentoDestruidoCont++;
+                            ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
+                            equipamentos.remove(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+
+                        if (humanoEnvenenado()) {
+                            turno++;
+                            equipaAtual = 10;
+                            return true;
+                        }
+
+                        if (humanoDestino(xD, yD)) {
+                            if (!(humanoIndefeso())) {
+                                for (Creature creatureHumano : creatures) {
+                                    if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        if (creatureHumano.getTipoCriatura() == 9) {
+                                            return false;
+                                        }
+                                        switch (((Vivos) creatureHumano).getEquipamento().getIdTipo()) {
+                                            case 0: {
+                                                equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            //completar
+                                            case 1: {
+                                                if (creatureHumano.getTipoCriatura() != 5) {
+                                                    zombieDestruido(creature);
+                                                    turno++;
+                                                    equipaAtual = 10;
+                                                    return true;
+                                                }
+                                            }
+
+                                            case 2: {
+                                                if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
+                                                    zombieDestruido(creature);
+                                                    ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
+                                                } else {
+                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                    humanoRIP(creatureHumano);
+                                                    creature.setCoordenadaX(xD);
+                                                    creature.setCoordenadaY(yD);
+                                                }
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 3: {
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 6: {
+                                                creatures.remove(creature);
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 7: {
+                                                if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
+                                                    ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
+                                                } else {
+                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                    humanoRIP(creatureHumano);
+                                                    creature.setCoordenadaX(xD);
+                                                    creature.setCoordenadaY(yD);
+                                                }
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+
+                                            case 10: {
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            default:
+                                                humanoRIP(creatureHumano);
+                                                creature.setCoordenadaX(xD);
+                                                creature.setCoordenadaY(yD);
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                        }
+                                    }
+                                }
+                            } else {
+                                for (Creature creatureHumano : creatures) {
+                                    if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        if (creatureHumano.getTipoCriatura() == 9) {
+                                            return false;
+                                        }
                                         humanoRIP(creatureHumano);
                                         turno++;
                                         equipaAtual = 10;
@@ -485,27 +1174,584 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean adulto(boolean mov1, boolean mov2, boolean movD1, boolean movD2, int xO, int yO, int xD, int yD) {
-
-        return false;
-    }
-
     public boolean militar(boolean mov1, boolean mov2, boolean mov3, boolean movD1, boolean movD2, boolean movD3,
                            int xO, int yO, int xD, int yD) {
 
+        boolean matou = false;
+        //Humano
+        if (equipaAtual == 10) {
+            if (mov1 || mov2 || movD1 || movD2 || mov3 || movD3) {
+                if (algoNoCaminhoMilitar(mov2, movD2, mov3, movD3, xD, yD, xO, yO)) {
+                    return false;
+                }
+                for (Creature creature : creatures) {
+                    if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        if (equipamentoCoordenadaD) {
+                            equipamentoApanhadoCont++;
+                            ((Vivos) creature).setTotalEquipamentoApanhado(equipamentoApanhadoCont);
+                            ((Vivos) creature).setEquipamento(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+                        if (((Vivos) creature).getEquipamento() != null) {
+                            ((Vivos) creature).getEquipamento().setCoordenadaX(xD);
+                            ((Vivos) creature).getEquipamento().setCoordenadaY(yD);
+                        }
+
+                        //SafeHaven
+                        humanoSafe(creature, xD, yD);
+
+                        if (zombieDestino(xD, yD)) {
+                            if (((Vivos) creature).getEquipamento() != null) {
+                                if (((Vivos) creature).getEquipamento().ofensivo()) {
+
+                                    switch (((Vivos) creature).getEquipamento().getIdTipo()) {
+
+                                        case 1: {
+                                            for (Creature creatureZombie : creatures) {
+                                                if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
+                                                    if (creatureZombie.getTipoCriatura() != 4) {
+                                                        zombieDestruido(creatureZombie);
+                                                        matou = true;
+                                                    }
+                                                }
+                                            }
+                                            if (!matou) {
+                                                return false;
+                                            }
+                                        }
+
+                                        case 2:
+                                            if (!(mortoPorBalazio(creature, xD, yD))) {
+                                                return false;
+                                            }
+
+                                        case 6:
+                                            if (!mortoPorEstaca(xD, yD)) {
+                                                return false;
+                                            }
+
+                                        case 10:
+                                            if (!(mortoACabecada(xD, yD))) {
+                                                return false;
+                                            }
+                                    }
+                                }
+                            }
+                            return false;
+                        }
+                        creature.setCoordenadaX(xD);
+                        creature.setCoordenadaY(yD);
+                        turno++;
+                        equipaAtual = 20;
+                        return true;
+                    }
+                }
+            }
+        }
+
+        //Zombie
+        if (equipaAtual == 20) {
+            if (mov1 || mov2 || movD1 || movD2) {
+                if (algoNoCaminhoMilitar(mov2, movD2,mov3, movD3, xD, yD, xO, yO)) {
+                    return false;
+                }
+                for (Creature creature : creatures) {
+                    if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        if (equipamentoCoordenadaD) {
+                            equipamentoDestruidoCont++;
+                            ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
+                            equipamentos.remove(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+
+                        if (humanoEnvenenado()) {
+                            turno++;
+                            equipaAtual = 10;
+                            return true;
+                        }
+
+                        if (humanoDestino(xD, yD)) {
+                            if (!(humanoIndefeso())) {
+                                for (Creature creatureHumano : creatures) {
+                                    if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        if (creatureHumano.getTipoCriatura() == 9) {
+                                            return false;
+                                        }
+                                        switch (((Vivos) creatureHumano).getEquipamento().getIdTipo()) {
+                                            case 0: {
+                                                equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            //completar
+                                            case 1: {
+                                                if (creatureHumano.getTipoCriatura() != 5) {
+                                                    zombieDestruido(creature);
+                                                    turno++;
+                                                    equipaAtual = 10;
+                                                    return true;
+                                                }
+                                            }
+
+                                            case 2: {
+                                                if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
+                                                    zombieDestruido(creature);
+                                                    ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
+                                                } else {
+                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                    humanoRIP(creatureHumano);
+                                                    creature.setCoordenadaX(xD);
+                                                    creature.setCoordenadaY(yD);
+                                                }
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 3: {
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 6: {
+                                                creatures.remove(creature);
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 7: {
+                                                if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
+                                                    ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
+                                                } else {
+                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                    humanoRIP(creatureHumano);
+                                                    creature.setCoordenadaX(xD);
+                                                    creature.setCoordenadaY(yD);
+                                                }
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+
+                                            case 10: {
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            default:
+                                                humanoRIP(creatureHumano);
+                                                creature.setCoordenadaX(xD);
+                                                creature.setCoordenadaY(yD);
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                        }
+                                    }
+                                }
+                            } else {
+                                for (Creature creatureHumano : creatures) {
+                                    if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        if (creatureHumano.getTipoCriatura() == 9) {
+                                            return false;
+                                        }
+                                        humanoRIP(creatureHumano);
+                                        turno++;
+                                        equipaAtual = 10;
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                        creature.setCoordenadaX(xD);
+                        creature.setCoordenadaY(yD);
+                        turno++;
+                        equipaAtual = 10;
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
-    public boolean idoso(boolean movimento1) {
-        return true;
+    public boolean idoso(boolean mov1, int xO, int yO, int xD, int yD) {
+        boolean matou = false;
+        //Humano
+        if (equipaAtual == 10) {
+            if (mov1 && isDay()) {
+                for (Creature creature : creatures) {
+                    if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        ((Vivos) creature).setEquipamento(null);
+                        if (equipamentoCoordenadaD) {
+                            equipamentoApanhadoCont++;
+                            ((Vivos) creature).setTotalEquipamentoApanhado(equipamentoApanhadoCont);
+                            ((Vivos) creature).setEquipamento(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+
+                        //SafeHaven
+                        humanoSafe(creature, xD, yD);
+
+                        if (zombieDestino(xD, yD)) {
+                            if (((Vivos) creature).getEquipamento() != null) {
+                                if (((Vivos) creature).getEquipamento().ofensivo()) {
+
+                                    switch (((Vivos) creature).getEquipamento().getIdTipo()) {
+
+                                        case 1: {
+                                            for (Creature creatureZombie : creatures) {
+                                                if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
+                                                        zombieDestruido(creatureZombie);
+                                                        matou = true;
+                                                }
+                                            }
+                                            if (!matou) {
+                                                return false;
+                                            }
+                                        }
+
+                                        case 2:
+                                            if (!(mortoPorBalazio(creature, xD, yD))) {
+                                                return false;
+                                            }
+
+                                        case 6:
+                                            if (!mortoPorEstaca(xD, yD)) {
+                                                return false;
+                                            }
+
+                                        case 10:
+                                            if (!(mortoACabecada(xD, yD))) {
+                                                return false;
+                                            }
+                                    }
+                                }
+                            }
+                            return false;
+                        }
+                        creature.setCoordenadaX(xD);
+                        creature.setCoordenadaY(yD);
+                        turno++;
+                        equipaAtual = 20;
+                        return true;
+                    }
+                }
+            }
+        }
+
+        //Zombie
+        if (equipaAtual == 20) {
+
+            if (mov1) {
+                for (Creature creature : creatures) {
+                    if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        if (equipamentoCoordenadaD) {
+                            equipamentoDestruidoCont++;
+                            ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
+                            equipamentos.remove(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+
+                        if (humanoEnvenenado()) {
+                            turno++;
+                            equipaAtual = 10;
+                            return true;
+                        }
+
+                        if (humanoDestino(xD, yD)) {
+                            if (!(humanoIndefeso())) {
+                                for (Creature creatureHumano : creatures) {
+                                    if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        if (creatureHumano.getTipoCriatura() == 9) {
+                                            return false;
+                                        }
+                                        switch (((Vivos) creatureHumano).getEquipamento().getIdTipo()) {
+                                            case 0: {
+                                                equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 1: {
+                                                zombieDestruido(creature);
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 2: {
+                                                if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
+                                                    zombieDestruido(creature);
+                                                    ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
+                                                } else {
+                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                    humanoRIP(creatureHumano);
+                                                    creature.setCoordenadaX(xD);
+                                                    creature.setCoordenadaY(yD);
+                                                }
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 3: {
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 6: {
+                                                creatures.remove(creature);
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 7: {
+                                                if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
+                                                    ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
+                                                } else {
+                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                    humanoRIP(creatureHumano);
+                                                    creature.setCoordenadaX(xD);
+                                                    creature.setCoordenadaY(yD);
+                                                }
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+
+                                            case 10: {
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            default:
+                                                humanoRIP(creatureHumano);
+                                                creature.setCoordenadaX(xD);
+                                                creature.setCoordenadaY(yD);
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                        }
+                                    }
+                                }
+                            } else {
+                                for (Creature creatureHumano : creatures) {
+                                    if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        if (creatureHumano.getTipoCriatura() == 9) {
+                                            return false;
+                                        }
+                                        humanoRIP(creatureHumano);
+                                        turno++;
+                                        equipaAtual = 10;
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                        creature.setCoordenadaX(xD);
+                        creature.setCoordenadaY(yD);
+                        turno++;
+                        equipaAtual = 10;
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
-    public boolean cao(boolean movimento1) {
-        return true;
+    public boolean cao(boolean movD1, boolean movD2, int xO, int yO, int xD, int yD) {
+        boolean matou = false;
+        //Humano
+        if (equipaAtual == 10) {
+            if (movD1 || movD2) {
+                if (algoNoCaminhoCao(movD2, xD, yD, xO, yO)) {
+                    return false;
+                }
+                for (Creature creature : creatures) {
+                    if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        if (equipamentoCoordenadaD) {
+                            equipamentoApanhadoCont++;
+                            ((Vivos) creature).setTotalEquipamentoApanhado(equipamentoApanhadoCont);
+                            ((Vivos) creature).setEquipamento(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+                        if (((Vivos) creature).getEquipamento() != null) {
+                            ((Vivos) creature).getEquipamento().setCoordenadaX(xD);
+                            ((Vivos) creature).getEquipamento().setCoordenadaY(yD);
+                        }
+
+                        //SafeHaven
+                        humanoSafe(creature, xD, yD);
+
+                        if (zombieDestino(xD, yD)) {
+                            return false;
+                        }
+
+                        creature.setCoordenadaX(xD);
+                        creature.setCoordenadaY(yD);
+                        turno++;
+                        equipaAtual = 20;
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
-    public boolean vampiro(boolean movimento1) {
-        return true;
+    public boolean vampiro(boolean mov1, boolean mov2, boolean movD1, boolean movD2, int xD, int yD, int xO, int yO) {
+        if (equipaAtual == 20) {
+            if (mov1 || mov2 || movD1 || movD2) {
+                if (algoNoCaminhoAdulto(mov2, movD2, xD, yD, xO, yO)) {
+                    return false;
+                }
+                for (Creature creature : creatures) {
+                    if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        if (equipamentoCoordenadaD) {
+                            equipamentoDestruidoCont++;
+                            ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
+                            equipamentos.remove(equipamentoTemporario);
+                            equipamentoTemporario = null;
+                            equipamentoCoordenadaD = false;
+                        }
+
+                        if (humanoEnvenenado()) {
+                            turno++;
+                            equipaAtual = 10;
+                            return true;
+                        }
+
+                        if (humanoDestino(xD, yD)) {
+                            if (!(humanoIndefeso())) {
+                                for (Creature creatureHumano : creatures) {
+                                    if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        if (creatureHumano.getTipoCriatura() == 9) {
+                                            return false;
+                                        }
+                                        switch (((Vivos) creatureHumano).getEquipamento().getIdTipo()) {
+                                            case 0: {
+                                                equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            //completar
+                                            case 1: {
+                                                if (creatureHumano.getTipoCriatura() != 5) {
+                                                    zombieDestruido(creature);
+                                                    turno++;
+                                                    equipaAtual = 10;
+                                                    return true;
+                                                }
+                                            }
+
+                                            case 2: {
+                                                if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
+                                                    zombieDestruido(creature);
+                                                    ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
+                                                } else {
+                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                    humanoRIP(creatureHumano);
+                                                    creature.setCoordenadaX(xD);
+                                                    creature.setCoordenadaY(yD);
+                                                }
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 3: {
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 5: {
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 6: {
+                                                creatures.remove(creature);
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            case 7: {
+                                                if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
+                                                    ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
+                                                } else {
+                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
+                                                    humanoRIP(creatureHumano);
+                                                    creature.setCoordenadaX(xD);
+                                                    creature.setCoordenadaY(yD);
+                                                }
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+
+                                            case 10: {
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                            }
+
+                                            default:
+                                                humanoRIP(creatureHumano);
+                                                creature.setCoordenadaX(xD);
+                                                creature.setCoordenadaY(yD);
+                                                turno++;
+                                                equipaAtual = 10;
+                                                return true;
+                                        }
+                                    }
+                                }
+                            } else {
+                                for (Creature creatureHumano : creatures) {
+                                    if (creatureHumano.getCoordenadaX() == xD && creatureHumano.getCoordenadaY() == yD) {
+                                        if (creatureHumano.getTipoCriatura() == 9) {
+                                            return false;
+                                        }
+                                        humanoRIP(creatureHumano);
+                                        turno++;
+                                        equipaAtual = 10;
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                        creature.setCoordenadaX(xD);
+                        creature.setCoordenadaY(yD);
+                        turno++;
+                        equipaAtual = 10;
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
@@ -518,6 +1764,26 @@ public class TWDGameManager {
         final boolean movDMax1 = xD - 1 == xO && yD - 1 == yO || xD + 1 == xO && yD - 1 == yO || yD + 1 == yO && xD - 1 == xO || yD + 1 == yO && xD + 1 == xO;
         final boolean movDMax2 = xD - 2 == xO && yD - 2 == yO || xD + 2 == xO && yD - 2 == yO || yD + 2 == yO && xD - 2 == xO || yD + 2 == yO && xD + 2 == xO;
         final boolean movDMax3 = xD - 3 == xO && yD - 3 == yO || xD + 3 == xO && yD - 3 == yO || yD + 3 == yO && xD - 3 == xO || yD + 3 == yO && xD + 3 == xO;
+
+        if (equipaAtual == 20) {
+            for (Creature creature : creatures) {
+                if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                    if (creature.getEquipa() == 10) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        if (equipaAtual == 10) {
+            for (Creature creature : creatures) {
+                if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                    if (creature.getEquipa() == 20) {
+                        return false;
+                    }
+                }
+            }
+        }
 
         //Humano não pode ir para cima de outro humano
         if (equipaAtual == 10) {
@@ -538,19 +1804,49 @@ public class TWDGameManager {
                 equipamentoCoordenadaD = true;
                 equipamentoTemporario = equipamento;
 
-                for (Creature creature : creatures) {
-                    if (equipaAtual == 1 && creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
-                        equipamentoCoordenadaD = false;
-                        equipamentoTemporario = null;
-                    }
-                }
-
             }
         }
 
         if (equipaAtual == 10) {
             for (Creature creature : creatures) {
                 switch (creature.getTipoCriatura()) {
+
+                    //Criança (Zombie)
+                    case 0: {
+                        if (crianca(movMax1, xO, yO, xD, yD)) {
+                            return true;
+                        }
+                        break;
+                    }
+
+                    //Adulto (Zombie)
+                    case 1: {
+                        if (adulto(movMax1, movDMax2, movMax2, movMax2, xO, yO, xD, yD)) {
+                            return true;
+                        }
+                        break;
+                    }
+
+                    //Militar (Zombie)
+                    case 2: {
+                        if (militar(movMax1, movMax2, movMax3, movDMax1, movDMax2, movDMax3, xO, yO, xD, yD)) {
+                            return true;
+                        }
+                        break;
+                    }
+
+                    //Idoso (Zombie)
+                    case 3: {
+                        if (idoso(movMax1, xO, yO, xD, yD)){
+                            return true;
+                        }
+                        break;
+                    }
+
+                    //Vampiro
+                    case 4: {
+
+                    }
 
                     //Criança
                     case 5: {
@@ -562,89 +1858,38 @@ public class TWDGameManager {
 
                     //Adulto
                     case 6: {
-                        adulto(movMax1, movDMax2, movMax2, movMax2, xO, yO, xD, yD);
-                        break;
-                    }
-
-                    //Militar
-                    case 7: {
-                        militar(movMax1, movMax2, movMax3, movDMax1, movDMax2, movDMax3, xO, yO, xD, yD);
-                        break;
-                    }
-
-                    //Idoso
-                    case 8: {
-
-                    }
-
-                    //Cao
-                    case 9: {
-
-                    }
-                }
-            }
-        }
-
-        if (equipaAtual == 20) {
-            for (Creature creature : creatures) {
-                switch (creature.getTipoCriatura()) {
-
-                    //Criança
-                    case 0: {
-                        if (crianca(movMax1, xO, yO, xD, yD)) {
+                        if (adulto(movMax1, movMax2, movDMax1, movDMax2, xO, yO, xD, yD)){
                             return true;
                         }
                         break;
                     }
 
-                    //Adulto
-                    case 1: {
-                        adulto(movMax1, movDMax2, movMax2, movMax2, xO, yO, xD, yD);
-                        break;
-                    }
-
                     //Militar
-                    case 2: {
-                        militar(movMax1, movMax2, movMax3, movDMax1, movDMax2, movDMax3, xO, yO, xD, yD);
+                    case 7: {
+                        if (militar(movMax1, movMax2, movMax3, movDMax1, movDMax2, movDMax3, xO, yO, xD, yD)){
+                            return true;
+                        }
                         break;
                     }
 
                     //Idoso
-                    case 3: {
-
-                    }
-
-                    //Vampiro
-                    case 4: {
-
-                    }
-                }
-            }
-        }
-/*
-
-
-        if (equipaAtual == 1) {
-            if (movimentoPossivel) {
-                for (int i = 0; i < zombies.size(); i++) {
-                    if (zombies.get(i).getCoordenadaX() == xO && zombies.get(i).getCoordenadaY() == yO) {
-                        if (equipamentoCoordenadaD) {
-                            equipamentoDestruidoCont++;
-                            zombies.get(i).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
-                            equipamentos.remove(equipamentoTemporario);
-                            equipamentoTemporario = null;
-                            equipamentoCoordenadaD = false;
+                    case 8: {
+                        if (idoso(movMax1, xO, yO, xD, yD)){
+                            return true;
                         }
-                        zombies.get(i).setCoordenadaX(xD);
-                        zombies.get(i).setCoordenadaY(yD);
-                        turno++;
-                        equipaAtual = 0;
-                        return true;
+                        break;
+                    }
+
+                    //Cao
+                    case 9: {
+                        if (cao(movDMax1, movDMax2, xO, yO, xD, yD)) {
+                            return true;
+                        }
+                        break;
                     }
                 }
             }
         }
- */
         return false;
     }
 

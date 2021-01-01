@@ -46,7 +46,7 @@ public class Vivos extends Creature{
         } else if (morto){
             return id + " | " + tipoCriatura() + " | " + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ RIP";
         } else {
-            return id + " | " + tipoCriatura() + " | " + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ (" + coordenadaX + coordenadaY + ")";
+            return id + " | " + tipoCriatura() + " | " + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ (" + coordenadaX + "," + coordenadaY + ")";
         }
     }
 

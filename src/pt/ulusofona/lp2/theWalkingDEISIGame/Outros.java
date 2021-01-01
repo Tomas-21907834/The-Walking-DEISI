@@ -36,6 +36,6 @@ public class Outros extends Creature{
         if (destruido) {
             return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentosDestruidos() + " @ RIP";
         }
-            return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentosDestruidos() + " @ (" + coordenadaX + coordenadaY + ")";
+            return id + " | " + tipoCriatura() + " | "  + equipaString() + " | " + nome + " " + equipamentosDestruidos() + " @ (" + coordenadaX + "," + coordenadaY + ")";
         }
     }
