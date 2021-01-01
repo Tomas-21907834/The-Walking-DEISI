@@ -15,6 +15,7 @@ public class TWDGameManager {
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
     List<Creature> creatures = new ArrayList<>();
     List<SafeHaven> safeHavens = new ArrayList<>();
+    List<Creature> salvos = new ArrayList<>();
     List<Creature> destruidos = new ArrayList<>();
 
     public TWDGameManager() {
@@ -242,16 +243,20 @@ public class TWDGameManager {
         int criaturaCoordenadaY = creatureHumano.getCoordenadaY();
         creatures.remove(creatureHumano);
         switch (tipo) {
-            case 5: tipo = 0;
+            case 5:
+                tipo = 0;
                 break;
 
-            case 6: tipo = 1;
+            case 6:
+                tipo = 1;
                 break;
 
-            case 7: tipo = 2;
+            case 7:
+                tipo = 2;
                 break;
 
-            case 8: tipo = 3;
+            case 8:
+                tipo = 3;
                 break;
         }
         Outros zombie = new Outros(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY, 20);
@@ -264,10 +269,10 @@ public class TWDGameManager {
             if (safeHaven.getX() == xD && safeHaven.getY() == yD) {
                 if (((Vivos) creatureHumano).getEquipamento() != null) {
                     equipamentos.remove(((Vivos) creatureHumano).getEquipamento());
-                    safeHaven.vivos.add(creatureHumano);
+                    salvos.add(creatureHumano);
                     creatures.remove(creatureHumano);
                 } else {
-                    safeHaven.vivos.add(creatureHumano);
+                    salvos.add(creatureHumano);
                     creatures.remove(creatureHumano);
                 }
             }
@@ -285,7 +290,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean equipCam1 (Equipamento equipamento, int xD, int yD, int xO, int yO) {
+    public boolean equipCam1(Equipamento equipamento, int xD, int yD, int xO, int yO) {
         if (xD + 2 == xO && yD == yO) {
             if (equipamento.getCoordenadaX() == xD + 1 && equipamento.getCoordenadaY() == yD) {
                 return true;
@@ -293,7 +298,7 @@ public class TWDGameManager {
         }
 
         if (xD - 2 == xO && yD == yO) {
-        if (equipamento.getCoordenadaX() == xD - 1 && equipamento.getCoordenadaY() == yD) {
+            if (equipamento.getCoordenadaX() == xD - 1 && equipamento.getCoordenadaY() == yD) {
                 return true;
             }
         }
@@ -312,7 +317,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean creatureCam1 (Creature creature, int xD, int yD, int xO, int yO) {
+    public boolean creatureCam1(Creature creature, int xD, int yD, int xO, int yO) {
         if (xD + 2 == xO && yD == yO) {
             if (creature.getCoordenadaX() == xD + 1 && creature.getCoordenadaY() == yD) {
                 return true;
@@ -339,7 +344,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean safeHavenCam1 (SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
+    public boolean safeHavenCam1(SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
         if (xD + 2 == xO && yD == yO) {
             if (safeHaven.getX() == xD + 1 && safeHaven.getY() == yD) {
                 return true;
@@ -366,7 +371,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean equipCam2 (Equipamento equipamento, int xD, int yD, int xO, int yO) {
+    public boolean equipCam2(Equipamento equipamento, int xD, int yD, int xO, int yO) {
         if (xD + 3 == xO && yD == yO) {
             if (equipamento.getCoordenadaX() == xD + 1 && equipamento.getCoordenadaY() == yD || (equipamento.getCoordenadaX() == xD + 2 && equipamento.getCoordenadaY() == yD)) {
                 return true;
@@ -393,7 +398,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean creatureCam2 (Creature creature, int xD, int yD, int xO, int yO) {
+    public boolean creatureCam2(Creature creature, int xD, int yD, int xO, int yO) {
         if (xD + 3 == xO && yD == yO) {
             if (creature.getCoordenadaX() == xD + 1 && creature.getCoordenadaY() == yD || (creature.getCoordenadaX() == xD + 2 && creature.getCoordenadaY() == yD)) {
                 return true;
@@ -420,7 +425,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean safeHavenCam2 (SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
+    public boolean safeHavenCam2(SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
         if (xD + 3 == xO && yD == yO) {
             if (safeHaven.getX() == xD + 1 && safeHaven.getY() == yD || (safeHaven.getX() == xD + 2 && safeHaven.getY() == yD)) {
                 return true;
@@ -447,7 +452,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean equipCam1D (Equipamento equipamento, int xD, int yD, int xO, int yO) {
+    public boolean equipCam1D(Equipamento equipamento, int xD, int yD, int xO, int yO) {
 
         if (xD + 2 == xO && yD + 2 == yO) {
             if (equipamento.getCoordenadaX() == xD + 1 && equipamento.getCoordenadaY() == yD + 1) {
@@ -475,7 +480,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean creatureCam1D (Creature creature, int xD, int yD, int xO, int yO) {
+    public boolean creatureCam1D(Creature creature, int xD, int yD, int xO, int yO) {
 
         if (xD + 2 == xO && yD + 2 == yO) {
             if (creature.getCoordenadaX() == xD + 1 && creature.getCoordenadaY() == yD + 1) {
@@ -503,7 +508,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean safeHavenCam1D (SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
+    public boolean safeHavenCam1D(SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
 
         if (xD + 2 == xO && yD + 2 == yO) {
             if (safeHaven.getX() == xD + 1 && safeHaven.getY() == yD + 1) {
@@ -531,7 +536,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean equipCam2D (Equipamento equipamento, int xD, int yD, int xO, int yO) {
+    public boolean equipCam2D(Equipamento equipamento, int xD, int yD, int xO, int yO) {
 
         if (xD + 3 == xO && yD + 3 == yO) {
             if (equipamento.getCoordenadaX() == xD + 1 && equipamento.getCoordenadaY() == yD + 1 || equipamento.getCoordenadaX() == xD + 2 && equipamento.getCoordenadaY() == yD + 2) {
@@ -540,7 +545,7 @@ public class TWDGameManager {
         }
 
         if (xD - 3 == xO && yD - 3 == yO) {
-            if (equipamento.getCoordenadaX() == xD - 1 && equipamento.getCoordenadaY() == yD - 1 || equipamento.getCoordenadaX() == xD - 2 && equipamento.getCoordenadaY() == yD - 2 ) {
+            if (equipamento.getCoordenadaX() == xD - 1 && equipamento.getCoordenadaY() == yD - 1 || equipamento.getCoordenadaX() == xD - 2 && equipamento.getCoordenadaY() == yD - 2) {
                 return true;
             }
         }
@@ -559,7 +564,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean creatureCam2D (Creature creature, int xD, int yD, int xO, int yO) {
+    public boolean creatureCam2D(Creature creature, int xD, int yD, int xO, int yO) {
 
         if (xD + 3 == xO && yD + 3 == yO) {
             if (creature.getCoordenadaX() == xD + 1 && creature.getCoordenadaY() == yD + 1 || creature.getCoordenadaX() == xD + 2 && creature.getCoordenadaY() == yD + 2) {
@@ -568,7 +573,7 @@ public class TWDGameManager {
         }
 
         if (xD - 3 == xO && yD - 3 == yO) {
-            if (creature.getCoordenadaX() == xD - 1 && creature.getCoordenadaY() == yD - 1 || creature.getCoordenadaX() == xD - 2 && creature.getCoordenadaY() == yD - 2 ) {
+            if (creature.getCoordenadaX() == xD - 1 && creature.getCoordenadaY() == yD - 1 || creature.getCoordenadaX() == xD - 2 && creature.getCoordenadaY() == yD - 2) {
                 return true;
             }
         }
@@ -587,7 +592,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean safeHavenCam2D (SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
+    public boolean safeHavenCam2D(SafeHaven safeHaven, int xD, int yD, int xO, int yO) {
 
         if (xD + 3 == xO && yD + 3 == yO) {
             if (safeHaven.getX() == xD + 1 && safeHaven.getY() == yD + 1 || safeHaven.getX() == xD + 2 && safeHaven.getY() == yD + 2) {
@@ -596,7 +601,7 @@ public class TWDGameManager {
         }
 
         if (xD - 3 == xO && yD - 3 == yO) {
-            if (safeHaven.getX() == xD - 1 && safeHaven.getY() == yD - 1 || safeHaven.getX() == xD - 2 && safeHaven.getY() == yD - 2 ) {
+            if (safeHaven.getX() == xD - 1 && safeHaven.getY() == yD - 1 || safeHaven.getX() == xD - 2 && safeHaven.getY() == yD - 2) {
                 return true;
             }
         }
@@ -633,7 +638,7 @@ public class TWDGameManager {
         }
 
         for (SafeHaven safeHaven : safeHavens) {
-            if(movD2) {
+            if (movD2) {
                 if (safeHavenCam1D(safeHaven, xD, yD, xO, yO)) {
                     return true;
                 }
@@ -678,7 +683,7 @@ public class TWDGameManager {
                 }
             }
 
-            if(movD2) {
+            if (movD2) {
                 if (safeHavenCam1D(safeHaven, xD, yD, xO, yO)) {
                     return true;
                 }
@@ -702,13 +707,13 @@ public class TWDGameManager {
             }
 
             if (mov3) {
-                if (equipCam2(equipamento,xD, yD, xO, yO)) {
+                if (equipCam2(equipamento, xD, yD, xO, yO)) {
                     return true;
                 }
             }
 
             if (movD3) {
-                if (equipCam2D(equipamento,xD, yD, xO, yO)) {
+                if (equipCam2D(equipamento, xD, yD, xO, yO)) {
                     return true;
                 }
             }
@@ -728,13 +733,13 @@ public class TWDGameManager {
             }
 
             if (mov3) {
-                if (creatureCam2(creatureNoCaminho,xD, yD, xO, yO)) {
+                if (creatureCam2(creatureNoCaminho, xD, yD, xO, yO)) {
                     return true;
                 }
             }
 
             if (movD3) {
-                if (creatureCam2D(creatureNoCaminho,xD, yD, xO, yO)) {
+                if (creatureCam2D(creatureNoCaminho, xD, yD, xO, yO)) {
                     return true;
                 }
             }
@@ -747,20 +752,20 @@ public class TWDGameManager {
                 }
             }
 
-            if(movD2) {
+            if (movD2) {
                 if (safeHavenCam1D(safeHaven, xD, yD, xO, yO)) {
                     return true;
                 }
             }
 
             if (mov3) {
-                if (safeHavenCam2(safeHaven,xD, yD, xO, yO)) {
+                if (safeHavenCam2(safeHaven, xD, yD, xO, yO)) {
                     return true;
                 }
             }
 
             if (movD3) {
-                if (safeHavenCam2D(safeHaven,xD, yD, xO, yO)) {
+                if (safeHavenCam2D(safeHaven, xD, yD, xO, yO)) {
                     return true;
                 }
             }
@@ -768,7 +773,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean crianca (boolean mov1, int xO, int yO, int xD, int yD) {
+    public boolean crianca(boolean mov1, int xO, int yO, int xD, int yD) {
         boolean matou = false;
         //Humano
         if (equipaAtual == 10) {
@@ -845,6 +850,11 @@ public class TWDGameManager {
             if (mov1) {
                 for (Creature creature : creatures) {
                     if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        for (SafeHaven safeHaven : safeHavens) {
+                            if (safeHaven.getX() == xD && safeHaven.getY() == yD) {
+                                return false;
+                            }
+                        }
                         if (equipamentoCoordenadaD) {
                             equipamentoDestruidoCont++;
                             ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
@@ -946,10 +956,10 @@ public class TWDGameManager {
                                         if (creatureHumano.getTipoCriatura() == 9) {
                                             return false;
                                         }
-                                            humanoRIP(creatureHumano);
-                                            turno++;
-                                            equipaAtual = 10;
-                                            return true;
+                                        humanoRIP(creatureHumano);
+                                        turno++;
+                                        equipaAtual = 10;
+                                        return true;
                                     }
                                 }
                             }
@@ -1050,6 +1060,11 @@ public class TWDGameManager {
                 }
                 for (Creature creature : creatures) {
                     if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        for (SafeHaven safeHaven : safeHavens) {
+                            if (safeHaven.getX() == xD && safeHaven.getY() == yD) {
+                                return false;
+                            }
+                        }
                         if (equipamentoCoordenadaD) {
                             equipamentoDestruidoCont++;
                             ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
@@ -1253,11 +1268,16 @@ public class TWDGameManager {
         //Zombie
         if (equipaAtual == 20) {
             if (mov1 || mov2 || movD1 || movD2) {
-                if (algoNoCaminhoMilitar(mov2, movD2,mov3, movD3, xD, yD, xO, yO)) {
+                if (algoNoCaminhoMilitar(mov2, movD2, mov3, movD3, xD, yD, xO, yO)) {
                     return false;
                 }
                 for (Creature creature : creatures) {
                     if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        for (SafeHaven safeHaven : safeHavens) {
+                            if (safeHaven.getX() == xD && safeHaven.getY() == yD) {
+                                return false;
+                            }
+                        }
                         if (equipamentoCoordenadaD) {
                             equipamentoDestruidoCont++;
                             ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
@@ -1410,8 +1430,8 @@ public class TWDGameManager {
                                         case 1: {
                                             for (Creature creatureZombie : creatures) {
                                                 if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
-                                                        zombieDestruido(creatureZombie);
-                                                        matou = true;
+                                                    zombieDestruido(creatureZombie);
+                                                    matou = true;
                                                 }
                                             }
                                             if (!matou) {
@@ -1454,6 +1474,11 @@ public class TWDGameManager {
             if (mov1) {
                 for (Creature creature : creatures) {
                     if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        for (SafeHaven safeHaven : safeHavens) {
+                            if (safeHaven.getX() == xD && safeHaven.getY() == yD) {
+                                return false;
+                            }
+                        }
                         if (equipamentoCoordenadaD) {
                             equipamentoDestruidoCont++;
                             ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
@@ -1618,12 +1643,17 @@ public class TWDGameManager {
 
     public boolean vampiro(boolean mov1, boolean mov2, boolean movD1, boolean movD2, int xD, int yD, int xO, int yO) {
         if (equipaAtual == 20) {
-            if (mov1 || mov2 || movD1 || movD2) {
+            if ((mov1 || mov2 || movD1 || movD2) && !isDay()) {
                 if (algoNoCaminhoAdulto(mov2, movD2, xD, yD, xO, yO)) {
                     return false;
                 }
                 for (Creature creature : creatures) {
                     if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
+                        for (SafeHaven safeHaven : safeHavens) {
+                            if (safeHaven.getX() == xD && safeHaven.getY() == yD) {
+                                return false;
+                            }
+                        }
                         if (equipamentoCoordenadaD) {
                             equipamentoDestruidoCont++;
                             ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
@@ -1807,8 +1837,8 @@ public class TWDGameManager {
             }
         }
 
-        if (equipaAtual == 10) {
-            for (Creature creature : creatures) {
+        for (Creature creature : creatures) {
+            if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
                 switch (creature.getTipoCriatura()) {
 
                     //Criança (Zombie)
@@ -1837,7 +1867,7 @@ public class TWDGameManager {
 
                     //Idoso (Zombie)
                     case 3: {
-                        if (idoso(movMax1, xO, yO, xD, yD)){
+                        if (idoso(movMax1, xO, yO, xD, yD)) {
                             return true;
                         }
                         break;
@@ -1858,7 +1888,7 @@ public class TWDGameManager {
 
                     //Adulto
                     case 6: {
-                        if (adulto(movMax1, movMax2, movDMax1, movDMax2, xO, yO, xD, yD)){
+                        if (adulto(movMax1, movMax2, movDMax1, movDMax2, xO, yO, xD, yD)) {
                             return true;
                         }
                         break;
@@ -1866,7 +1896,7 @@ public class TWDGameManager {
 
                     //Militar
                     case 7: {
-                        if (militar(movMax1, movMax2, movMax3, movDMax1, movDMax2, movDMax3, xO, yO, xD, yD)){
+                        if (militar(movMax1, movMax2, movMax3, movDMax1, movDMax2, movDMax3, xO, yO, xD, yD)) {
                             return true;
                         }
                         break;
@@ -1874,7 +1904,7 @@ public class TWDGameManager {
 
                     //Idoso
                     case 8: {
-                        if (idoso(movMax1, xO, yO, xD, yD)){
+                        if (idoso(movMax1, xO, yO, xD, yD)) {
                             return true;
                         }
                         break;
@@ -2011,11 +2041,8 @@ public class TWDGameManager {
     public List<Integer> getIdsInSafeHaven() {
         ArrayList<Integer> safeHavenId = new ArrayList<>();
 
-        for (SafeHaven safeHaven : safeHavens) {
-            if (safeHaven.vivos != null) {
-                for (int count = 0; count < safeHaven.vivos.size(); count++)
-                    safeHavenId.add(safeHaven.getIdSafe(count));
-            }
+        for (Creature salvo : salvos) {
+            safeHavenId.add(salvo.getId());
         }
 
         return safeHavenId;
