@@ -347,21 +347,6 @@ public class TWDGameManager {
         return false;
     }
 
-    public void duasRondasEnvenenado(int xO, int yO) {
-        for (Creature creature : creatures) {
-            if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO && creature.getEquipa() == 10) {
-                if (((Vivos) creature).isEnvenenado()) {
-                    if (((Vivos) creature).getNumRondasEnvenenado() < 3) {
-                        ((Vivos) creature).setNumRondasEnvenenado(((Vivos) creature).getNumRondasEnvenenado() + 1);
-                    }
-                    if (((Vivos) creature).getNumRondasEnvenenado() > 3) {
-                        humanoDestruido(creature);
-                    }
-                }
-            }
-        }
-    }
-
     //Funções para ver se existe equipamento,..etc no caminho
 
     public boolean equipCam1(Equipamento equipamento, int xD, int yD, int xO, int yO) {
@@ -928,7 +913,7 @@ public class TWDGameManager {
                                     creature.setCoordenadaY(yD);
                                     turno++;
                                     equipaAtual = 20;
-                                    duasRondasEnvenenado(xO, yO);
+
                                     return true;
                                 }
                             }
@@ -938,7 +923,7 @@ public class TWDGameManager {
                         creature.setCoordenadaY(yD);
                         turno++;
                         equipaAtual = 20;
-                        duasRondasEnvenenado(xO, yO);
+
                         return true;
                     }
                 }
@@ -972,7 +957,7 @@ public class TWDGameManager {
                         if (humanoEnvenenado(xD, yD)) {
                             turno++;
                             equipaAtual = 10;
-                            duasRondasEnvenenado(xO, yO);
+
                             return true;
                         }
 
@@ -988,7 +973,7 @@ public class TWDGameManager {
                                                 equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -996,7 +981,7 @@ public class TWDGameManager {
                                                 zombieDestruido(creature);
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1009,14 +994,14 @@ public class TWDGameManager {
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
                                             case 3: {
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1024,7 +1009,7 @@ public class TWDGameManager {
                                                 creatures.remove(creature);
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1033,12 +1018,10 @@ public class TWDGameManager {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
                                                     humanoRIP(creatureHumano);
-                                                    creature.setCoordenadaX(xD);
-                                                    creature.setCoordenadaY(yD);
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1046,7 +1029,7 @@ public class TWDGameManager {
                                             case 10: {
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1056,7 +1039,7 @@ public class TWDGameManager {
                                                 creature.setCoordenadaY(yD);
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                         }
                                     }
@@ -1070,7 +1053,7 @@ public class TWDGameManager {
                                         humanoRIP(creatureHumano);
                                         turno++;
                                         equipaAtual = 10;
-                                        duasRondasEnvenenado(xO, yO);
+
                                         return true;
                                     }
                                 }
@@ -1080,7 +1063,7 @@ public class TWDGameManager {
                         creature.setCoordenadaY(yD);
                         turno++;
                         equipaAtual = 10;
-                        duasRondasEnvenenado(xO, yO);
+
                         return true;
                     }
                 }
@@ -1178,7 +1161,7 @@ public class TWDGameManager {
                                     creature.setCoordenadaY(yD);
                                     turno++;
                                     equipaAtual = 20;
-                                    duasRondasEnvenenado(xO, yO);
+
                                     return true;
                                 }
                             }
@@ -1188,7 +1171,7 @@ public class TWDGameManager {
                         creature.setCoordenadaY(yD);
                         turno++;
                         equipaAtual = 20;
-                        duasRondasEnvenenado(xO, yO);
+
                         return true;
                     }
                 }
@@ -1225,7 +1208,7 @@ public class TWDGameManager {
                         if (humanoEnvenenado(xD, yD)) {
                             turno++;
                             equipaAtual = 10;
-                            duasRondasEnvenenado(xO, yO);
+
                             return true;
                         }
 
@@ -1241,7 +1224,7 @@ public class TWDGameManager {
                                                 equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1251,7 +1234,7 @@ public class TWDGameManager {
                                                     zombieDestruido(creature);
                                                     turno++;
                                                     equipaAtual = 10;
-                                                    duasRondasEnvenenado(xO, yO);
+
                                                     return true;
                                                 }
                                             }
@@ -1266,14 +1249,14 @@ public class TWDGameManager {
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
                                             case 3: {
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1281,7 +1264,7 @@ public class TWDGameManager {
                                                 creatures.remove(creature);
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1289,14 +1272,11 @@ public class TWDGameManager {
                                                 if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
-                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
                                                     humanoRIP(creatureHumano);
-                                                    creature.setCoordenadaX(xD);
-                                                    creature.setCoordenadaY(yD);
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1304,7 +1284,7 @@ public class TWDGameManager {
                                             case 10: {
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1314,7 +1294,7 @@ public class TWDGameManager {
                                                 creature.setCoordenadaY(yD);
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                         }
                                     }
@@ -1328,7 +1308,7 @@ public class TWDGameManager {
                                         humanoRIP(creatureHumano);
                                         turno++;
                                         equipaAtual = 10;
-                                        duasRondasEnvenenado(xO, yO);
+
                                         return true;
                                     }
                                 }
@@ -1338,7 +1318,7 @@ public class TWDGameManager {
                         creature.setCoordenadaY(yD);
                         turno++;
                         equipaAtual = 10;
-                        duasRondasEnvenenado(xO, yO);
+
                         return true;
                     }
                 }
@@ -1436,7 +1416,7 @@ public class TWDGameManager {
                                     creature.setCoordenadaY(yD);
                                     turno++;
                                     equipaAtual = 20;
-                                    duasRondasEnvenenado(xO, yO);
+
                                     return true;
                                 }
                             }
@@ -1446,7 +1426,7 @@ public class TWDGameManager {
                         creature.setCoordenadaY(yD);
                         turno++;
                         equipaAtual = 20;
-                        duasRondasEnvenenado(xO, yO);
+
                         return true;
                     }
                 }
@@ -1482,7 +1462,7 @@ public class TWDGameManager {
                         if (humanoEnvenenado(xD, yD)) {
                             turno++;
                             equipaAtual = 10;
-                            duasRondasEnvenenado(xO, yO);
+
                             return true;
                         }
 
@@ -1498,7 +1478,7 @@ public class TWDGameManager {
                                                 equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1508,7 +1488,7 @@ public class TWDGameManager {
                                                     zombieDestruido(creature);
                                                     turno++;
                                                     equipaAtual = 10;
-                                                    duasRondasEnvenenado(xO, yO);
+
                                                     return true;
                                                 }
                                             }
@@ -1523,14 +1503,14 @@ public class TWDGameManager {
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
                                             case 3: {
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1538,7 +1518,7 @@ public class TWDGameManager {
                                                 creatures.remove(creature);
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1546,14 +1526,11 @@ public class TWDGameManager {
                                                 if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
-                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
                                                     humanoRIP(creatureHumano);
-                                                    creature.setCoordenadaX(xD);
-                                                    creature.setCoordenadaY(yD);
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1561,7 +1538,7 @@ public class TWDGameManager {
                                             case 10: {
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1571,7 +1548,7 @@ public class TWDGameManager {
                                                 creature.setCoordenadaY(yD);
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                         }
                                     }
@@ -1585,7 +1562,7 @@ public class TWDGameManager {
                                         humanoRIP(creatureHumano);
                                         turno++;
                                         equipaAtual = 10;
-                                        duasRondasEnvenenado(xO, yO);
+
                                         return true;
                                     }
                                 }
@@ -1595,7 +1572,7 @@ public class TWDGameManager {
                         creature.setCoordenadaY(yD);
                         turno++;
                         equipaAtual = 10;
-                        duasRondasEnvenenado(xO, yO);
+
                         return true;
                     }
                 }
@@ -1685,7 +1662,7 @@ public class TWDGameManager {
                                         creature.setCoordenadaY(yD);
                                         turno++;
                                         equipaAtual = 20;
-                                        duasRondasEnvenenado(xO, yO);
+
                                         return true;
                                     }
                                 }
@@ -1695,7 +1672,7 @@ public class TWDGameManager {
                             creature.setCoordenadaY(yD);
                             turno++;
                             equipaAtual = 20;
-                            duasRondasEnvenenado(xO, yO);
+
                             return true;
                         }
                     }
@@ -1730,7 +1707,7 @@ public class TWDGameManager {
                         if (humanoEnvenenado(xD, yD)) {
                             turno++;
                             equipaAtual = 10;
-                            duasRondasEnvenenado(xO, yO);
+
                             return true;
                         }
 
@@ -1746,7 +1723,7 @@ public class TWDGameManager {
                                                 equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1754,7 +1731,7 @@ public class TWDGameManager {
                                                 zombieDestruido(creature);
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1768,21 +1745,21 @@ public class TWDGameManager {
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
                                             case 3: {
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
                                             case 4: {
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1790,7 +1767,7 @@ public class TWDGameManager {
                                                 creatures.remove(creature);
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1798,14 +1775,11 @@ public class TWDGameManager {
                                                 if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
-                                                    equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
                                                     humanoRIP(creatureHumano);
-                                                    creature.setCoordenadaX(xD);
-                                                    creature.setCoordenadaY(yD);
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1813,7 +1787,7 @@ public class TWDGameManager {
                                             case 10: {
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                             }
 
@@ -1823,7 +1797,7 @@ public class TWDGameManager {
                                                 creature.setCoordenadaY(yD);
                                                 turno++;
                                                 equipaAtual = 10;
-                                                duasRondasEnvenenado(xO, yO);
+
                                                 return true;
                                         }
                                     }
@@ -1837,7 +1811,7 @@ public class TWDGameManager {
                                         humanoRIP(creatureHumano);
                                         turno++;
                                         equipaAtual = 10;
-                                        duasRondasEnvenenado(xO, yO);
+
                                         return true;
                                     }
                                 }
@@ -1847,7 +1821,7 @@ public class TWDGameManager {
                         creature.setCoordenadaY(yD);
                         turno++;
                         equipaAtual = 10;
-                        duasRondasEnvenenado(xO, yO);
+
                         return true;
                     }
                 }
@@ -1889,7 +1863,7 @@ public class TWDGameManager {
                         creature.setCoordenadaY(yD);
                         turno++;
                         equipaAtual = 20;
-                        duasRondasEnvenenado(xO, yO);
+
                         return true;
                     }
                 }
@@ -1914,10 +1888,13 @@ public class TWDGameManager {
                                     return false;
                                 }
                             }
-                            if (equipamentoCoordenadaD) {
+                            if (equipamentoCoordenadaD && !(humanoDestino(xD, yD))) {
                                 for (Equipamento equipamento : equipamentos) {
                                     if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD) {
-                                        if (equipamento.getIdTipo() == 5 || equipamento.getIdTipo() == 8) {
+                                        if (equipamento.getIdTipo() == 8) {
+                                            return false;
+                                        }
+                                        if (equipamento.getIdTipo() == 5) {
                                             return false;
                                         }
                                     }
@@ -1932,7 +1909,7 @@ public class TWDGameManager {
                             if (humanoEnvenenado(xD, yD)) {
                                 turno++;
                                 equipaAtual = 10;
-                                duasRondasEnvenenado(xO, yO);
+
                                 return true;
                             }
 
@@ -1948,21 +1925,21 @@ public class TWDGameManager {
                                                     equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
                                                     turno++;
                                                     equipaAtual = 10;
-                                                    duasRondasEnvenenado(xO, yO);
+
                                                     return true;
                                                 }
 
                                                 case 3: {
                                                     turno++;
                                                     equipaAtual = 10;
-                                                    duasRondasEnvenenado(xO, yO);
+
                                                     return true;
                                                 }
 
                                                 case 5: {
                                                     turno++;
                                                     equipaAtual = 10;
-                                                    duasRondasEnvenenado(xO, yO);
+
                                                     return true;
                                                 }
 
@@ -1970,7 +1947,7 @@ public class TWDGameManager {
                                                     creatures.remove(creature);
                                                     turno++;
                                                     equipaAtual = 10;
-                                                    duasRondasEnvenenado(xO, yO);
+
                                                     return true;
                                                 }
 
@@ -1978,14 +1955,11 @@ public class TWDGameManager {
                                                     if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
                                                         ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                     } else {
-                                                        equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
                                                         humanoRIP(creatureHumano);
-                                                        creature.setCoordenadaX(xD);
-                                                        creature.setCoordenadaY(yD);
                                                     }
                                                     turno++;
                                                     equipaAtual = 10;
-                                                    duasRondasEnvenenado(xO, yO);
+
                                                     return true;
                                                 }
 
@@ -1993,7 +1967,7 @@ public class TWDGameManager {
                                                 case 10: {
                                                     turno++;
                                                     equipaAtual = 10;
-                                                    duasRondasEnvenenado(xO, yO);
+
                                                     return true;
                                                 }
 
@@ -2001,7 +1975,7 @@ public class TWDGameManager {
                                                     humanoRIP(creatureHumano);
                                                     turno++;
                                                     equipaAtual = 10;
-                                                    duasRondasEnvenenado(xO, yO);
+
                                                     return true;
                                             }
                                         }
@@ -2015,7 +1989,7 @@ public class TWDGameManager {
                                             humanoRIP(creatureHumano);
                                             turno++;
                                             equipaAtual = 10;
-                                            duasRondasEnvenenado(xO, yO);
+
                                             return true;
                                         }
                                     }
@@ -2025,7 +1999,7 @@ public class TWDGameManager {
                             creature.setCoordenadaY(yD);
                             turno++;
                             equipaAtual = 10;
-                            duasRondasEnvenenado(xO, yO);
+
                             return true;
                         }
                     }
