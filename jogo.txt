@@ -11,7 +11,7 @@
 8 : 7 : Alice : 0 : 7
 9 : 8 : Ash : 0 : 8
 10 : 9 : Sam : 0 : 9
-11 : 4 : Paciente Zero : 4 : 0
+11 : 0 : Paciente Zero : 4 : 0
 12 : 1 : Paciente Um : 4 : 1
 13 : 2 : Paciente Dois : 4 : 2
 14 : 3 : Paciente Tres : 4 : 3
