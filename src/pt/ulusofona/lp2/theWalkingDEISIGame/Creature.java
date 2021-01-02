@@ -76,7 +76,7 @@ abstract public class Creature {
         } else if (tipoCriatura == 9) {
             return "Cão";
         } else {
-            return ""; //??
+            return "";
         }
     }
 

@@ -1,6 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-public class Outros extends Creature{
+public class Outros extends Creature {
 
 
     int totalEquipamentoDestruido = 0;

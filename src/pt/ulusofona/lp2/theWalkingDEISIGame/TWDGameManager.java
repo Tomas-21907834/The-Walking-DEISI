@@ -1,7 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -2235,12 +2234,6 @@ public class TWDGameManager {
 
     public boolean saveGame(File fich) {
 
-        try {
-            fich = new File("jogo.txt");
-        } catch (Exception e) {
-            System.out.println("");
-        }
-
         return true;
     }
 
@@ -2251,7 +2244,25 @@ public class TWDGameManager {
 
     //Opcional
     public String[] popCultureExtravaganza() {
-        return null;
+        String[] respostas = new String[14];
+
+        respostas[0] = "Resident Evil";
+        respostas[1] = "The evil dead";
+        respostas[2] = "I am legend";
+        respostas[3] = "Evolution";
+        respostas[4] = "Vic the Viking";
+        respostas[5] = "WorldwarZ";
+        respostas[6] = "Mandalorianos";
+        respostas[7] = "Fist of Fury";
+        respostas[8] = "Kill Bill";
+        respostas[9] = "1978";
+        respostas[10] = "Agente 007";
+        respostas[11] = "Lost";
+        respostas[12] = "Cabeça de alho chocho";
+        respostas[13] = "Freddie Mercury";
+
+        return respostas;
+
     }
 
 }
