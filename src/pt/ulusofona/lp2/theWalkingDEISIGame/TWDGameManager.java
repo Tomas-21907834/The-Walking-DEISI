@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class TWDGameManager {
 
-    int x, y, equipaInicial, turno = 0, equipaAtual, equipamentoApanhadoCont = 0, equipamentoDestruidoCont = 0;
+    int x, y, equipaInicial, turnoAnterior, doisTurnos, turno = 0, equipaAtual, equipamentoApanhadoCont = 0, equipamentoDestruidoCont = 0 ,ragnarok = 1;
     int xH, yH;
-    boolean equipamentoCoordenadaD = false;
+    boolean equipamentoCoordenadaD = false, transformado = false;
     Equipamento equipamentoTemporario;
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
     List<Creature> creatures = new ArrayList<>();
@@ -31,6 +31,10 @@ public class TWDGameManager {
         equipamentoCoordenadaD = false;
         equipamentoApanhadoCont = 0;
         equipamentoDestruidoCont = 0;
+        doisTurnos = 0;
+        turnoAnterior = 1;
+        transformado = false;
+        ragnarok = 1;
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 
@@ -151,6 +155,33 @@ public class TWDGameManager {
         return new int[]{y, x};
     }
 
+    public boolean gameIsOver() {
+
+        int ocorrencias = 0;
+
+        if (transformado) {
+            ragnarok+=12;
+            transformado = false;
+        }
+        if (turno >= ragnarok && turno > 12) {
+            return true;
+        }
+
+        for (Creature creature : creatures) {
+            if (creature.getEquipa() == 10) {
+                ocorrencias++;
+            }
+        }
+
+        if (ocorrencias < 1) {
+            return true;
+        }
+        if (ragnarok < 12) {
+            ragnarok++;
+        }
+        return false;
+    }
+
     //Completo
     public int getInitialTeam() {
         return equipaInicial;
@@ -158,6 +189,16 @@ public class TWDGameManager {
 
     //Completo
     public List<Creature> getCreatures() {
+        List<Creature> allCreatures = new ArrayList<>();
+
+        for (Creature creature : creatures) {
+            allCreatures.add(creature);
+        }
+
+        for (Creature creature : salvos) {
+            allCreatures.add(creature);
+        }
+
         return creatures;
     }
 
@@ -237,6 +278,7 @@ public class TWDGameManager {
     }
 
     public void humanoRIP(Creature creatureHumano) {
+        transformado = true;
         equipamentos.remove(((Vivos) creatureHumano).getEquipamento());
         int id = creatureHumano.getId();
         int tipo = creatureHumano.getTipoCriatura();
@@ -291,6 +333,8 @@ public class TWDGameManager {
         }
         return false;
     }
+
+    //Funções para ver se existe equipamento,..etc no caminho
 
     public boolean equipCam1(Equipamento equipamento, int xD, int yD, int xO, int yO) {
         if (xD + 2 == xO && yD == yO) {
@@ -1695,6 +1739,13 @@ public class TWDGameManager {
                             }
                         }
                         if (equipamentoCoordenadaD) {
+                            for (Equipamento equipamento : equipamentos) {
+                                if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD) {
+                                    if (equipamento.getIdTipo() == 5) {
+                                        return false;
+                                    }
+                                }
+                            }
                             equipamentoDestruidoCont++;
                             ((Outros) creature).setTotalEquipamentoDestruido(equipamentoDestruidoCont);
                             equipamentos.remove(equipamentoTemporario);
@@ -1969,27 +2020,6 @@ public class TWDGameManager {
     }
 
 
-    public boolean gameIsOver() {
-
-        int ocorrencias = 0;
-
-        if (turno >= 12) {
-            return true;
-        }
-
-        for (Creature creature : creatures) {
-            if (creature.getEquipa() == 10) {
-                ocorrencias++;
-            }
-        }
-
-        if (ocorrencias < 1) {
-            return true;
-        }
-
-        return false;
-    }
-
     //Completo
     public List<String> getAuthors() {
         ArrayList<String> authors = new ArrayList<>();
@@ -2082,10 +2112,22 @@ public class TWDGameManager {
 
     }
 
-
     //Completo
     public boolean isDay() {
-        return turno == 0 || turno == 1 || turno == 4 || turno == 5 || turno == 8 || turno == 9 || turno == 12;
+        if (turnoAnterior != turno) {
+            turnoAnterior = turno;
+            doisTurnos++;
+            if (doisTurnos == 1 || doisTurnos == 2) {
+                return true;
+            }
+            if (doisTurnos == 3 || doisTurnos == 4) {
+                if (doisTurnos == 4) {
+                    doisTurnos = 0;
+                }
+                return false;
+            }
+        }
+        return true;
     }
 
     //Completo
@@ -2113,10 +2155,11 @@ public class TWDGameManager {
 
     //Completo
     public int getEquipmentTypeId(int equipmentId) {
-
         for (Equipamento equipamento : equipamentos) {
-            if (equipamento.getId() == equipmentId) {
-                return equipamento.getIdTipo();
+            if (equipamento != null) {
+                if (equipamento.getId() == equipmentId) {
+                    return equipamento.getIdTipo();
+                }
             }
         }
         return -1;
