@@ -154,6 +154,7 @@ public class TWDGameManager {
         return new int[]{y, x};
     }
 
+    //Teste
     public boolean gameIsOver() {
 
         int ocorrencias = 0;
