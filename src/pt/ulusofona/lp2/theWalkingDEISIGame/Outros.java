@@ -31,6 +31,10 @@ public class Outros extends Creature {
         return "zombie.png";
     }
 
+    public boolean isDestruido() {
+        return destruido;
+    }
+
     @Override
     public String toString() {
         if (destruido) {
