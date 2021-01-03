@@ -14,6 +14,29 @@ public class Vivos extends Creature{
         super(id, tipoCriatura, nome , coordenadaX, coordenadaY, equipa);
     }
 
+    public Vivos(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY, int equipa, int totalEquipamentoApanhado, Equipamento equipamento, boolean salvo, boolean envenenado, boolean morto, int numRondasEnvenenado) {
+        super(id, tipoCriatura, nome, coordenadaX, coordenadaY, equipa);
+        this.totalEquipamentoApanhado = totalEquipamentoApanhado;
+        this.equipamento = equipamento;
+        this.salvo = salvo;
+        this.envenenado = envenenado;
+        this.morto = morto;
+        this.numRondasEnvenenado = numRondasEnvenenado;
+    }
+
+    public Vivos(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY, int equipa, int totalEquipamentoApanhado, boolean salvo, boolean envenenado, boolean morto, int numRondasEnvenenado) {
+        super(id, tipoCriatura, nome, coordenadaX, coordenadaY, equipa);
+        this.totalEquipamentoApanhado = totalEquipamentoApanhado;
+        this.salvo = salvo;
+        this.envenenado = envenenado;
+        this.morto = morto;
+        this.numRondasEnvenenado = numRondasEnvenenado;
+    }
+
+    public int getTotalEquipamentoApanhado() {
+        return totalEquipamentoApanhado;
+    }
+
     public void setNumRondasEnvenenado(int numRondasEnvenenado) {
         this.numRondasEnvenenado = numRondasEnvenenado;
     }

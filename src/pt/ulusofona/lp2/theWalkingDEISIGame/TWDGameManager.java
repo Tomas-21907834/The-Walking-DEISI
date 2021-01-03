@@ -196,6 +196,10 @@ public class TWDGameManager {
             allCreatures.add(creature);
         }
 
+        for (Creature creature : destruidos) {
+            allCreatures.add(creature);
+        }
+
         return creatures;
     }
 
@@ -345,20 +349,17 @@ public class TWDGameManager {
         return false;
     }
 
-    public void duasRondasEnvenenado(){
-        if(turnoAnterior != turno) {
-            turnoAnterior = turno;
+    public void duasRondasEnvenenado() {
             for (Creature creature : new ArrayList<>(creatures)) {
                 if (creature.getEquipa() == 10) {
                     if (((Vivos) creature).isEnvenenado() == true) {
-                        if (((Vivos) creature).getNumRondasEnvenenado() >= 2) {
+                        if (((Vivos) creature).getNumRondasEnvenenado() >= 3) {
                             humanoDestruido(creature);
                         } else {
                             ((Vivos) creature).setNumRondasEnvenenado(((Vivos) creature).getNumRondasEnvenenado() + 1);
                         }
                     }
                 }
-            }
         }
     }
 
@@ -958,8 +959,10 @@ public class TWDGameManager {
                         }
                         if (equipamentoCoordenadaD && !(humanoDestino(xD, yD))) {
                             for (Equipamento equipamento : equipamentos) {
-                                if (equipamento.getIdTipo() == 8) {
-                                    return false;
+                                if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD) {
+                                    if (equipamento.getIdTipo() == 8) {
+                                        return false;
+                                    }
                                 }
                             }
                             equipamentoDestruidoCont++;
@@ -1207,8 +1210,10 @@ public class TWDGameManager {
 
                         if (equipamentoCoordenadaD && !(humanoDestino(xD, yD))) {
                             for (Equipamento equipamento : equipamentos) {
-                                if (equipamento.getIdTipo() == 8) {
-                                    return false;
+                                if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD) {
+                                    if (equipamento.getIdTipo() == 8) {
+                                        return false;
+                                    }
                                 }
                             }
                             equipamentoDestruidoCont++;
@@ -1459,8 +1464,10 @@ public class TWDGameManager {
                         }
                         if (equipamentoCoordenadaD && !(humanoDestino(xD, yD))) {
                             for (Equipamento equipamento : equipamentos) {
-                                if (equipamento.getIdTipo() == 8) {
-                                    return false;
+                                if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD) {
+                                    if (equipamento.getIdTipo() == 8) {
+                                        return false;
+                                    }
                                 }
                             }
                             equipamentoDestruidoCont++;
@@ -1701,8 +1708,10 @@ public class TWDGameManager {
                         }
                         if (equipamentoCoordenadaD && !(humanoDestino(xD, yD))) {
                             for (Equipamento equipamento : equipamentos) {
-                                if (equipamento.getIdTipo() == 8) {
-                                    return false;
+                                if (equipamento.getCoordenadaX() == xD && equipamento.getCoordenadaY() == yD) {
+                                    if (equipamento.getIdTipo() == 8) {
+                                        return false;
+                                    }
                                 }
                             }
                             equipamentoDestruidoCont++;
@@ -2077,6 +2086,7 @@ public class TWDGameManager {
                     //Criança (Zombie)
                     case 0: {
                         if (crianca(movMax1, xO, yO, xD, yD)) {
+                            duasRondasEnvenenado();
                             return true;
                         }
                         break;
@@ -2085,6 +2095,7 @@ public class TWDGameManager {
                     //Adulto (Zombie)
                     case 1: {
                         if (adulto(movMax1, movMax2, movDMax1, movDMax2, xO, yO, xD, yD)) {
+                            duasRondasEnvenenado();
                             return true;
                         }
                         break;
@@ -2093,6 +2104,7 @@ public class TWDGameManager {
                     //Militar (Zombie)
                     case 2: {
                         if (militar(movMax1, movMax2, movMax3, movDMax1, movDMax2, movDMax3, xO, yO, xD, yD)) {
+                            duasRondasEnvenenado();
                             return true;
                         }
                         break;
@@ -2101,6 +2113,7 @@ public class TWDGameManager {
                     //Idoso (Zombie)
                     case 3: {
                         if (idoso(movMax1, xO, yO, xD, yD)) {
+                            duasRondasEnvenenado();
                             return true;
                         }
                         break;
@@ -2109,6 +2122,7 @@ public class TWDGameManager {
                     //Vampiro
                     case 4: {
                         if (vampiro(movMax1, movMax2, movDMax1, movDMax2, xD, yD, xO, yO)) {
+                            duasRondasEnvenenado();
                             return true;
                         }
                         break;
@@ -2117,6 +2131,7 @@ public class TWDGameManager {
                     //Criança
                     case 5: {
                         if (crianca(movMax1, xO, yO, xD, yD)) {
+                            duasRondasEnvenenado();
                             return true;
                         }
                         break;
@@ -2125,6 +2140,7 @@ public class TWDGameManager {
                     //Adulto
                     case 6: {
                         if (adulto(movMax1, movMax2, movDMax1, movDMax2, xO, yO, xD, yD)) {
+                            duasRondasEnvenenado();
                             return true;
                         }
                         break;
@@ -2133,6 +2149,7 @@ public class TWDGameManager {
                     //Militar
                     case 7: {
                         if (militar(movMax1, movMax2, movMax3, movDMax1, movDMax2, movDMax3, xO, yO, xD, yD)) {
+                            duasRondasEnvenenado();
                             return true;
                         }
                         break;
@@ -2141,6 +2158,7 @@ public class TWDGameManager {
                     //Idoso
                     case 8: {
                         if (idoso(movMax1, xO, yO, xD, yD)) {
+                            duasRondasEnvenenado();
                             return true;
                         }
                         break;
@@ -2149,6 +2167,7 @@ public class TWDGameManager {
                     //Cao
                     case 9: {
                         if (cao(movDMax1, movDMax2, xO, yO, xD, yD)) {
+                            duasRondasEnvenenado();
                             return true;
                         }
                         break;
@@ -2258,12 +2277,11 @@ public class TWDGameManager {
 
     //Completo
     public boolean isDay() {
-        duasRondasEnvenenado();
         if (turno % 4 == 0) {
             return true;
         }
 
-        if ((turno% 4) == 1) {
+        if ((turno % 4) == 1) {
             return true;
         }
         return false;
@@ -2373,13 +2391,275 @@ public class TWDGameManager {
     }
 
     public boolean saveGame(File fich) {
+        //Real
+        int[] tamanhoMapa = getWorldSize();
+        int numCreatures = 0;
 
-        return true;
+        String equipaAtualString = String.valueOf(equipaAtual);
+        for (Creature creature : getCreatures()) {
+            numCreatures++;
+        }
+        String numCreaturesString = String.valueOf(numCreatures);
+
+        int numEquipamentos = 0;
+        for (Equipamento equipamento : equipamentos) {
+            numEquipamentos++;
+        }
+        String numEquipamentosString = String.valueOf(numEquipamentos);
+
+        int numSafeHavens = 0;
+        for (SafeHaven safeHaven : safeHavens) {
+            numSafeHavens++;
+        }
+        String numSafeHavenString = String.valueOf(numSafeHavens);
+
+        String turnoString = String.valueOf(turno);
+        String ragnarokString = String.valueOf(ragnarok);
+        try {
+            BufferedWriter escritor = new BufferedWriter(new
+                    FileWriter(fich));
+
+            escritor.write(tamanhoMapa[0] + " " + tamanhoMapa[1]);
+            escritor.newLine();
+            escritor.write(equipaAtualString);
+            escritor.newLine();
+            escritor.write(numCreaturesString);
+            escritor.newLine();
+
+            for (Creature creature : creatures) {
+                if (creature.getEquipa() == 10) {
+                    escritor.write(creature.getId() + " : " + creature.getTipoCriatura() + " : " + creature.getNome() + " : " + creature.getCoordenadaX() + " : " + creature.getCoordenadaY());
+                    escritor.write(" : " + creature.getEquipa() + " : " + ((Vivos) creature).getTotalEquipamentoApanhado() + " : " + ((Vivos) creature).isSalvo() + " : ");
+                    escritor.write(((Vivos) creature).isEnvenenado() + " : " + ((Vivos) creature).isMorto() + " : " + ((Vivos) creature).getNumRondasEnvenenado());
+                    if (((Vivos) creature).getEquipamento() != null) {
+                        escritor.write(" : " + ((Vivos) creature).getEquipamento().getId() + " : " + ((Vivos) creature).getEquipamento().getIdTipo() + " : " + ((Vivos) creature).getEquipamento().getCoordenadaX());
+                        escritor.write(" : " + ((Vivos) creature).getEquipamento().getCoordenadaY());
+                        if (((Vivos) creature).getEquipamento().getIdTipo() == 0 || ((Vivos) creature).getEquipamento().getIdTipo() == 2 || ((Vivos) creature).getEquipamento().getIdTipo() == 7 || ((Vivos) creature).getEquipamento().getIdTipo() == 8 || ((Vivos) creature).getEquipamento().getIdTipo() == 9) {
+                            escritor.write(" : " + ((Vivos) creature).getEquipamento().getMunicao());
+                        }
+                    }
+                    if (((Vivos) creature).getEquipamento() == null) {
+                        escritor.write(" : " + 0 + " : " + -1 + " : " + -1 + " : " + -1);
+                    }
+                }
+
+                if (creature.getEquipa() == 20) {
+                    escritor.write(creature.getId() + " : " + creature.getTipoCriatura() + " : " + creature.getNome() + " : " + creature.getCoordenadaX() + " : " + creature.getCoordenadaY());
+                    escritor.write(" : " + creature.getEquipa() + " : " + ((Outros) creature).getTotalEquipamentoDestruido() + " : " + ((Outros) creature).isDestruido() + " : " + ((Outros) creature).isTransformado());
+                }
+
+                escritor.newLine();
+
+            }
+            escritor.write(numEquipamentosString);
+            escritor.newLine();
+
+            for (Equipamento equipamento : equipamentos) {
+                if (equipamento.getIdTipo() == 0 || equipamento.getIdTipo() == 2 || equipamento.getIdTipo() == 7 || equipamento.getIdTipo() == 8 || equipamento.getIdTipo() == 9) {
+                    escritor.write(equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getCoordenadaX() + " : " + equipamento.getCoordenadaY() + " : " + equipamento.getMunicao());
+                } else {
+                    escritor.write(equipamento.getId() + " : " + equipamento.getIdTipo() + " : " + equipamento.getCoordenadaX() + " : " + equipamento.getCoordenadaY() + " : " + 0);
+                }
+                escritor.newLine();
+            }
+
+            escritor.write(numSafeHavenString);
+            escritor.newLine();
+
+            for (SafeHaven safeHaven : safeHavens) {
+                escritor.write(safeHaven.getX() + " : " + safeHaven.getY());
+                escritor.newLine();
+            }
+
+            escritor.write(turnoString);
+            escritor.newLine();
+            escritor.write(ragnarokString);
+
+            escritor.close();
+            return true;
+        } catch (IOException e) {
+            System.out.println("Ocorreu um erro na escrita de " + fich);
+        }
+        return false;
     }
 
 
     public boolean loadGame(File fich) {
-        return true;
+        creatures.clear();
+        equipamentos.clear();
+        turno = 0;
+        equipamentoTemporario = null;
+        equipamentoCoordenadaD = false;
+        equipamentoApanhadoCont = 0;
+        equipamentoDestruidoCont = 0;
+        turnoAnterior = 1;
+        transformado = false;
+        ragnarok = 1;
+
+        try {
+
+            Scanner leitorFicheiro = new Scanner(fich);
+
+            while (leitorFicheiro.hasNextLine()) {
+
+                //Primeira Linha
+                String coordenadaLinha = leitorFicheiro.nextLine();
+                String[] partesCoordenadas = coordenadaLinha.split(" ");
+                x = Integer.parseInt(partesCoordenadas[0]);
+                y = Integer.parseInt(partesCoordenadas[1]);
+
+                //Segunda Linha
+                String equipaLinha = leitorFicheiro.nextLine();
+                equipaInicial = Integer.parseInt(equipaLinha);
+                equipaAtual = equipaInicial;
+
+                //Terceira Linha
+                String numCriaturasLinha = leitorFicheiro.nextLine();
+                int numLinhasC = Integer.parseInt(numCriaturasLinha);
+
+                //Número de linhas dependendo da Terceira Linha
+                for (int i = 0; i < numLinhasC; i++) {
+                    String criaturasLinha = leitorFicheiro.nextLine();
+                    String[] partesCriaturas = criaturasLinha.split(" : ");
+                    int id = Integer.parseInt(partesCriaturas[0]);
+                    int tipo = Integer.parseInt(partesCriaturas[1]);
+                    String nome = partesCriaturas[2];
+                    int criaturaCoordenadaX = Integer.parseInt(partesCriaturas[3]);
+                    int criaturaCoordenadaY = Integer.parseInt(partesCriaturas[4]);
+                    int equipa = Integer.parseInt(partesCriaturas[5]);
+                    if (equipa == 10) {
+                        int totalEquipApanhado = Integer.parseInt(partesCriaturas[6]);
+                        boolean salvo = Boolean.parseBoolean(partesCriaturas[7]);
+                        boolean envenenado = Boolean.parseBoolean(partesCriaturas[8]);
+                        boolean morto = Boolean.parseBoolean(partesCriaturas[9]);
+                        int rondasEnvenenado = Integer.parseInt(partesCriaturas[10]);
+                        int idEquip = Integer.parseInt(partesCriaturas[11]);
+                        int idTipoEquip = Integer.parseInt(partesCriaturas[12]);
+                        int xEquip = Integer.parseInt(partesCriaturas[13]);
+                        int yEquip = Integer.parseInt(partesCriaturas[14]);
+                        //Munição
+                        if (idEquip != 0) {
+                            if (idTipoEquip == 0 || idTipoEquip == 2 || idTipoEquip == 7 || idTipoEquip == 8 || idTipoEquip == 9) {
+                                int municao = Integer.parseInt(partesCriaturas[15]);
+                                Equipamento equipamento = new Equipamento(idEquip, idTipoEquip, xEquip, yEquip, municao);
+                                equipamentos.add(equipamento);
+                                Creature humano = new Vivos(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY, equipa, totalEquipApanhado, equipamento, salvo, envenenado, morto, rondasEnvenenado);
+                                creatures.add(humano);
+                                //Sem Munição
+                            } else {
+                                Equipamento equipamento = new Equipamento(idEquip, idTipoEquip, xEquip, yEquip);
+                                equipamentos.add(equipamento);
+                                Creature humano = new Vivos(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY, equipa, totalEquipApanhado, equipamento, salvo, envenenado, morto, rondasEnvenenado);
+                                creatures.add(humano);
+                            }
+                        }
+                        //Sem Equipamento
+                        if (salvo == true) {
+                            Creature humano = new Vivos(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY, equipa, totalEquipApanhado, salvo, envenenado, morto, rondasEnvenenado);
+                            salvos.add(humano);
+                        } else if (morto == true) {
+                            Creature humano = new Vivos(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY, equipa, totalEquipApanhado, salvo, envenenado, morto, rondasEnvenenado);
+                            destruidos.add(humano);
+                        } else {
+                            Creature humano = new Vivos(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY, equipa, totalEquipApanhado, salvo, envenenado, morto, rondasEnvenenado);
+                            creatures.add(humano);
+                        }
+
+                    }
+
+                    if (equipa == 20) {
+                        int totalEquipDestruido = Integer.parseInt(partesCriaturas[6]);
+                        boolean destruido = Boolean.parseBoolean(partesCriaturas[7]);
+                        boolean transformado = Boolean.parseBoolean(partesCriaturas[8]);
+                        if (destruido == false) {
+                            Creature zombie = new Outros(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY, equipa, totalEquipDestruido, destruido, transformado);
+                            creatures.add(zombie);
+                        } else {
+                            Creature zombie = new Outros(id, tipo, nome, criaturaCoordenadaX, criaturaCoordenadaY, equipa, totalEquipDestruido, destruido, transformado);
+                            destruidos.add(zombie);
+                        }
+                    }
+                }
+
+                //Quinta Linha
+                String numEquipamentosLinha = leitorFicheiro.nextLine();
+                int numLinhasE = Integer.parseInt(numEquipamentosLinha);
+
+                //Número de linhas dependendo da Quinta Linha
+                for (int i = 0; i < numLinhasE; i++) {
+                    String equipamentosLinha = leitorFicheiro.nextLine();
+                    String[] partesEquipamentos = equipamentosLinha.split(" : ");
+                    int id = Integer.parseInt(partesEquipamentos[0]);
+                    int tipo = Integer.parseInt(partesEquipamentos[1]);
+                    int equipamentoCoordenadaX = Integer.parseInt(partesEquipamentos[2]);
+                    int equipamentoCoordenadaY = Integer.parseInt(partesEquipamentos[3]);
+                    int municao = Integer.parseInt(partesEquipamentos[4]);
+                    switch (tipo) {
+
+                        case 0: {
+                            Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, municao);
+                            equipamentos.add(equipamento);
+                            break;
+                        }
+                        case 8: {
+                            Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, municao);
+                            equipamentos.add(equipamento);
+                            break;
+                        }
+
+                        case 9: {
+                            Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, municao);
+                            equipamentos.add(equipamento);
+                            break;
+                        }
+                        case 2: {
+                            Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, municao);
+                            equipamentos.add(equipamento);
+                            break;
+                        }
+
+                        case 7: {
+                            Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY, municao);
+                            equipamentos.add(equipamento);
+                            break;
+                        }
+                    }
+                    Equipamento equipamento = new Equipamento(id, tipo, equipamentoCoordenadaX, equipamentoCoordenadaY);
+                    equipamentos.add(equipamento);
+
+                }
+
+
+                //Número de safeHavens
+                String numPortasLinha = leitorFicheiro.nextLine();
+                int numPortasP = Integer.parseInt(numPortasLinha);
+
+                //Coordenadas de safeHavens
+                for (int i = 0; i < numPortasP; i++) {
+                    String portasLinha = leitorFicheiro.nextLine();
+                    String[] partesPortas = portasLinha.split(" : ");
+                    xH = Integer.parseInt(partesPortas[0]);
+                    yH = Integer.parseInt(partesPortas[1]);
+                    SafeHaven safeHaven = new SafeHaven(xH, yH);
+                    safeHavens.add(safeHaven);
+
+                }
+
+                String turnoLinha = leitorFicheiro.nextLine();
+                turno = Integer.parseInt(numPortasLinha);
+
+                String ragnarokLinha = leitorFicheiro.nextLine();
+                ragnarok = Integer.parseInt(ragnarokLinha);
+            }
+                leitorFicheiro.close();
+                return true;
+
+        } catch (
+                FileNotFoundException exception) {
+            System.out.println("Erro: " + fich.toString() + " não foi encontrado.");
+            return false;
+        }
+
     }
 
     //Opcional
@@ -2387,18 +2667,18 @@ public class TWDGameManager {
         String[] respostas = new String[14];
 
         respostas[0] = "Resident Evil";
-        respostas[1] = "The evil dead";
-        respostas[2] = "I am legend";
-        respostas[3] = "Evolution";
-        respostas[4] = "Vic the Viking";
-        respostas[5] = "WorldwarZ";
-        respostas[6] = "Mandalorianos";
-        respostas[7] = "Fist of Fury";
+        respostas[1] = "Evil dead";
+        respostas[2] = "I Am Legend";
+        respostas[3] = "I Am Legend";
+        respostas[4] = "Dragon Ball";
+        respostas[5] = "World War Z";
+        respostas[6] = "Mandalorians";
+        respostas[7] = "1972";
         respostas[8] = "Kill Bill";
         respostas[9] = "1978";
-        respostas[10] = "Agente 007";
+        respostas[10] = "Bond,James Bond.";
         respostas[11] = "Lost";
-        respostas[12] = "Cabeça de alho chocho";
+        respostas[12] = "Cabeça-de-alho-chocho";
         respostas[13] = "Freddie Mercury";
 
         return respostas;

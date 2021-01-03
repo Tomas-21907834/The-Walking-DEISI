@@ -11,8 +11,23 @@ public class Outros extends Creature {
         super(id, tipoCriatura , nome, coordenadaX, coordenadaY, equipa);
     }
 
+    public Outros(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY, int equipa, int totalEquipamentoDestruido, boolean destruido, boolean transformado) {
+        super(id, tipoCriatura, nome, coordenadaX, coordenadaY, equipa);
+        this.totalEquipamentoDestruido = totalEquipamentoDestruido;
+        this.destruido = destruido;
+        this.transformado = transformado;
+    }
+
     public void setTotalEquipamentoDestruido(int totalEquipamentoDestruido) {
         this.totalEquipamentoDestruido = totalEquipamentoDestruido;
+    }
+
+    public int getTotalEquipamentoDestruido() {
+        return totalEquipamentoDestruido;
+    }
+
+    public boolean isTransformado() {
+        return transformado;
     }
 
     public void setDestruido(boolean destruido) {
