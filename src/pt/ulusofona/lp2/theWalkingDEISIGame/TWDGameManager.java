@@ -331,10 +331,12 @@ public class TWDGameManager {
                     salvos.add(creatureHumano);
                     ((Vivos) creatureHumano).setSalvo(true);
                     creatures.remove(creatureHumano);
+                    break;
                 } else {
                     salvos.add(creatureHumano);
                     ((Vivos) creatureHumano).setSalvo(true);
                     creatures.remove(creatureHumano);
+                    break;
                 }
             }
         }
@@ -884,6 +886,7 @@ public class TWDGameManager {
                         //SafeHaven
                         humanoSafe(creature, xD, yD);
 
+
                         if (zombieDestino(xD, yD)) {
                             if (((Vivos) creature).getEquipamento() != null) {
                                 if (((Vivos) creature).getEquipamento().ofensivo()) {
@@ -941,7 +944,6 @@ public class TWDGameManager {
                         creature.setCoordenadaY(yD);
                         turno++;
                         equipaAtual = 20;
-
                         return true;
                     }
                 }
@@ -1026,7 +1028,7 @@ public class TWDGameManager {
                                             }
 
                                             case 6: {
-                                                creatures.remove(creature);
+                                                zombieDestruido(creature);
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1281,7 +1283,7 @@ public class TWDGameManager {
                                             }
 
                                             case 6: {
-                                                creatures.remove(creature);
+                                                zombieDestruido(creature);
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1535,7 +1537,7 @@ public class TWDGameManager {
                                             }
 
                                             case 6: {
-                                                creatures.remove(creature);
+                                                zombieDestruido(creature);
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1783,7 +1785,7 @@ public class TWDGameManager {
                                             }
 
                                             case 6: {
-                                                creatures.remove(creature);
+                                                zombieDestruido(creature);
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1960,7 +1962,7 @@ public class TWDGameManager {
                                                 }
 
                                                 case 6: {
-                                                    creatures.remove(creature);
+                                                    zombieDestruido(creature);
                                                     turno++;
                                                     equipaAtual = 10;
 
