@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class TWDGameManager {
 
-    int x, y, equipaInicial, turnoAnterior, doisTurnos, turno = 0, equipaAtual, equipamentoApanhadoCont = 0, equipamentoDestruidoCont = 0, ragnarok = 1;
+    int x, y, equipaInicial, turnoAnterior, turno = 0, equipaAtual, equipamentoApanhadoCont = 0, equipamentoDestruidoCont = 0, ragnarok = 1;
     int xH, yH;
     boolean equipamentoCoordenadaD = false, transformado = false;
     Equipamento equipamentoTemporario;
@@ -30,7 +30,6 @@ public class TWDGameManager {
         equipamentoCoordenadaD = false;
         equipamentoApanhadoCont = 0;
         equipamentoDestruidoCont = 0;
-        doisTurnos = 0;
         turnoAnterior = 1;
         transformado = false;
         ragnarok = 1;
@@ -232,6 +231,7 @@ public class TWDGameManager {
         }
         return false;
     }
+
     public boolean mortoPorEstaca(int xD, int yD) {
         for (Creature creatureZombie : creatures) {
             if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
@@ -343,6 +343,23 @@ public class TWDGameManager {
             }
         }
         return false;
+    }
+
+    public void duasRondasEnvenenado(){
+        if(turnoAnterior != turno) {
+            turnoAnterior = turno;
+            for (Creature creature : new ArrayList<>(creatures)) {
+                if (creature.getEquipa() == 10) {
+                    if (((Vivos) creature).isEnvenenado() == true) {
+                        if (((Vivos) creature).getNumRondasEnvenenado() >= 2) {
+                            humanoDestruido(creature);
+                        } else {
+                            ((Vivos) creature).setNumRondasEnvenenado(((Vivos) creature).getNumRondasEnvenenado() + 1);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     //Funções para ver se existe equipamento,..etc no caminho
@@ -1033,8 +1050,6 @@ public class TWDGameManager {
 
                                             default:
                                                 humanoRIP(creatureHumano);
-                                                creature.setCoordenadaX(xD);
-                                                creature.setCoordenadaY(yD);
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1288,8 +1303,6 @@ public class TWDGameManager {
 
                                             default:
                                                 humanoRIP(creatureHumano);
-                                                creature.setCoordenadaX(xD);
-                                                creature.setCoordenadaY(yD);
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1542,8 +1555,6 @@ public class TWDGameManager {
 
                                             default:
                                                 humanoRIP(creatureHumano);
-                                                creature.setCoordenadaX(xD);
-                                                creature.setCoordenadaY(yD);
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1790,8 +1801,6 @@ public class TWDGameManager {
 
                                             default:
                                                 humanoRIP(creatureHumano);
-                                                creature.setCoordenadaX(xD);
-                                                creature.setCoordenadaY(yD);
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -2249,6 +2258,7 @@ public class TWDGameManager {
 
     //Completo
     public boolean isDay() {
+        duasRondasEnvenenado();
         if (turno % 4 == 0) {
             return true;
         }
