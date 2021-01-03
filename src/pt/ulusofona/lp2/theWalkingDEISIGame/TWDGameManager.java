@@ -9,7 +9,7 @@ public class TWDGameManager {
 
     int x, y, equipaInicial, turnoAnterior, doisTurnos, turno = 0, equipaAtual, equipamentoApanhadoCont = 0, equipamentoDestruidoCont = 0, ragnarok = 1;
     int xH, yH;
-    boolean equipamentoCoordenadaD = false, transformado = false, vampiroTime = false, idosoTime = false;
+    boolean equipamentoCoordenadaD = false, transformado = false;
     Equipamento equipamentoTemporario;
     ArrayList<Equipamento> equipamentos = new ArrayList<>();
     List<Creature> creatures = new ArrayList<>();
@@ -154,7 +154,7 @@ public class TWDGameManager {
         return new int[]{y, x};
     }
 
-    //Teste
+    //Completo?
     public boolean gameIsOver() {
 
         int ocorrencias = 0;
@@ -176,9 +176,7 @@ public class TWDGameManager {
         if (ocorrencias < 1) {
             return true;
         }
-        if (ragnarok < 12) {
-            ragnarok++;
-        }
+        ragnarok++;
         return false;
     }
 
@@ -226,14 +224,14 @@ public class TWDGameManager {
 
     public boolean humanoIndefeso(int xD, int yD) {
         for (Creature creature : creatures) {
-            if (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD)
+            if (creature.getCoordenadaX() == xD && creature.getCoordenadaY() == yD) {
                 if (((Vivos) creature).getEquipamento() == null) {
                     return true;
                 }
+            }
         }
         return false;
     }
-
     public boolean mortoPorEstaca(int xD, int yD) {
         for (Creature creatureZombie : creatures) {
             if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
@@ -1586,7 +1584,6 @@ public class TWDGameManager {
         //Humano
         if (equipaAtual == 10) {
             if (mov1) {
-                idosoTime = true;
                 if (isDay()) {
                     for (Creature creature : creatures) {
                         if (creature.getCoordenadaX() == xO && creature.getCoordenadaY() == yO) {
@@ -1876,7 +1873,6 @@ public class TWDGameManager {
 
         if (equipaAtual == 20) {
             if ((mov1 || mov2 || movD1 || movD2)) {
-                vampiroTime = true;
                 if (!isDay()) {
                     if (algoNoCaminhoAdulto(mov2, movD2, xD, yD, xO, yO)) {
                         return false;
@@ -2253,24 +2249,14 @@ public class TWDGameManager {
 
     //Completo
     public boolean isDay() {
-        if (turnoAnterior != turno || vampiroTime || idosoTime) {
-            vampiroTime = false;
-            idosoTime = false;
-            if (turnoAnterior != turno) {
-                turnoAnterior = turno;
-                doisTurnos++;
-            }
-            if (doisTurnos == 1 || doisTurnos == 2) {
-                return true;
-            }
-            if (doisTurnos == 0 || doisTurnos == 3 || doisTurnos == 4) {
-                if (doisTurnos == 4) {
-                    doisTurnos = 0;
-                }
-                return false;
-            }
+        if (turno % 4 == 0) {
+            return true;
         }
-        return true;
+
+        if ((turno% 4) == 1) {
+            return true;
+        }
+        return false;
     }
 
     //Completo
