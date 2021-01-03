@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class TWDGameManager {
 
-    int x, y, equipaInicial, turnoAnterior, turno = 0, equipaAtual, equipamentoApanhadoCont = 0, equipamentoDestruidoCont = 0, ragnarok = 1;
+    int x, y, equipaInicial, turno = 0, equipaAtual, equipamentoApanhadoCont = 0, equipamentoDestruidoCont = 0, ragnarok = 1;
     int xH, yH;
     boolean equipamentoCoordenadaD = false, transformado = false;
     Equipamento equipamentoTemporario;
@@ -30,7 +30,6 @@ public class TWDGameManager {
         equipamentoCoordenadaD = false;
         equipamentoApanhadoCont = 0;
         equipamentoDestruidoCont = 0;
-        turnoAnterior = 1;
         transformado = false;
         ragnarok = 1;
         try {
@@ -2496,7 +2495,6 @@ public class TWDGameManager {
         equipamentoCoordenadaD = false;
         equipamentoApanhadoCont = 0;
         equipamentoDestruidoCont = 0;
-        turnoAnterior = 1;
         transformado = false;
         ragnarok = 1;
 
