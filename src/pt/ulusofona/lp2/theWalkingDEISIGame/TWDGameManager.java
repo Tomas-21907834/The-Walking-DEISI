@@ -329,9 +329,11 @@ public class TWDGameManager {
                 if (((Vivos) creatureHumano).getEquipamento() != null) {
                     equipamentos.remove(((Vivos) creatureHumano).getEquipamento());
                     salvos.add(creatureHumano);
+                    ((Vivos) creatureHumano).setSalvo(true);
                     creatures.remove(creatureHumano);
                 } else {
                     salvos.add(creatureHumano);
+                    ((Vivos) creatureHumano).setSalvo(true);
                     creatures.remove(creatureHumano);
                 }
             }
@@ -2667,7 +2669,7 @@ public class TWDGameManager {
         String[] respostas = new String[14];
 
         respostas[0] = "Resident Evil";
-        respostas[1] = "Evil dead";
+        respostas[1] = "Evil Dead";
         respostas[2] = "I Am Legend";
         respostas[3] = "I Am Legend";
         respostas[4] = "Dragon Ball";
