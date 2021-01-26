@@ -6,7 +6,7 @@ public class Equipamento {
     int coordenadaX;
     int coordenadaY;
     int municao;
-    int salvou; // ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+    int salvou;
 
 
     public Equipamento(int id, int idTipo, int coordenadaX, int coordenadaY) {
@@ -67,5 +67,9 @@ public class Equipamento {
 
     public int getSalvou() {
         return salvou;
+    }
+
+    public void setSalvou(int salvou) {
+        this.salvou = salvou;
     }
 }

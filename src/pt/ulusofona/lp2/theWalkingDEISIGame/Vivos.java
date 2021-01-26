@@ -9,6 +9,7 @@ public class Vivos extends Creature{
     boolean envenenado = false;
     boolean morto = false;
     int numRondasEnvenenado = 0;
+    int numZombiesDestruidos = 0;
 
     public Vivos(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY, int equipa) {
         super(id, tipoCriatura, nome , coordenadaX, coordenadaY, equipa);
@@ -78,6 +79,14 @@ public class Vivos extends Creature{
 
     public void setTotalEquipamentoApanhado(int totalEquipamentoApanhado) {
         this.totalEquipamentoApanhado = totalEquipamentoApanhado;
+    }
+
+    public int getNumZombiesDestruidos() {
+        return numZombiesDestruidos;
+    }
+
+    public void setNumZombiesDestruidos(int numZombiesDestruidos) {
+        this.numZombiesDestruidos = numZombiesDestruidos;
     }
 
     public void setSalvo(boolean salvo) {
