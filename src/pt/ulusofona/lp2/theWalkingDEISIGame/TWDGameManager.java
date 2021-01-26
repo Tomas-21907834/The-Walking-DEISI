@@ -211,7 +211,7 @@ public class TWDGameManager {
             allCreatures.add(creature);
         }
 
-        return creatures;
+        return allCreatures;
     }
 
     public boolean humanoDestino(int xD, int yD) {
@@ -2784,6 +2784,11 @@ public class TWDGameManager {
                 .sorted((s1, s2) -> ((Vivos) s1).equipamento.getSalvou() - ((Vivos) s2).equipamento.getSalvou())
                 .map(creature -> ((Vivos) creature).equipamento.getIdTipo() + " : " + ((Vivos) creature).equipamento.getSalvou())
                 .collect(Collectors.toList());
+                statiktoks.put(chave2, valor2);
+
+        statiktoks.put(chave3, new ArrayList<String>());
+        statiktoks.put(chave4, new ArrayList<String>());
+
 
         return statiktoks;
 
