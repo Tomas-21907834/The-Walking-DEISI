@@ -34,7 +34,7 @@ public class Vivos extends Creature{
         this.numRondasEnvenenado = numRondasEnvenenado;
     }
 
-    public int getTotalEquipamentoApanhado() {
+    public int getTotalEquipamento() {
         return totalEquipamentoApanhado;
     }
 
@@ -104,7 +104,7 @@ public class Vivos extends Creature{
     @Override
     public String toString() {
         if (salvo) {
-            return id + " | " + tipoCriatura() + " | " + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @  A salvo";
+            return id + " | " + tipoCriatura() + " | " + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ A salvo";
         } else if (morto){
             return id + " | " + tipoCriatura() + " | " + equipaString() + " | " + nome + " " + equipamentoApanhados() + " @ RIP";
         } else {

@@ -85,7 +85,6 @@ public class InvalidTWDInitialFileException extends Exception {
 
     public String getErroneousLine(){
         try {
-            String linha = "";
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
             while (leitorFicheiro.hasNextLine()) {
                 leitorFicheiro.nextLine();
@@ -96,9 +95,8 @@ public class InvalidTWDInitialFileException extends Exception {
 
                     String criaturasLinha = leitorFicheiro.nextLine();
                     String[] partesCriaturas = criaturasLinha.split(" : ");
-                    linha = Arrays.toString(partesCriaturas);
                     if (partesCriaturas.length != 5) {
-                        return linha;
+                        return criaturasLinha;
                     }
                 }
 

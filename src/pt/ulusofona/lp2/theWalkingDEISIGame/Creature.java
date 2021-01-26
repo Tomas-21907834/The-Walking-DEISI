@@ -80,6 +80,7 @@ abstract public class Creature {
         }
     }
 
+    abstract public int getTotalEquipamento();
 
     public String equipaString() {
         if (equipa == 20) {

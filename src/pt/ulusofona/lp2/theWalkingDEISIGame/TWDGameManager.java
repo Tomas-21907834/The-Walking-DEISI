@@ -2447,7 +2447,7 @@ public class TWDGameManager {
             for (Creature creature : creatures) {
                 if (creature.getEquipa() == 10) {
                     escritor.write(creature.getId() + " : " + creature.getTipoCriatura() + " : " + creature.getNome() + " : " + creature.getCoordenadaX() + " : " + creature.getCoordenadaY());
-                    escritor.write(" : " + creature.getEquipa() + " : " + ((Vivos) creature).getTotalEquipamentoApanhado() + " : " + ((Vivos) creature).isSalvo() + " : ");
+                    escritor.write(" : " + creature.getEquipa() + " : " + ((Vivos) creature).getTotalEquipamento() + " : " + ((Vivos) creature).isSalvo() + " : ");
                     escritor.write(((Vivos) creature).isEnvenenado() + " : " + ((Vivos) creature).isMorto() + " : " + ((Vivos) creature).getNumRondasEnvenenado());
                     if (((Vivos) creature).getEquipamento() != null) {
                         escritor.write(" : " + ((Vivos) creature).getEquipamento().getId() + " : " + ((Vivos) creature).getEquipamento().getIdTipo() + " : " + ((Vivos) creature).getEquipamento().getCoordenadaX());
@@ -2463,7 +2463,7 @@ public class TWDGameManager {
 
                 if (creature.getEquipa() == 20) {
                     escritor.write(creature.getId() + " : " + creature.getTipoCriatura() + " : " + creature.getNome() + " : " + creature.getCoordenadaX() + " : " + creature.getCoordenadaY());
-                    escritor.write(" : " + creature.getEquipa() + " : " + ((Outros) creature).getTotalEquipamentoDestruido() + " : " + ((Outros) creature).isDestruido() + " : " + ((Outros) creature).isTransformado());
+                    escritor.write(" : " + creature.getEquipa() + " : " + ((Outros) creature).getTotalEquipamento() + " : " + ((Outros) creature).isDestruido() + " : " + ((Outros) creature).isTransformado());
                 }
 
                 escritor.newLine();
@@ -2788,6 +2788,17 @@ public class TWDGameManager {
 
         statiktoks.put(chave3, new ArrayList<String>());
         statiktoks.put(chave4, new ArrayList<String>());
+
+        // ------------------ Quinto ------------------
+        List<String> valor4 = creatures.stream()
+
+                .sorted((s1, s2) -> (s2).getTotalEquipamento() - (s1).getTotalEquipamento())
+                .limit(5)
+                .map(creature -> creature.getId() + " : " + creature.getNome() + " : " + creature.getTotalEquipamento())
+                .collect(Collectors.toList());
+        statiktoks.put(chave4, valor4);
+
+        statiktoks.put(chave3, new ArrayList<String>());
 
 
         return statiktoks;

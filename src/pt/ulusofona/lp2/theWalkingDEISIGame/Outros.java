@@ -23,7 +23,7 @@ public class Outros extends Creature {
         this.totalEquipamentoDestruido = totalEquipamentoDestruido;
     }
 
-    public int getTotalEquipamentoDestruido() {
+    public int getTotalEquipamento() {
         return totalEquipamentoDestruido;
     }
 
