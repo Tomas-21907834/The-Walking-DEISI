@@ -65,6 +65,8 @@ public class Vivos extends Creature{
         return equipamento;
     }
 
+
+
     public String getImagePNG() {
         return "human.png";
     }

@@ -6,6 +6,8 @@ public class Equipamento {
     int coordenadaX;
     int coordenadaY;
     int municao;
+    int salvou; // ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+
 
     public Equipamento(int id, int idTipo, int coordenadaX, int coordenadaY) {
         this.id = id;
@@ -20,6 +22,7 @@ public class Equipamento {
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
         this.municao = municao;
+
     }
 
     public String getImagePNG(){
@@ -60,5 +63,9 @@ public class Equipamento {
 
     public int getMunicao() {
         return municao;
+    }
+
+    public int getSalvou() {
+        return salvou;
     }
 }

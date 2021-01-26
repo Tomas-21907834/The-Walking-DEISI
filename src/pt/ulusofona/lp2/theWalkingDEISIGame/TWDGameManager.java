@@ -1,10 +1,8 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class TWDGameManager {
 
@@ -44,7 +42,6 @@ public class TWDGameManager {
         }
 
         try {
-
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 
             while (leitorFicheiro.hasNextLine()) {
@@ -157,10 +154,6 @@ public class TWDGameManager {
         }
     }
 
-
-    public Map<String, List<String>> getGameStatistics(){
-        return null;
-    }
 
 
     //Completo
@@ -294,7 +287,8 @@ public class TWDGameManager {
         ((Outros) creatureZombie).setDestruido(true);
     }
 
-    public void humanoRIP(Creature creatureHumano) {
+    public void humanoRIP(Creature creatureHumano, Outros creatureZombie) {
+        creatureZombie.setNrTransformacoes(creatureZombie.getNrTransformacoes() + 1);
         transformado = true;
         equipamentos.remove(((Vivos) creatureHumano).getEquipamento());
         int id = creatureHumano.getId();
@@ -1027,7 +1021,7 @@ public class TWDGameManager {
                                                     zombieDestruido(creature);
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
-                                                    humanoRIP(creatureHumano);
+                                                    humanoRIP(creatureHumano,((Outros)creature));
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
@@ -1054,7 +1048,7 @@ public class TWDGameManager {
                                                 if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
-                                                    humanoRIP(creatureHumano);
+                                                    humanoRIP(creatureHumano,((Outros)creature));
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
@@ -1071,7 +1065,7 @@ public class TWDGameManager {
                                             }
 
                                             default:
-                                                humanoRIP(creatureHumano);
+                                                humanoRIP(creatureHumano,((Outros)creature));
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1085,7 +1079,7 @@ public class TWDGameManager {
                                         if (creatureHumano.getTipoCriatura() == 9) {
                                             return false;
                                         }
-                                        humanoRIP(creatureHumano);
+                                        humanoRIP(creatureHumano,((Outros)creature));
                                         turno++;
                                         equipaAtual = 10;
 
@@ -1282,7 +1276,7 @@ public class TWDGameManager {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
                                                     equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
-                                                    humanoRIP(creatureHumano);
+                                                    humanoRIP(creatureHumano,((Outros)creature));
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
@@ -1309,7 +1303,7 @@ public class TWDGameManager {
                                                 if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
-                                                    humanoRIP(creatureHumano);
+                                                    humanoRIP(creatureHumano,((Outros)creature));
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
@@ -1326,7 +1320,7 @@ public class TWDGameManager {
                                             }
 
                                             default:
-                                                humanoRIP(creatureHumano);
+                                                humanoRIP(creatureHumano,((Outros)creature));
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1340,7 +1334,7 @@ public class TWDGameManager {
                                         if (creatureHumano.getTipoCriatura() == 9) {
                                             return false;
                                         }
-                                        humanoRIP(creatureHumano);
+                                        humanoRIP(creatureHumano,((Outros)creature));
                                         turno++;
                                         equipaAtual = 10;
 
@@ -1536,7 +1530,7 @@ public class TWDGameManager {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
                                                     equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
-                                                    humanoRIP(creatureHumano);
+                                                    humanoRIP(creatureHumano,((Outros)creature));
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
@@ -1563,7 +1557,7 @@ public class TWDGameManager {
                                                 if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
-                                                    humanoRIP(creatureHumano);
+                                                    humanoRIP(creatureHumano,((Outros)creature));
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
@@ -1580,7 +1574,7 @@ public class TWDGameManager {
                                             }
 
                                             default:
-                                                humanoRIP(creatureHumano);
+                                                humanoRIP(creatureHumano,((Outros)creature));
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1594,7 +1588,7 @@ public class TWDGameManager {
                                         if (creatureHumano.getTipoCriatura() == 9) {
                                             return false;
                                         }
-                                        humanoRIP(creatureHumano);
+                                        humanoRIP(creatureHumano,((Outros)creature));
                                         turno++;
                                         equipaAtual = 10;
 
@@ -1777,7 +1771,7 @@ public class TWDGameManager {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
                                                     equipamentos.remove((((Vivos) creatureHumano).getEquipamento()));
-                                                    humanoRIP(creatureHumano);
+                                                    humanoRIP(creatureHumano,((Outros)creature));
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
@@ -1811,7 +1805,7 @@ public class TWDGameManager {
                                                 if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
                                                     ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                 } else {
-                                                    humanoRIP(creatureHumano);
+                                                    humanoRIP(creatureHumano,((Outros)creature));
                                                 }
                                                 turno++;
                                                 equipaAtual = 10;
@@ -1828,7 +1822,7 @@ public class TWDGameManager {
                                             }
 
                                             default:
-                                                humanoRIP(creatureHumano);
+                                                humanoRIP(creatureHumano,((Outros)creature));
                                                 turno++;
                                                 equipaAtual = 10;
 
@@ -1842,7 +1836,7 @@ public class TWDGameManager {
                                         if (creatureHumano.getTipoCriatura() == 9) {
                                             return false;
                                         }
-                                        humanoRIP(creatureHumano);
+                                        humanoRIP(creatureHumano,((Outros)creature));
                                         turno++;
                                         equipaAtual = 10;
 
@@ -1988,7 +1982,7 @@ public class TWDGameManager {
                                                     if ((((Vivos) creatureHumano).getEquipamento().getMunicao()) > 0) {
                                                         ((Vivos) creatureHumano).getEquipamento().setMunicao((((Vivos) creatureHumano).getEquipamento().getMunicao()) - 1);
                                                     } else {
-                                                        humanoRIP(creatureHumano);
+                                                        humanoRIP(creatureHumano,((Outros)creature));
                                                     }
                                                     turno++;
                                                     equipaAtual = 10;
@@ -2005,7 +1999,7 @@ public class TWDGameManager {
                                                 }
 
                                                 default:
-                                                    humanoRIP(creatureHumano);
+                                                    humanoRIP(creatureHumano,((Outros)creature));
                                                     turno++;
                                                     equipaAtual = 10;
 
@@ -2019,7 +2013,7 @@ public class TWDGameManager {
                                             if (creatureHumano.getTipoCriatura() == 9) {
                                                 return false;
                                             }
-                                            humanoRIP(creatureHumano);
+                                            humanoRIP(creatureHumano,((Outros)creature));
                                             turno++;
                                             equipaAtual = 10;
 
@@ -2700,6 +2694,132 @@ public class TWDGameManager {
         respostas[13] = "Farrokh Bulsara";
 
         return respostas;
+
+    }
+
+    public Map<String, List<String>> getGameStatistics(){
+
+
+        Map<String, List<String>> statiktoks = new HashMap<>();
+
+
+        List<String> valor0 = creatures.stream()
+
+
+                .filter(creature -> {
+
+                    if (((Outros) creature).getNrTransformacoes() > 0){
+
+
+
+                }
+
+
+
+        return true;
+
+
+        })      .sorted((c1,c2) -> ((Outros) c1).getNrTransformacoes() - ((Outros) c2).getNrTransformacoes())
+                .limit(3)
+                .map(creature -> creature.getId() + " : " + creature.getNome() + " : " + ((Outros)creature).getNrTransformacoes())
+                .collect(Collectors.toList());
+
+
+
+
+
+
+
+        List<String> valor1 = destruidos.stream()
+
+                .filter(creature -> {
+                            if (((Outros)creature).nrDestruido() < 3){
+                                return  ((Outros)creature).nrDestruido() >= 1;
+                            }
+                                        // ((Outros)creature).nrDestruido()
+                            return  true;
+
+                        })
+
+                .sorted((c1,c2) -> ((Outros)c2).nrDestruido() - ((Outros)c1).nrDestruido())
+                .limit(3)
+                .map(creature -> creature.getId() + " : " + creature.getNome() + " : " + ((Outros)creature).nrDestruido())
+                .collect(Collectors.toList());
+
+
+        List<String> valor2 = salvos.stream()
+
+
+                .sorted((s1,s2) -> ((Vivos)s1).equipamento.getSalvou() - ((Vivos)s2).equipamento.getSalvou())
+                .map(creature -> ((Vivos)creature).equipamento.getIdTipo() + " : " + ((Vivos)creature).equipamento.getSalvou())
+                .collect(Collectors.toList());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        String chave0 = "os3ZombiesMaisTramados";
+
+        String chave1 = "os3VivosMaisDuros";
+
+        String chave2 = "tiposDeEquipamentoMaisUteis";
+
+        String chave3 = "tiposDeZombieESeusEquipamentosDestruidos";
+
+        String chave4 = "criaturasMaisEquipadas";
+
+
+        statiktoks.put(chave0,valor0);
+
+
+
+
+
+
+
+
+
+
+        return statiktoks;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
