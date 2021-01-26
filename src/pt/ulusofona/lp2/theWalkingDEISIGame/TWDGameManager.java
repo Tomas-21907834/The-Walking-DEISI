@@ -153,6 +153,7 @@ public class TWDGameManager {
             leitorFicheiro.close();
         } catch (FileNotFoundException exception) {
             System.out.println("Erro: " + ficheiroInicial.toString() + " não foi encontrado.");
+            throw exception;
         }
     }
 
@@ -2728,12 +2729,11 @@ public class TWDGameManager {
                         .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
                         .collect(counting());
 
-                System.out.println(numeroZombies);
                 if (numeroZombies < 3) {
                     List<String> valor0 = outros.stream()
 
                             .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
-                            .map(creature -> creature.getId() + " : " + creature.getNome() + " : " + ((Outros) creature).getNrTransformacoes())
+                            .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
                             .collect(Collectors.toList());
                     statiktoks.put(chave0, valor0);
                 } else {
@@ -2742,7 +2742,7 @@ public class TWDGameManager {
                             .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
                             .sorted((c1, c2) -> ((Outros) c1).getNrTransformacoes() - ((Outros) c2).getNrTransformacoes())
                             .limit(3)
-                            .map(creature -> creature.getId() + " : " + creature.getNome() + " : " + ((Outros) creature).getNrTransformacoes())
+                            .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
                             .collect(Collectors.toList());
                     statiktoks.put(chave0, valor0);
                 }
@@ -2758,12 +2758,12 @@ public class TWDGameManager {
                 .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1)
                 .collect(counting());
 
-        System.out.println(numeroHumanos);
+
         if (numeroHumanos < 3) {
             List<String> valor1 = vivos.stream()
 
                     .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1)
-                    .map(creature -> creature.getId() + " : " + creature.getNome() + " : " + ((Vivos) creature).getNumZombiesDestruidos())
+                    .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Vivos) creature).getNumZombiesDestruidos())
                     .collect(Collectors.toList());
             statiktoks.put(chave1, valor1);
         } else {
@@ -2772,7 +2772,7 @@ public class TWDGameManager {
                     .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1)
                     .sorted((c1, c2) -> ((Vivos) c1).getNumZombiesDestruidos() - ((Vivos) c2).getNumZombiesDestruidos())
                     .limit(3)
-                    .map(creature -> creature.getId() + " : " + creature.getNome() + " : " + ((Vivos) creature).getNumZombiesDestruidos())
+                    .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Vivos) creature).getNumZombiesDestruidos())
                     .collect(Collectors.toList());
             statiktoks.put(chave1, valor1);
         }
@@ -2782,7 +2782,7 @@ public class TWDGameManager {
         List<String> valor2 = salvos.stream()
 
                 .sorted((s1, s2) -> ((Vivos) s1).equipamento.getSalvou() - ((Vivos) s2).equipamento.getSalvou())
-                .map(creature -> ((Vivos) creature).equipamento.getIdTipo() + " : " + ((Vivos) creature).equipamento.getSalvou())
+                .map(creature -> ((Vivos) creature).equipamento.getIdTipo() + ":" + ((Vivos) creature).equipamento.getSalvou())
                 .collect(Collectors.toList());
                 statiktoks.put(chave2, valor2);
 
@@ -2794,7 +2794,7 @@ public class TWDGameManager {
 
                 .sorted((s1, s2) -> (s2).getTotalEquipamento() - (s1).getTotalEquipamento())
                 .limit(5)
-                .map(creature -> creature.getId() + " : " + creature.getNome() + " : " + creature.getTotalEquipamento())
+                .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + creature.getTotalEquipamento())
                 .collect(Collectors.toList());
         statiktoks.put(chave4, valor4);
 

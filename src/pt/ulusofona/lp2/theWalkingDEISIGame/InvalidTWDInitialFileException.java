@@ -13,7 +13,7 @@ public class InvalidTWDInitialFileException extends Exception {
         this.ficheiroInicial = ficheiroInicial;
     }
 
-    public boolean validNrOfCreatures(){
+    public boolean validNrOfCreatures() throws FileNotFoundException {
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
             while (leitorFicheiro.hasNextLine()) {
@@ -43,11 +43,11 @@ public class InvalidTWDInitialFileException extends Exception {
             return true;
         } catch (FileNotFoundException exception) {
             System.out.println("Erro: " + ficheiroInicial.toString() + " não foi encontrado.");
+            throw exception;
         }
-        return true;
     }
 
-    public boolean validCreatureDefinition() {
+    public boolean validCreatureDefinition() throws FileNotFoundException {
         int count = 0;
         try {
 
@@ -79,11 +79,11 @@ public class InvalidTWDInitialFileException extends Exception {
             return true;
         } catch (FileNotFoundException exception) {
             System.out.println("Erro: " + ficheiroInicial.toString() + " não foi encontrado.");
+            throw exception;
         }
-        return true;
     }
 
-    public String getErroneousLine(){
+    public String getErroneousLine() throws FileNotFoundException {
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
             while (leitorFicheiro.hasNextLine()) {
@@ -115,6 +115,7 @@ public class InvalidTWDInitialFileException extends Exception {
 
         } catch (FileNotFoundException exception) {
             System.out.println("Erro: " + ficheiroInicial.toString() + " não foi encontrado.");
+            throw exception;
         }
         return "";
     }
