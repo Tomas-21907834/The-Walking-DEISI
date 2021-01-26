@@ -3,6 +3,7 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class TWDGameManager {
@@ -21,7 +22,8 @@ public class TWDGameManager {
 
     }
 
-    public boolean startGame(File ficheiroInicial) {
+    public void startGame(File ficheiroInicial) throws InvalidTWDInitialFileException,
+            FileNotFoundException {
         //Reset all.
         creatures.clear();
         equipamentos.clear();
@@ -32,7 +34,17 @@ public class TWDGameManager {
         equipamentoDestruidoCont = 0;
         transformado = false;
         ragnarok = 1;
+
+        if (!new InvalidTWDInitialFileException(ficheiroInicial).validCreatureDefinition()) {
+            throw new InvalidTWDInitialFileException(ficheiroInicial);
+        }
+
+        if (!new InvalidTWDInitialFileException(ficheiroInicial).validNrOfCreatures()) {
+            throw new InvalidTWDInitialFileException(ficheiroInicial);
+        }
+
         try {
+
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
 
             while (leitorFicheiro.hasNextLine()) {
@@ -140,12 +152,16 @@ public class TWDGameManager {
 
             }
             leitorFicheiro.close();
-            return true;
         } catch (FileNotFoundException exception) {
             System.out.println("Erro: " + ficheiroInicial.toString() + " não foi encontrado.");
-            return false;
         }
     }
+
+
+    public Map<String, List<String>> getGameStatistics(){
+        return null;
+    }
+
 
     //Completo
     public int[] getWorldSize() {
