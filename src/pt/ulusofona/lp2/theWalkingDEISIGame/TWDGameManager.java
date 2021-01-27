@@ -2240,45 +2240,60 @@ public class TWDGameManager {
     public List<String> getGameResults() {
         ArrayList<String> resultados = new ArrayList<>();
 
-        resultados.add("Nr. de turnos terminados:\n");
+        resultados.add("Nr. de turnos terminados:");
 
-        resultados.add(turno + "\n\n");
 
-        resultados.add("Ainda pelo bairo:\n\n");
+        resultados.add(String.valueOf(turno));
 
-        resultados.add("OS VIVOS\n\n");
+        resultados.add("");
+
+        resultados.add("Ainda pelo bairo:");
+
+        resultados.add("");
+
+        resultados.add("OS VIVOS");
 
         for (Creature creature : creatures) {
             if (creature.getEquipa() == 10) {
                 resultados.add(creature.getId() + " " + creature.getNome() + "\n");
             }
         }
+        resultados.add("");
 
-        resultados.add("OS OUTROS\n\n");
+        resultados.add("OS OUTROS");
 
         for (Creature creature : creatures) {
             if (creature.getEquipa() == 20) {
                 resultados.add(creature.getId() + " " + creature.getNome() + "\n");
             }
         }
+        resultados.add("");
 
-        resultados.add("Num safe haven:\n\n");
+        resultados.add("Num safe haven:");
 
-        resultados.add("OS VIVOS\n\n");
+        resultados.add("");
+
+        resultados.add("OS VIVOS");
 
 
         for (Creature salvo : salvos) {
             resultados.add(salvo.getId() + " " + salvo.getNome());
         }
 
-        resultados.add("Envenenados / Destruidos\n\n");
-        resultados.add("OS VIVOS\n\n");
+        resultados.add("");
+
+        resultados.add("Envenenados / Destruidos");
+
+        resultados.add("");
+
+        resultados.add("OS VIVOS");
 
         for (Creature creature : destruidos) {
             if (((Vivos) creature).isMorto()) {
                 resultados.add(creature.getId() + " " + creature.getNome());
             }
         }
+        resultados.add("");
 
         resultados.add("OS OUTROS");
 
@@ -2727,6 +2742,9 @@ public class TWDGameManager {
                 outros.add((Outros) creature);
             }
         }
+
+
+
 
         long numeroZombies = outros.stream()
                 .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
