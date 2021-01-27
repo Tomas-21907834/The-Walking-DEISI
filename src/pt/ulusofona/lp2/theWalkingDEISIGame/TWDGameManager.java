@@ -2264,7 +2264,7 @@ public class TWDGameManager {
 
         for (Creature creature : creatures) {
             if (creature.getEquipa() == 20) {
-                resultados.add(creature.getId() + " " + creature.getNome() + "\n");
+                resultados.add(creature.getId() + " (antigamente conhecido como " + creature.getNome() + ")\n");
             }
         }
         resultados.add("");
@@ -2290,7 +2290,7 @@ public class TWDGameManager {
 
         for (Creature creature : destruidos) {
             if (((Vivos) creature).isMorto()) {
-                resultados.add(creature.getId() + " " + creature.getNome());
+                resultados.add(creature.getId() + " (antigamente conhecido como " + creature.getNome() + ")");
             }
         }
         resultados.add("");
