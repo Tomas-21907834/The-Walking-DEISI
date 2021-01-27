@@ -27,7 +27,29 @@ abstract public class Creature {
     }
 
     public String getImagePNG() {
-        return null;
+        if (tipoCriatura == 0) {
+            return "crianca_zombie.png";
+        } else if (tipoCriatura == 1) {
+            return "adulto_zombie.png";
+        } else if (tipoCriatura == 2) {
+            return "militar_zombie.png";
+        } else if (tipoCriatura == 3) {
+            return "idoso_zombie.png";
+        } else if (tipoCriatura == 4) {
+            return "vampiro_zombie.png";
+        } else if (tipoCriatura == 5) {
+            return "crianca_vivo.png";
+        } else if (tipoCriatura == 6) {
+            return "adulto_vivo.png";
+        } else if (tipoCriatura == 7) {
+            return "militar_vivo.png";
+        } else if (tipoCriatura == 8) {
+            return "idoso_vivo.png";
+        } else if (tipoCriatura == 9) {
+            return "cao_vivo.png";
+        } else {
+            return "";
+        }
     }
 
     public int getEquipa() {

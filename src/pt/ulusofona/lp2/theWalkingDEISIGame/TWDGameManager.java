@@ -2727,6 +2727,7 @@ public class TWDGameManager {
                 outros.add((Outros) creature);
             }
         }
+
         long numeroZombies = outros.stream()
                 .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
                 .collect(counting());

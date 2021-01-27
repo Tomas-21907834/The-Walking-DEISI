@@ -30,12 +30,10 @@ public class TestTWDGameManager {
 
 
 
-/*
-
 
 
     @Test
-    public void testaMove01(){
+    public void testaMove01() throws Exception {
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -49,7 +47,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove02(){
+    public void testaMove02() throws Exception {
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -63,7 +61,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove03(){
+    public void testaMove03() throws Exception{
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -77,7 +75,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove05(){
+    public void testaMove05() throws Exception{
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -91,7 +89,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove06(){
+    public void testaMove06() throws Exception{
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -105,7 +103,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove07(){
+    public void testaMove07() throws Exception{
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -119,7 +117,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove08(){
+    public void testaMove08() throws Exception{
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -133,7 +131,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove09(){
+    public void testaMove09() throws Exception{
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -147,7 +145,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove010(){
+    public void testaMove010() throws Exception{
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -161,7 +159,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove11(){
+    public void testaMove11() throws Exception{
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -175,7 +173,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove12(){
+    public void testaMove12() throws Exception{
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -189,7 +187,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove13() {
+    public void testaMove13() throws Exception {
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -226,7 +224,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove14(){
+    public void testaMove14() throws Exception {
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -240,7 +238,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove15(){
+    public void testaMove15() throws Exception {
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -254,7 +252,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove16(){
+    public void testaMove16() throws Exception {
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -292,7 +290,7 @@ public class TestTWDGameManager {
     }
 
     @Test
-    public void testaMove17(){
+    public void testaMove17() throws Exception {
 
         TWDGameManager teste = new TWDGameManager();
 
@@ -310,6 +308,6 @@ public class TestTWDGameManager {
         assertEquals(false,tres);
         assertEquals(true,quatro);
     }
- */
+
 }
 
