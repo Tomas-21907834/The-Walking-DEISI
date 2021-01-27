@@ -2,7 +2,7 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.*;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.counting;
 
@@ -2246,7 +2246,7 @@ public class TWDGameManager {
 
         resultados.add("Ainda pelo bairo:\n\n");
 
-        resultados.add("OS VIVOS\n");
+        resultados.add("OS VIVOS\n\n");
 
         for (Creature creature : creatures) {
             if (creature.getEquipa() == 10) {
@@ -2254,7 +2254,7 @@ public class TWDGameManager {
             }
         }
 
-        resultados.add("\nOS OUTROS\n");
+        resultados.add("OS OUTROS\n\n");
 
         for (Creature creature : creatures) {
             if (creature.getEquipa() == 20) {
@@ -2262,17 +2262,17 @@ public class TWDGameManager {
             }
         }
 
-        resultados.add("\nNum safe haven:\n");
+        resultados.add("Num safe haven:\n\n");
 
-        resultados.add("OS VIVOS\n");
+        resultados.add("OS VIVOS\n\n");
 
 
         for (Creature salvo : salvos) {
             resultados.add(salvo.getId() + " " + salvo.getNome());
         }
 
-        resultados.add("\nEnvenenados / Destruidos\n");
-        resultados.add("OS VIVOS\n");
+        resultados.add("Envenenados / Destruidos\n\n");
+        resultados.add("OS VIVOS\n\n");
 
         for (Creature creature : destruidos) {
             if (((Vivos) creature).isMorto()) {
@@ -2280,12 +2280,12 @@ public class TWDGameManager {
             }
         }
 
-        resultados.add("\nOS OUTROS\n");
+        resultados.add("OS OUTROS");
 
 
         for (Creature creature : destruidos) {
             if (((Outros) creature).isDestruido()) {
-                resultados.add(creature.getId() + " " + creature.getNome() + "\n");
+                resultados.add(creature.getId() + " " + creature.getNome());
             }
         }
 
@@ -2719,55 +2719,50 @@ public class TWDGameManager {
         String chave4 = "criaturasMaisEquipadas";
 
         // ------------------ Primeiro ------------------
-        List<Outros> outros = new ArrayList<>();
-                for (Creature creature : new ArrayList<>(creatures)) {
-                    if (creature.getEquipa() == 20) {
-                        outros.add((Outros) creature);
-                    }
-                }
-                long numeroZombies = outros.stream()
-                        .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
-                        .collect(counting());
 
-                if (numeroZombies < 3) {
-                    List<String> valor0 = outros.stream()
 
-                            .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
-                            .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
-                            .collect(Collectors.toList());
-                    statiktoks.put(chave0, valor0);
-                } else {
-                    List<String> valor0 = outros.stream()
+// ------------------ Primeiro ------------------
 
-                            .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
-                            .sorted((c1, c2) -> ((Outros) c1).getNrTransformacoes() - ((Outros) c2).getNrTransformacoes())
-                            .limit(3)
-                            .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
-                            .collect(Collectors.toList());
-                    statiktoks.put(chave0, valor0);
-                }
+
+        long numeroZombies = creatures.stream()
+                .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1).count();
+
+
+        if (numeroZombies < 3) {
+            List<String> valor0 = creatures.stream()
+
+                    .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
+                    .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
+                    .collect(Collectors.toList());
+            statiktoks.put(chave0, valor0);
+        } else {
+            List<String> valor0 = creatures.stream()
+
+                    .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
+                    .sorted((c1, c2) -> ((Outros) c1).getNrTransformacoes() - ((Outros) c2).getNrTransformacoes())
+                    .limit(3)
+                    .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
+                    .collect(Collectors.toList());
+            statiktoks.put(chave0, valor0);
+        }
 
         // ------------------ Segundo ------------------
-        List<Vivos> vivos = new ArrayList<>();
-        for (Creature creature : new ArrayList<>(creatures)) {
-            if (creature.getEquipa() == 10) {
-                vivos.add((Vivos) creature);
-            }
-        }
-        long numeroHumanos = vivos.stream()
-                .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1)
-                .collect(counting());
+
+
+        long numeroHumanos = creatures.stream()
+                .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1).count();
+
 
 
         if (numeroHumanos < 3) {
-            List<String> valor1 = vivos.stream()
+            List<String> valor1 = creatures.stream()
 
                     .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1)
                     .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Vivos) creature).getNumZombiesDestruidos())
                     .collect(Collectors.toList());
             statiktoks.put(chave1, valor1);
         } else {
-            List<String> valor1 = vivos.stream()
+            List<String> valor1 = creatures.stream()
 
                     .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1)
                     .sorted((c1, c2) -> ((Vivos) c1).getNumZombiesDestruidos() - ((Vivos) c2).getNumZombiesDestruidos())
@@ -2784,7 +2779,7 @@ public class TWDGameManager {
                 .sorted((s1, s2) -> ((Vivos) s1).equipamento.getSalvou() - ((Vivos) s2).equipamento.getSalvou())
                 .map(creature -> ((Vivos) creature).equipamento.getIdTipo() + ":" + ((Vivos) creature).equipamento.getSalvou())
                 .collect(Collectors.toList());
-                statiktoks.put(chave2, valor2);
+        statiktoks.put(chave2, valor2);
 
         statiktoks.put(chave3, new ArrayList<String>());
         statiktoks.put(chave4, new ArrayList<String>());
@@ -2805,5 +2800,17 @@ public class TWDGameManager {
 
     }
 
-}
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 
