@@ -2761,7 +2761,7 @@ public class TWDGameManager {
         } else {
             List<String> valor0 = outros.stream()
 
-
+                    .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
                     .sorted((c1, c2) -> ((Outros) c1).getNrTransformacoes() - ((Outros) c2).getNrTransformacoes())
                     .limit(3)
                     .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
@@ -2777,9 +2777,9 @@ public class TWDGameManager {
                 vivos.add((Vivos) creature);
             }
         }
+
         long numeroHumanos = vivos.stream()
-                .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1)
-                .collect(counting());
+                .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1).count();
 
 
         if (numeroHumanos < 3) {
@@ -2817,7 +2817,7 @@ public class TWDGameManager {
 
                 .sorted((s1, s2) -> (s2).getTotalEquipamento() - (s1).getTotalEquipamento())
                 .limit(5)
-                .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + creature.getTotalEquipamento())
+                .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Vivos)creature).getTotalEquipamento())
                 .collect(Collectors.toList());
         statiktoks.put(chave4, valor4);
 
