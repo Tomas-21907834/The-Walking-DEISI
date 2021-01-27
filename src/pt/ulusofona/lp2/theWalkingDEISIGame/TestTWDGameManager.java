@@ -3,11 +3,37 @@ import org.junit.Test;
 
 import java.io.File;
 
+
 import static org.junit.Assert.assertEquals;
 
 
+
 public class TestTWDGameManager {
+
+    @Test
+   public void testsStatistics() throws Exception {
+
+        TWDGameManager teste = new TWDGameManager();
+
+        File ficheiro = new File("test-files/jogo.txt");
+        teste.startGame(ficheiro);
+
+
+        boolean resultadoEsperado = false;
+
+        boolean resultadoObtido = teste.getGameStatistics().isEmpty();
+
+        assertEquals(resultadoEsperado,resultadoObtido);
+
+
+    }
+
+
+
 /*
+
+
+
     @Test
     public void testaMove01(){
 

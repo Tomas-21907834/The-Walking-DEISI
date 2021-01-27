@@ -272,7 +272,7 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean mortoACabecada(int xD, int yD , Vivos creatureHumano) {
+    public boolean mortoACabecada(int xD, int yD, Vivos creatureHumano) {
         for (Creature creatureZombie : creatures) {
             if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
                 if (creatureZombie.getTipoCriatura() != 4) {
@@ -286,7 +286,7 @@ public class TWDGameManager {
 
     public void zombieDestruido(Creature creatureZombie, Vivos creatureHumano) {
         creatureHumano.setNumZombiesDestruidos(creatureHumano.getNumZombiesDestruidos() + 1);
-        creatureHumano.getEquipamento().setSalvou(creatureHumano.getEquipamento().getSalvou()+1);
+        creatureHumano.getEquipamento().setSalvou(creatureHumano.getEquipamento().getSalvou() + 1);
         destruidos.add(creatureZombie);
         creatures.remove(creatureZombie);
         ((Outros) creatureZombie).setDestruido(true);
@@ -912,7 +912,7 @@ public class TWDGameManager {
                                                 if (creatureZombie.getCoordenadaX() == xD && creatureZombie.getCoordenadaY() == yD) {
                                                     if (creatureZombie.getTipoCriatura() == 0) {
                                                         zombieDestruido(creatureZombie, (Vivos) creature);
-                                                        ((Vivos) creature).getEquipamento().setSalvou(((Vivos) creature).getEquipamento().getSalvou()+1);
+                                                        ((Vivos) creature).getEquipamento().setSalvou(((Vivos) creature).getEquipamento().getSalvou() + 1);
                                                         matou = true;
                                                     }
                                                 }
@@ -2718,25 +2718,28 @@ public class TWDGameManager {
 
         String chave4 = "criaturasMaisEquipadas";
 
+
+
         // ------------------ Primeiro ------------------
-
-
-// ------------------ Primeiro ------------------
-
-
-        long numeroZombies = creatures.stream()
-                .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1).count();
-
+        List<Outros> outros = new ArrayList<>();
+        for (Creature creature : new ArrayList<>(creatures)) {
+            if (creature.getEquipa() == 20) {
+                outros.add((Outros) creature);
+            }
+        }
+        long numeroZombies = outros.stream()
+                .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
+                .collect(counting());
 
         if (numeroZombies < 3) {
-            List<String> valor0 = creatures.stream()
+            List<String> valor0 = outros.stream()
 
                     .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
                     .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
                     .collect(Collectors.toList());
             statiktoks.put(chave0, valor0);
         } else {
-            List<String> valor0 = creatures.stream()
+            List<String> valor0 = outros.stream()
 
                     .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
                     .sorted((c1, c2) -> ((Outros) c1).getNrTransformacoes() - ((Outros) c2).getNrTransformacoes())
@@ -2747,22 +2750,26 @@ public class TWDGameManager {
         }
 
         // ------------------ Segundo ------------------
-
-
-        long numeroHumanos = creatures.stream()
-                .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1).count();
-
+        List<Vivos> vivos = new ArrayList<>();
+        for (Creature creature : new ArrayList<>(creatures)) {
+            if (creature.getEquipa() == 10) {
+                vivos.add((Vivos) creature);
+            }
+        }
+        long numeroHumanos = vivos.stream()
+                .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1)
+                .collect(counting());
 
 
         if (numeroHumanos < 3) {
-            List<String> valor1 = creatures.stream()
+            List<String> valor1 = vivos.stream()
 
                     .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1)
                     .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Vivos) creature).getNumZombiesDestruidos())
                     .collect(Collectors.toList());
             statiktoks.put(chave1, valor1);
         } else {
-            List<String> valor1 = creatures.stream()
+            List<String> valor1 = vivos.stream()
 
                     .filter(creature -> ((Vivos) creature).getNumZombiesDestruidos() >= 1)
                     .sorted((c1, c2) -> ((Vivos) c1).getNumZombiesDestruidos() - ((Vivos) c2).getNumZombiesDestruidos())
@@ -2798,19 +2805,10 @@ public class TWDGameManager {
 
         return statiktoks;
 
-    }
-
-
-
-
-
-
-
-
-
-
 
     }
+
+}
 
 
 

@@ -7,6 +7,7 @@ public class Outros extends Creature {
     boolean destruido = false;
     boolean transformado = false;
     int nrTransformacoes=0;
+    int nrDestruicoes = 0;
 
     public Outros(int id, int tipoCriatura, String nome, int coordenadaX, int coordenadaY, int equipa) {
         super(id, tipoCriatura , nome, coordenadaX, coordenadaY, equipa);
@@ -29,17 +30,6 @@ public class Outros extends Creature {
 
     public boolean isTransformado() {
         return transformado;
-    }
-
-
-
-    public int nrDestruido(){
-        int destruido = 0;
-
-        while (this.destruido){
-            destruido++;
-        }
-        return destruido;
     }
 
 
@@ -69,6 +59,14 @@ public class Outros extends Creature {
 
     public void setNrTransformacoes(int nrTransformacoes) {
         this.nrTransformacoes = nrTransformacoes;
+    }
+
+    public int getNrDestruicoes() {
+        return nrDestruicoes;
+    }
+
+    public void setNrDestruicoes(int nrDestruicoes) {
+        this.nrDestruicoes = nrDestruicoes;
     }
 
     @Override
