@@ -5,6 +5,6 @@ public class Main {
 
 
         TWDGameManager twdGameManager = new TWDGameManager();
-        System.out.println(twdGameManager.getGameStatistics());
+        System.out.println(twdGameManager.getGameResults());
     }
 }

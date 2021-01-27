@@ -2735,17 +2735,20 @@ public class TWDGameManager {
             List<String> valor0 = outros.stream()
 
                     .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
+                    .limit(3)
                     .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
                     .collect(Collectors.toList());
             statiktoks.put(chave0, valor0);
+
         } else {
             List<String> valor0 = outros.stream()
 
-                    .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
+
                     .sorted((c1, c2) -> ((Outros) c1).getNrTransformacoes() - ((Outros) c2).getNrTransformacoes())
                     .limit(3)
                     .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
                     .collect(Collectors.toList());
+
             statiktoks.put(chave0, valor0);
         }
 
