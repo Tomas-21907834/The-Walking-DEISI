@@ -2735,7 +2735,6 @@ public class TWDGameManager {
             List<String> valor0 = outros.stream()
 
                     .filter(creature -> ((Outros) creature).getNrTransformacoes() >= 1)
-                    .limit(3)
                     .map(creature -> creature.getId() + ":" + creature.getNome() + ":" + ((Outros) creature).getNrTransformacoes())
                     .collect(Collectors.toList());
             statiktoks.put(chave0, valor0);
