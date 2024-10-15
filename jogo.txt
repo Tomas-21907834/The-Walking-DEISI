@@ -1,0 +1,19 @@
+9 9
+10
+9
+1 : 6 : Freddie M. : 0 : 3
+2 : 6 : Jackie Chan : 0 : 4
+3 : 6 : Alice : 5 : 5
+4 : 6 : Ash : 2 : 2
+5 : 9 : Sam : 4 : 8
+6 : 0 : martinz : 4 : 0
+7 : 1 : Paciente Um : 4 : 1
+8 : 2 : Paciente Dois : 4 : 2
+9 : 4 : Paciente Quatro : 4 : 4
+4
+-1 : 0 : 0 : 5
+-2 : 1 : 2 : 3
+-3 : 5 : 0 : 0
+-4 : 8 : 0 : 1
+1
+6 : 6
